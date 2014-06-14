@@ -7,7 +7,7 @@
 // Input:
 //     A[31:0]
 //     B[31:0]
-//     FT[3:0] : The last 4 bits of ALUFunc
+//     FT[3:0] : ALUFunc[3:0]
 // Output:
 //     S[31:0]
 
