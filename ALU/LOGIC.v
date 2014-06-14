@@ -30,7 +30,7 @@ module Logic(
         (FT == FT_LOGIC_AND) ? (A & B) : (
             (FT == FT_LOGIC_OR) ? (A | B) : (
                 (FT == FT_LOGIC_XOR) ? (A ^ B) : (
-                    (FT == FT_LOGIC_NOR) ? (A ~| B) : (
+                    (FT == FT_LOGIC_NOR) ? ~(A | B) : (
                         (FT == FT_LOGIC_A) ? A : (
                             ERROR_OUTPUT
                         )
