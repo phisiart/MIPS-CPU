@@ -1,6 +1,6 @@
 // Zhixun TAN
 // Created: 2014/6/14
-// Last modified: 2014/6/14
+// Last modified: 2014/6/15
 
 // ------------------------------------
 // Testbench module
@@ -31,11 +31,18 @@ module main;
     reg[31:0] B;
     wire[31:0] LogicOut;
     wire[31:0] ShiftOut; 
+    wire[31:0] ArithOut;
+    wire Zero;
+    wire Overflow;
+    wire Negative;
+
     reg[4:0] shamt;
     reg[5:0] ALUFunc;
+    reg Signed;
 
     Shift m_shift(shamt, B, ALUFunc[1:0], ShiftOut);
     Logic m_logic(A, B, ALUFunc[3:0], LogicOut);
+    Arith m_arith(A, B, ALUFunc[0], Signed, ArithOut, Zero, Overflow, Negative);
 
     initial begin
         A = 10;
@@ -67,6 +74,17 @@ module main;
         ALUFunc = ALUFUNC_SRA;
         #20 $display("%b = B\n%d = shamt\n%b = B >>> shamt\n", B, shamt, ShiftOut);
 
+        ALUFunc = ALUFUNC_SUB;
+        A = {32{1'b1}};
+        B = 1;
+        Signed = 0;
+        #20 $display("%b = A\n%b = B\n%b = A - B", A, B, ArithOut);
+            $display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
+
+        ALUFunc = ALUFUNC_ADD;
+        #20 $display("%b = A\n%b = B\n%b = A + B", A, B, ArithOut);
+            $display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
+    
     end
 
 endmodule

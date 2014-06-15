@@ -1,0 +1,2 @@
+xst -intstyle ise -ifn "/home/johnson/GitHub/CPU/ALU/ISEPrj/Arith.xst" -ofn "/home/johnson/GitHub/CPU/ALU/ISEPrj/Arith.syr" 
+xst -intstyle ise -ifn "/home/johnson/GitHub/CPU/ALU/ISEPrj/Arith.xst" -ofn "/home/johnson/GitHub/CPU/ALU/ISEPrj/Arith.syr" 

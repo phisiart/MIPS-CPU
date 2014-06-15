@@ -1,0 +1,3 @@
+verilog work "../ADD.v"
+verilog work "../SUB.v"
+verilog work "../ARITH.v"
