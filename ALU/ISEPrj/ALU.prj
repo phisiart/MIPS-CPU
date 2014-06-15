@@ -1,0 +1,7 @@
+verilog work "../ADD.v"
+verilog work "../SUB.v"
+verilog work "../SHIFT.v"
+verilog work "../LOGIC.v"
+verilog work "../CMP.v"
+verilog work "../ARITH.v"
+verilog work "../ALU.v"

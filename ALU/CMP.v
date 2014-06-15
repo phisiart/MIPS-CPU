@@ -4,7 +4,7 @@
 
 // ------------------------------------
 // Module Compare
-// inputs are from SUB
+// inputs are from A - B
 // Input:
 //     Zero
 //     Overflow
@@ -27,9 +27,18 @@ module Compare(
     parameter FT_CMP_GEZ = 3'b100;
     parameter FT_CMP_GTZ = 3'b111;
 
+    parameter ERROR_OUTPUT = 1'b1;
+
     assign S = (FT == FT_CMP_EQ) ? Zero : (
         (FT == FT_CMP_NEQ) ? ~Zero : (
-            (FT == FT_CMP_LT) ? 
+            (FT == FT_CMP_LT) ? Negative : (
+                (FT == FT_CMP_LEZ) ? (Negative | Zero) : (
+                    (FT == FT_CMP_GEZ) ? (~Negative) : (
+                        (FT == FT_CMP_GTZ) ? (~Negative & ~Zero) :
+                            ERROR_OUTPUT
+                    )
+                )
+            )
         )
     );
 
