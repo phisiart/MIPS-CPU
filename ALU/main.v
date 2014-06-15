@@ -29,6 +29,60 @@ module main;
 
     reg[31:0] A;
     reg[31:0] B;
+    reg Signed;
+    reg[5:0] ALUFunc;
+    wire[31:0] S;
+
+    ALU m_alu(A, B, Signed, ALUFunc, S);
+
+    initial begin
+
+        $display("-------------- Testbench for ALU --------------");
+        $display("Start testing...");
+
+        A = 15;
+        B = -35;
+        Signed = 1;
+        ALUFunc = ALUFUNC_AND;
+        #20 $display("%b = A\n%b = B\n%b = A and B\n", A, B, S);
+
+        ALUFunc = ALUFUNC_OR;
+        #20 $display("%b = A\n%b = B\n%b = A or B\n", A, B, S);
+
+        ALUFunc = ALUFUNC_XOR;
+        #20 $display("%b = A\n%b = B\n%b = A xor B\n", A, B, S);
+
+        ALUFunc = ALUFUNC_NOR;
+        #20 $display("%b = A\n%b = B\n%b = A nor B\n", A, B, S);
+
+        ALUFunc = ALUFUNC_A;
+        #20 $display("%b = A\n%b = B\n%b = A\n", A, B, S);
+
+        A = 5'b10110;
+        ALUFunc = ALUFUNC_SLL;
+        #20 $display("%b = B\n%d = shamt\n%b = B << shamt\n", B, A, S);
+
+        A = 5'b00011;
+        ALUFunc = ALUFUNC_SRL;
+        #20 $display("%b = B\n%d = shamt\n%b = B >> shamt\n", B, A, S);
+    
+        ALUFunc = ALUFUNC_SRA;
+        #20 $display("%b = B\n%d = shamt\n%b = B >>> shamt\n", B, A, S);
+
+        ALUFunc = ALUFUNC_SUB;
+        A = {32{1'b1}};
+        B = 1;
+        Signed = 0;
+        #20 $display("%b = A\n%b = B\n%b = A - B\n", A, B, S);
+            //$display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
+
+        ALUFunc = ALUFUNC_ADD;
+        #20 $display("%b = A\n%b = B\n%b = A + B\n", A, B, S);
+            //$display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
+
+    end
+
+    /*
     wire[31:0] LogicOut;
     wire[31:0] ShiftOut; 
     wire[31:0] ArithOut;
@@ -86,5 +140,5 @@ module main;
             $display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
     
     end
-
+    */
 endmodule
