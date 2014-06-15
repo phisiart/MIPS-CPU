@@ -5,10 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"/home/johnson/GitHub/CPU/ALU/SUB.v" Line 29: Assignment to <arg fmt="%s" index="1">m_overflow</arg> ignored, since the identifier is never used
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"/home/johnson/GitHub/CPU/ALU/SUB.v" Line 31: Assignment to <arg fmt="%s" index="1">m_zero</arg> ignored, since the identifier is never used
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/johnson/GitHub/CPU/ALU/SUB.v</arg>&quot; line <arg fmt="%s" index="2">29</arg>: Output port &lt;<arg fmt="%s" index="3">Overflow</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">m_add</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/johnson/GitHub/CPU/ALU/SUB.v</arg>&quot; line <arg fmt="%s" index="2">31</arg>: Output port &lt;<arg fmt="%s" index="3">Zero</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">m_add</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/johnson/GitHub/CPU/ALU/SUB.v</arg>&quot; line <arg fmt="%s" index="2">31</arg>: Output port &lt;<arg fmt="%s" index="3">Overflow</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">m_add</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/johnson/GitHub/CPU/ALU/SUB.v</arg>&quot; line <arg fmt="%s" index="2">31</arg>: Output port &lt;<arg fmt="%s" index="3">Negative</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">m_add</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 </messages>

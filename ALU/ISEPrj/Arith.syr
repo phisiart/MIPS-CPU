@@ -124,7 +124,7 @@ Elaborating module <Arith>.
 Elaborating module <ADD>.
 
 Elaborating module <SUB>.
-WARNING:HDLCompiler:1127 - "/home/johnson/GitHub/CPU/ALU/SUB.v" Line 29: Assignment to m_overflow ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/johnson/GitHub/CPU/ALU/SUB.v" Line 31: Assignment to m_zero ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -138,21 +138,23 @@ Unit <Arith> synthesized.
 
 Synthesizing Unit <ADD>.
     Related source file is "/home/johnson/GitHub/CPU/ALU/ADD.v".
-    Found 33-bit adder for signal <n0019> created at line 29.
+    Found 32-bit adder for signal <S> created at line 27.
     Summary:
 	inferred   1 Adder/Subtractor(s).
-	inferred   1 Multiplexer(s).
+	inferred   2 Multiplexer(s).
 Unit <ADD> synthesized.
 
 Synthesizing Unit <SUB>.
     Related source file is "/home/johnson/GitHub/CPU/ALU/SUB.v".
-INFO:Xst:3210 - "/home/johnson/GitHub/CPU/ALU/SUB.v" line 29: Output port <Overflow> of the instance <m_add> is unconnected or connected to loadless signal.
-    Found 32-bit adder for signal <B[31]_GND_3_o_add_1_OUT> created at line 29.
-    Found 1-bit comparator equal for signal <A[31]_B[31]_equal_3_o> created at line 42
+INFO:Xst:3210 - "/home/johnson/GitHub/CPU/ALU/SUB.v" line 31: Output port <Zero> of the instance <m_add> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/johnson/GitHub/CPU/ALU/SUB.v" line 31: Output port <Overflow> of the instance <m_add> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/johnson/GitHub/CPU/ALU/SUB.v" line 31: Output port <Negative> of the instance <m_add> is unconnected or connected to loadless signal.
+    Found 32-bit adder for signal <B[31]_GND_3_o_add_1_OUT> created at line 31.
+    Found 1-bit comparator equal for signal <A[31]_B[31]_equal_4_o> created at line 62
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   1 Comparator(s).
-	inferred   1 Multiplexer(s).
+	inferred   3 Multiplexer(s).
 Unit <SUB> synthesized.
 
 =========================================================================
@@ -160,13 +162,14 @@ HDL Synthesis Report
 
 Macro Statistics
 # Adders/Subtractors                                   : 3
- 32-bit adder                                          : 1
- 33-bit adder                                          : 2
+ 32-bit adder                                          : 3
 # Comparators                                          : 1
  1-bit comparator equal                                : 1
-# Multiplexers                                         : 7
- 1-bit 2-to-1 multiplexer                              : 6
+# Multiplexers                                         : 11
+ 1-bit 2-to-1 multiplexer                              : 10
  32-bit 2-to-1 multiplexer                             : 1
+# Xors                                                 : 3
+ 1-bit xor2                                            : 3
 
 =========================================================================
 
@@ -180,13 +183,14 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # Adders/Subtractors                                   : 3
- 32-bit adder                                          : 1
- 33-bit adder                                          : 2
+ 32-bit adder                                          : 3
 # Comparators                                          : 1
  1-bit comparator equal                                : 1
-# Multiplexers                                         : 4
- 1-bit 2-to-1 multiplexer                              : 3
+# Multiplexers                                         : 8
+ 1-bit 2-to-1 multiplexer                              : 7
  32-bit 2-to-1 multiplexer                             : 1
+# Xors                                                 : 2
+ 1-bit xor2                                            : 2
 
 =========================================================================
 
@@ -200,7 +204,7 @@ Optimizing unit <SUB> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block Arith, actual ratio is 1.
+Found area constraint ratio of 100 (+ 5) on block Arith, actual ratio is 2.
 
 Final Macro Processing ...
 
@@ -229,18 +233,16 @@ Top Level Output File Name         : Arith.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 337
+# BELS                             : 305
 #      GND                         : 1
 #      INV                         : 31
-#      LUT1                        : 1
-#      LUT2                        : 65
-#      LUT3                        : 32
+#      LUT2                        : 66
+#      LUT3                        : 64
 #      LUT4                        : 2
 #      LUT5                        : 3
-#      LUT6                        : 11
-#      MUXCY                       : 94
-#      VCC                         : 1
-#      XORCY                       : 96
+#      LUT6                        : 12
+#      MUXCY                       : 62
+#      XORCY                       : 64
 # IO Buffers                       : 101
 #      IBUF                        : 66
 #      OBUF                        : 35
@@ -252,14 +254,14 @@ Selected Device : 6slx16csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice LUTs:                  145  out of   9112     1%  
-    Number used as Logic:               145  out of   9112     1%  
+ Number of Slice LUTs:                  178  out of   9112     1%  
+    Number used as Logic:               178  out of   9112     1%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    145
-   Number with an unused Flip Flop:     145  out of    145   100%  
-   Number with an unused LUT:             0  out of    145     0%  
-   Number of fully used LUT-FF pairs:     0  out of    145     0%  
+ Number of LUT Flip Flop pairs used:    178
+   Number with an unused Flip Flop:     178  out of    178   100%  
+   Number with an unused LUT:             0  out of    178     0%  
+   Number of fully used LUT-FF pairs:     0  out of    178     0%  
    Number of unique control sets:         0
 
 IO Utilization: 
@@ -299,7 +301,7 @@ Speed Grade: -3
    Minimum period: No path found
    Minimum input arrival time before clock: No path found
    Maximum output required time after clock: No path found
-   Maximum combinational path delay: 10.158ns
+   Maximum combinational path delay: 10.452ns
 
 Timing Details:
 ---------------
@@ -307,29 +309,30 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default path analysis
-  Total number of paths / destination ports: 18630 / 35
+  Total number of paths / destination ports: 9670 / 35
 -------------------------------------------------------------------------
-Delay:               10.158ns (Levels of Logic = 10)
-  Source:            A<0> (PAD)
+Delay:               10.452ns (Levels of Logic = 11)
+  Source:            B<1> (PAD)
   Destination:       Zero (PAD)
 
-  Data Path: A<0> to Zero
+  Data Path: B<1> to Zero
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             2   1.222   0.721  A_0_IBUF (A_0_IBUF)
-     LUT2:I0->O            1   0.203   0.000  m_add/Madd_n0019_lut<0> (m_add/Madd_n0019_lut<0>)
-     MUXCY:S->O            1   0.172   0.000  m_add/Madd_n0019_cy<0> (m_add/Madd_n0019_cy<0>)
-     MUXCY:CI->O           1   0.019   0.000  m_add/Madd_n0019_cy<1> (m_add/Madd_n0019_cy<1>)
-     XORCY:CI->O           2   0.180   0.845  m_add/Madd_n0019_xor<2> (S_ADD<2>)
-     LUT6:I3->O            1   0.205   0.944  Mmux_Zero11 (Mmux_Zero1)
-     LUT6:I0->O            1   0.203   0.944  Mmux_Zero12 (Mmux_Zero11)
-     LUT6:I0->O            1   0.203   0.944  Mmux_Zero17 (Mmux_Zero16)
-     LUT6:I0->O            1   0.203   0.579  Mmux_Zero115 (Zero_OBUF)
+     IBUF:I->O             2   1.222   0.616  B_1_IBUF (B_1_IBUF)
+     INV:I->O              2   0.206   0.721  m_sub/n0025<1>1_INV_0 (m_sub/n0025<1>)
+     LUT2:I0->O            1   0.203   0.580  m_sub/m_add/Madd_S1 (m_sub/m_add/Madd_S1)
+     LUT3:I2->O            1   0.205   0.000  m_sub/m_add/Madd_S_lut<0>2 (m_sub/m_add/Madd_S_lut<0>2)
+     MUXCY:S->O            1   0.172   0.000  m_sub/m_add/Madd_S_cy<0>_1 (m_sub/m_add/Madd_S_cy<0>2)
+     MUXCY:CI->O           1   0.019   0.000  m_sub/m_add/Madd_S_cy<0>_2 (m_sub/m_add/Madd_S_cy<0>3)
+     XORCY:CI->O           2   0.180   0.961  m_sub/m_add/Madd_S_xor<0>_3 (S_SUB<4>)
+     LUT5:I0->O            1   0.203   0.684  Mmux_Zero114 (Mmux_Zero113)
+     LUT6:I4->O            1   0.203   0.924  Mmux_Zero115 (Mmux_Zero114)
+     LUT6:I1->O            1   0.203   0.579  Mmux_Zero117 (Zero_OBUF)
      OBUF:I->O                 2.571          Zero_OBUF (Zero)
     ----------------------------------------
-    Total                     10.158ns (5.181ns logic, 4.977ns route)
-                                       (51.0% logic, 49.0% route)
+    Total                     10.452ns (5.387ns logic, 5.065ns route)
+                                       (51.5% logic, 48.5% route)
 
 =========================================================================
 
@@ -340,14 +343,14 @@ Cross Clock Domains Report:
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.93 secs
+Total CPU time to Xst completion: 5.67 secs
  
 --> 
 
 
-Total memory usage is 381864 kilobytes
+Total memory usage is 381892 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
 

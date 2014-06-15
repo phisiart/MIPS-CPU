@@ -26,7 +26,7 @@ module ADD(
 
     assign S = A + B;
 
-    assign Zero = (S == 0);
+    assign Zero = ((S == 0) & ~Overflow);
 
     // overflow
     // --------------------------------------------------------------
