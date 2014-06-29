@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2014-06-15T20:29:35</DateModified>
+  <DateModified>2014-06-15T20:55:06</DateModified>
   <ModuleName>ALU</ModuleName>
-  <SummaryTimeStamp>2014-06-15T17:20:03</SummaryTimeStamp>
+  <SummaryTimeStamp>2014-06-15T20:34:26</SummaryTimeStamp>
   <SavedFilePath>/home/johnson/GitHub/CPU/ALU/ISEPrj/iseconfig/Shift.xreport</SavedFilePath>
   <ImplementationReportsDirectory>/home/johnson/GitHub/CPU/ALU/ISEPrj</ImplementationReportsDirectory>
   <DateInitialized>2014-06-15T20:29:35</DateInitialized>
