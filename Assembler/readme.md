@@ -6,3 +6,7 @@ This program turns MIPS assembly language into bitcode. It is implemented with p
 
 * comments are correctly ignored
 * register names are correctly recognized
+
+### Usage:
+
+* to be done...
