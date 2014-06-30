@@ -3,32 +3,24 @@ Created by PLY version 3.4 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     BLTZ
-    SUB
     SLTI
     JR
     BLEZ
-    SUBU
     BEQ
     ANDI
     IDENTIFIER
     ADDIU
     SRA
-    XOR
     SLT
     J
     SRL
     SLL
-    ADD
     BGTZ
     BNE
-    AND
-    ADDU
     JALR
     SLTIU
     JAL
-    NOR
     NOP
-    OR
     ADDI
 
 Grammar
@@ -39,15 +31,23 @@ Rule 2     program -> instruction
 Rule 3     instruction -> LW register NUMBER LBRACKET register RBRACKET
 Rule 4     instruction -> SW register NUMBER LBRACKET register RBRACKET
 Rule 5     instruction -> LUI register NUMBER
-Rule 6     register -> REGPREFIX NUMBER
+Rule 6     instruction -> ADD register register register
+Rule 7     instruction -> ADDU register register register
+Rule 8     instruction -> SUB register register register
+Rule 9     instruction -> SUBU register register register
+Rule 10    instruction -> AND register register register
+Rule 11    instruction -> OR register register register
+Rule 12    instruction -> XOR register register register
+Rule 13    instruction -> NOR register register register
+Rule 14    register -> REGPREFIX NUMBER
 
 Terminals, with rules where they appear
 
-ADD                  : 
+ADD                  : 6
 ADDI                 : 
 ADDIU                : 
-ADDU                 : 
-AND                  : 
+ADDU                 : 7
+AND                  : 10
 ANDI                 : 
 BEQ                  : 
 BGTZ                 : 
@@ -63,28 +63,28 @@ LBRACKET             : 3 4
 LUI                  : 5
 LW                   : 3
 NOP                  : 
-NOR                  : 
-NUMBER               : 3 4 5 6
-OR                   : 
+NOR                  : 13
+NUMBER               : 3 4 5 14
+OR                   : 11
 RBRACKET             : 3 4
-REGPREFIX            : 6
+REGPREFIX            : 14
 SLL                  : 
 SLT                  : 
 SLTI                 : 
 SLTIU                : 
 SRA                  : 
 SRL                  : 
-SUB                  : 
-SUBU                 : 
+SUB                  : 8
+SUBU                 : 9
 SW                   : 4
-XOR                  : 
+XOR                  : 12
 error                : 
 
 Nonterminals, with rules where they appear
 
 instruction          : 1 2
 program              : 1 0
-register             : 3 3 4 4 5
+register             : 3 3 4 4 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 12 13 13 13
 
 Parsing method: LALR
 
@@ -96,183 +96,628 @@ state 0
     (3) instruction -> . LW register NUMBER LBRACKET register RBRACKET
     (4) instruction -> . SW register NUMBER LBRACKET register RBRACKET
     (5) instruction -> . LUI register NUMBER
+    (6) instruction -> . ADD register register register
+    (7) instruction -> . ADDU register register register
+    (8) instruction -> . SUB register register register
+    (9) instruction -> . SUBU register register register
+    (10) instruction -> . AND register register register
+    (11) instruction -> . OR register register register
+    (12) instruction -> . XOR register register register
+    (13) instruction -> . NOR register register register
 
-    LW              shift and go to state 3
-    SW              shift and go to state 2
-    LUI             shift and go to state 5
+    LW              shift and go to state 7
+    SW              shift and go to state 6
+    LUI             shift and go to state 11
+    ADD             shift and go to state 8
+    ADDU            shift and go to state 2
+    SUB             shift and go to state 4
+    SUBU            shift and go to state 10
+    AND             shift and go to state 1
+    OR              shift and go to state 12
+    XOR             shift and go to state 3
+    NOR             shift and go to state 13
 
-    program                        shift and go to state 4
-    instruction                    shift and go to state 1
+    program                        shift and go to state 9
+    instruction                    shift and go to state 5
 
 state 1
+
+    (10) instruction -> AND . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 14
+
+state 2
+
+    (7) instruction -> ADDU . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 16
+
+state 3
+
+    (12) instruction -> XOR . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 17
+
+state 4
+
+    (8) instruction -> SUB . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 18
+
+state 5
 
     (2) program -> instruction .
 
     LW              reduce using rule 2 (program -> instruction .)
     SW              reduce using rule 2 (program -> instruction .)
     LUI             reduce using rule 2 (program -> instruction .)
+    ADD             reduce using rule 2 (program -> instruction .)
+    ADDU            reduce using rule 2 (program -> instruction .)
+    SUB             reduce using rule 2 (program -> instruction .)
+    SUBU            reduce using rule 2 (program -> instruction .)
+    AND             reduce using rule 2 (program -> instruction .)
+    OR              reduce using rule 2 (program -> instruction .)
+    XOR             reduce using rule 2 (program -> instruction .)
+    NOR             reduce using rule 2 (program -> instruction .)
     $end            reduce using rule 2 (program -> instruction .)
 
 
-state 2
+state 6
 
     (4) instruction -> SW . register NUMBER LBRACKET register RBRACKET
-    (6) register -> . REGPREFIX NUMBER
+    (14) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 6
+    REGPREFIX       shift and go to state 15
 
-    register                       shift and go to state 7
+    register                       shift and go to state 19
 
-state 3
+state 7
 
     (3) instruction -> LW . register NUMBER LBRACKET register RBRACKET
-    (6) register -> . REGPREFIX NUMBER
+    (14) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 6
+    REGPREFIX       shift and go to state 15
 
-    register                       shift and go to state 8
+    register                       shift and go to state 20
 
-state 4
+state 8
+
+    (6) instruction -> ADD . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 21
+
+state 9
 
     (0) S' -> program .
     (1) program -> program . instruction
     (3) instruction -> . LW register NUMBER LBRACKET register RBRACKET
     (4) instruction -> . SW register NUMBER LBRACKET register RBRACKET
     (5) instruction -> . LUI register NUMBER
+    (6) instruction -> . ADD register register register
+    (7) instruction -> . ADDU register register register
+    (8) instruction -> . SUB register register register
+    (9) instruction -> . SUBU register register register
+    (10) instruction -> . AND register register register
+    (11) instruction -> . OR register register register
+    (12) instruction -> . XOR register register register
+    (13) instruction -> . NOR register register register
 
-    LW              shift and go to state 3
-    SW              shift and go to state 2
-    LUI             shift and go to state 5
+    LW              shift and go to state 7
+    SW              shift and go to state 6
+    LUI             shift and go to state 11
+    ADD             shift and go to state 8
+    ADDU            shift and go to state 2
+    SUB             shift and go to state 4
+    SUBU            shift and go to state 10
+    AND             shift and go to state 1
+    OR              shift and go to state 12
+    XOR             shift and go to state 3
+    NOR             shift and go to state 13
 
-    instruction                    shift and go to state 9
+    instruction                    shift and go to state 22
 
-state 5
+state 10
+
+    (9) instruction -> SUBU . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 23
+
+state 11
 
     (5) instruction -> LUI . register NUMBER
-    (6) register -> . REGPREFIX NUMBER
+    (14) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 6
+    REGPREFIX       shift and go to state 15
 
-    register                       shift and go to state 10
+    register                       shift and go to state 24
 
-state 6
+state 12
 
-    (6) register -> REGPREFIX . NUMBER
+    (11) instruction -> OR . register register register
+    (14) register -> . REGPREFIX NUMBER
 
-    NUMBER          shift and go to state 11
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 25
+
+state 13
+
+    (13) instruction -> NOR . register register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 26
+
+state 14
+
+    (10) instruction -> AND register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 27
+
+state 15
+
+    (14) register -> REGPREFIX . NUMBER
+
+    NUMBER          shift and go to state 28
 
 
-state 7
+state 16
+
+    (7) instruction -> ADDU register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 29
+
+state 17
+
+    (12) instruction -> XOR register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 30
+
+state 18
+
+    (8) instruction -> SUB register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 31
+
+state 19
 
     (4) instruction -> SW register . NUMBER LBRACKET register RBRACKET
 
-    NUMBER          shift and go to state 12
+    NUMBER          shift and go to state 32
 
 
-state 8
+state 20
 
     (3) instruction -> LW register . NUMBER LBRACKET register RBRACKET
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 33
 
 
-state 9
+state 21
+
+    (6) instruction -> ADD register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 34
+
+state 22
 
     (1) program -> program instruction .
 
     LW              reduce using rule 1 (program -> program instruction .)
     SW              reduce using rule 1 (program -> program instruction .)
     LUI             reduce using rule 1 (program -> program instruction .)
+    ADD             reduce using rule 1 (program -> program instruction .)
+    ADDU            reduce using rule 1 (program -> program instruction .)
+    SUB             reduce using rule 1 (program -> program instruction .)
+    SUBU            reduce using rule 1 (program -> program instruction .)
+    AND             reduce using rule 1 (program -> program instruction .)
+    OR              reduce using rule 1 (program -> program instruction .)
+    XOR             reduce using rule 1 (program -> program instruction .)
+    NOR             reduce using rule 1 (program -> program instruction .)
     $end            reduce using rule 1 (program -> program instruction .)
 
 
-state 10
+state 23
+
+    (9) instruction -> SUBU register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 35
+
+state 24
 
     (5) instruction -> LUI register . NUMBER
 
-    NUMBER          shift and go to state 14
+    NUMBER          shift and go to state 36
 
 
-state 11
+state 25
 
-    (6) register -> REGPREFIX NUMBER .
+    (11) instruction -> OR register . register register
+    (14) register -> . REGPREFIX NUMBER
 
-    RBRACKET        reduce using rule 6 (register -> REGPREFIX NUMBER .)
-    NUMBER          reduce using rule 6 (register -> REGPREFIX NUMBER .)
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 37
+
+state 26
+
+    (13) instruction -> NOR register . register register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 38
+
+state 27
+
+    (10) instruction -> AND register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 39
+
+state 28
+
+    (14) register -> REGPREFIX NUMBER .
+
+    REGPREFIX       reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    LW              reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    SW              reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    LUI             reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    ADD             reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    ADDU            reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    SUB             reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    SUBU            reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    AND             reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    OR              reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    XOR             reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    NOR             reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    $end            reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    RBRACKET        reduce using rule 14 (register -> REGPREFIX NUMBER .)
+    NUMBER          reduce using rule 14 (register -> REGPREFIX NUMBER .)
 
 
-state 12
+state 29
+
+    (7) instruction -> ADDU register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 40
+
+state 30
+
+    (12) instruction -> XOR register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 41
+
+state 31
+
+    (8) instruction -> SUB register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 42
+
+state 32
 
     (4) instruction -> SW register NUMBER . LBRACKET register RBRACKET
 
-    LBRACKET        shift and go to state 15
+    LBRACKET        shift and go to state 43
 
 
-state 13
+state 33
 
     (3) instruction -> LW register NUMBER . LBRACKET register RBRACKET
 
-    LBRACKET        shift and go to state 16
+    LBRACKET        shift and go to state 44
 
 
-state 14
+state 34
+
+    (6) instruction -> ADD register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 45
+
+state 35
+
+    (9) instruction -> SUBU register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 46
+
+state 36
 
     (5) instruction -> LUI register NUMBER .
 
     LW              reduce using rule 5 (instruction -> LUI register NUMBER .)
     SW              reduce using rule 5 (instruction -> LUI register NUMBER .)
     LUI             reduce using rule 5 (instruction -> LUI register NUMBER .)
+    ADD             reduce using rule 5 (instruction -> LUI register NUMBER .)
+    ADDU            reduce using rule 5 (instruction -> LUI register NUMBER .)
+    SUB             reduce using rule 5 (instruction -> LUI register NUMBER .)
+    SUBU            reduce using rule 5 (instruction -> LUI register NUMBER .)
+    AND             reduce using rule 5 (instruction -> LUI register NUMBER .)
+    OR              reduce using rule 5 (instruction -> LUI register NUMBER .)
+    XOR             reduce using rule 5 (instruction -> LUI register NUMBER .)
+    NOR             reduce using rule 5 (instruction -> LUI register NUMBER .)
     $end            reduce using rule 5 (instruction -> LUI register NUMBER .)
 
 
-state 15
+state 37
+
+    (11) instruction -> OR register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 47
+
+state 38
+
+    (13) instruction -> NOR register register . register
+    (14) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 15
+
+    register                       shift and go to state 48
+
+state 39
+
+    (10) instruction -> AND register register register .
+
+    LW              reduce using rule 10 (instruction -> AND register register register .)
+    SW              reduce using rule 10 (instruction -> AND register register register .)
+    LUI             reduce using rule 10 (instruction -> AND register register register .)
+    ADD             reduce using rule 10 (instruction -> AND register register register .)
+    ADDU            reduce using rule 10 (instruction -> AND register register register .)
+    SUB             reduce using rule 10 (instruction -> AND register register register .)
+    SUBU            reduce using rule 10 (instruction -> AND register register register .)
+    AND             reduce using rule 10 (instruction -> AND register register register .)
+    OR              reduce using rule 10 (instruction -> AND register register register .)
+    XOR             reduce using rule 10 (instruction -> AND register register register .)
+    NOR             reduce using rule 10 (instruction -> AND register register register .)
+    $end            reduce using rule 10 (instruction -> AND register register register .)
+
+
+state 40
+
+    (7) instruction -> ADDU register register register .
+
+    LW              reduce using rule 7 (instruction -> ADDU register register register .)
+    SW              reduce using rule 7 (instruction -> ADDU register register register .)
+    LUI             reduce using rule 7 (instruction -> ADDU register register register .)
+    ADD             reduce using rule 7 (instruction -> ADDU register register register .)
+    ADDU            reduce using rule 7 (instruction -> ADDU register register register .)
+    SUB             reduce using rule 7 (instruction -> ADDU register register register .)
+    SUBU            reduce using rule 7 (instruction -> ADDU register register register .)
+    AND             reduce using rule 7 (instruction -> ADDU register register register .)
+    OR              reduce using rule 7 (instruction -> ADDU register register register .)
+    XOR             reduce using rule 7 (instruction -> ADDU register register register .)
+    NOR             reduce using rule 7 (instruction -> ADDU register register register .)
+    $end            reduce using rule 7 (instruction -> ADDU register register register .)
+
+
+state 41
+
+    (12) instruction -> XOR register register register .
+
+    LW              reduce using rule 12 (instruction -> XOR register register register .)
+    SW              reduce using rule 12 (instruction -> XOR register register register .)
+    LUI             reduce using rule 12 (instruction -> XOR register register register .)
+    ADD             reduce using rule 12 (instruction -> XOR register register register .)
+    ADDU            reduce using rule 12 (instruction -> XOR register register register .)
+    SUB             reduce using rule 12 (instruction -> XOR register register register .)
+    SUBU            reduce using rule 12 (instruction -> XOR register register register .)
+    AND             reduce using rule 12 (instruction -> XOR register register register .)
+    OR              reduce using rule 12 (instruction -> XOR register register register .)
+    XOR             reduce using rule 12 (instruction -> XOR register register register .)
+    NOR             reduce using rule 12 (instruction -> XOR register register register .)
+    $end            reduce using rule 12 (instruction -> XOR register register register .)
+
+
+state 42
+
+    (8) instruction -> SUB register register register .
+
+    LW              reduce using rule 8 (instruction -> SUB register register register .)
+    SW              reduce using rule 8 (instruction -> SUB register register register .)
+    LUI             reduce using rule 8 (instruction -> SUB register register register .)
+    ADD             reduce using rule 8 (instruction -> SUB register register register .)
+    ADDU            reduce using rule 8 (instruction -> SUB register register register .)
+    SUB             reduce using rule 8 (instruction -> SUB register register register .)
+    SUBU            reduce using rule 8 (instruction -> SUB register register register .)
+    AND             reduce using rule 8 (instruction -> SUB register register register .)
+    OR              reduce using rule 8 (instruction -> SUB register register register .)
+    XOR             reduce using rule 8 (instruction -> SUB register register register .)
+    NOR             reduce using rule 8 (instruction -> SUB register register register .)
+    $end            reduce using rule 8 (instruction -> SUB register register register .)
+
+
+state 43
 
     (4) instruction -> SW register NUMBER LBRACKET . register RBRACKET
-    (6) register -> . REGPREFIX NUMBER
+    (14) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 6
+    REGPREFIX       shift and go to state 15
 
-    register                       shift and go to state 17
+    register                       shift and go to state 49
 
-state 16
+state 44
 
     (3) instruction -> LW register NUMBER LBRACKET . register RBRACKET
-    (6) register -> . REGPREFIX NUMBER
+    (14) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 6
+    REGPREFIX       shift and go to state 15
 
-    register                       shift and go to state 18
+    register                       shift and go to state 50
 
-state 17
+state 45
+
+    (6) instruction -> ADD register register register .
+
+    LW              reduce using rule 6 (instruction -> ADD register register register .)
+    SW              reduce using rule 6 (instruction -> ADD register register register .)
+    LUI             reduce using rule 6 (instruction -> ADD register register register .)
+    ADD             reduce using rule 6 (instruction -> ADD register register register .)
+    ADDU            reduce using rule 6 (instruction -> ADD register register register .)
+    SUB             reduce using rule 6 (instruction -> ADD register register register .)
+    SUBU            reduce using rule 6 (instruction -> ADD register register register .)
+    AND             reduce using rule 6 (instruction -> ADD register register register .)
+    OR              reduce using rule 6 (instruction -> ADD register register register .)
+    XOR             reduce using rule 6 (instruction -> ADD register register register .)
+    NOR             reduce using rule 6 (instruction -> ADD register register register .)
+    $end            reduce using rule 6 (instruction -> ADD register register register .)
+
+
+state 46
+
+    (9) instruction -> SUBU register register register .
+
+    LW              reduce using rule 9 (instruction -> SUBU register register register .)
+    SW              reduce using rule 9 (instruction -> SUBU register register register .)
+    LUI             reduce using rule 9 (instruction -> SUBU register register register .)
+    ADD             reduce using rule 9 (instruction -> SUBU register register register .)
+    ADDU            reduce using rule 9 (instruction -> SUBU register register register .)
+    SUB             reduce using rule 9 (instruction -> SUBU register register register .)
+    SUBU            reduce using rule 9 (instruction -> SUBU register register register .)
+    AND             reduce using rule 9 (instruction -> SUBU register register register .)
+    OR              reduce using rule 9 (instruction -> SUBU register register register .)
+    XOR             reduce using rule 9 (instruction -> SUBU register register register .)
+    NOR             reduce using rule 9 (instruction -> SUBU register register register .)
+    $end            reduce using rule 9 (instruction -> SUBU register register register .)
+
+
+state 47
+
+    (11) instruction -> OR register register register .
+
+    LW              reduce using rule 11 (instruction -> OR register register register .)
+    SW              reduce using rule 11 (instruction -> OR register register register .)
+    LUI             reduce using rule 11 (instruction -> OR register register register .)
+    ADD             reduce using rule 11 (instruction -> OR register register register .)
+    ADDU            reduce using rule 11 (instruction -> OR register register register .)
+    SUB             reduce using rule 11 (instruction -> OR register register register .)
+    SUBU            reduce using rule 11 (instruction -> OR register register register .)
+    AND             reduce using rule 11 (instruction -> OR register register register .)
+    OR              reduce using rule 11 (instruction -> OR register register register .)
+    XOR             reduce using rule 11 (instruction -> OR register register register .)
+    NOR             reduce using rule 11 (instruction -> OR register register register .)
+    $end            reduce using rule 11 (instruction -> OR register register register .)
+
+
+state 48
+
+    (13) instruction -> NOR register register register .
+
+    LW              reduce using rule 13 (instruction -> NOR register register register .)
+    SW              reduce using rule 13 (instruction -> NOR register register register .)
+    LUI             reduce using rule 13 (instruction -> NOR register register register .)
+    ADD             reduce using rule 13 (instruction -> NOR register register register .)
+    ADDU            reduce using rule 13 (instruction -> NOR register register register .)
+    SUB             reduce using rule 13 (instruction -> NOR register register register .)
+    SUBU            reduce using rule 13 (instruction -> NOR register register register .)
+    AND             reduce using rule 13 (instruction -> NOR register register register .)
+    OR              reduce using rule 13 (instruction -> NOR register register register .)
+    XOR             reduce using rule 13 (instruction -> NOR register register register .)
+    NOR             reduce using rule 13 (instruction -> NOR register register register .)
+    $end            reduce using rule 13 (instruction -> NOR register register register .)
+
+
+state 49
 
     (4) instruction -> SW register NUMBER LBRACKET register . RBRACKET
 
-    RBRACKET        shift and go to state 19
+    RBRACKET        shift and go to state 51
 
 
-state 18
+state 50
 
     (3) instruction -> LW register NUMBER LBRACKET register . RBRACKET
 
-    RBRACKET        shift and go to state 20
+    RBRACKET        shift and go to state 52
 
 
-state 19
+state 51
 
     (4) instruction -> SW register NUMBER LBRACKET register RBRACKET .
 
     LW              reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
     SW              reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
     LUI             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ADD             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ADDU            reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SUB             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SUBU            reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    AND             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    OR              reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    XOR             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    NOR             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
     $end            reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
 
 
-state 20
+state 52
 
     (3) instruction -> LW register NUMBER LBRACKET register RBRACKET .
 
     LW              reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
     SW              reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
     LUI             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ADD             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ADDU            reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SUB             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SUBU            reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    AND             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    OR              reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    XOR             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    NOR             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
     $end            reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
 

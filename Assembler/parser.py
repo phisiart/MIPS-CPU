@@ -53,16 +53,36 @@ def p_lui(p):
     putins(p[0])
 
 def p_add(p):
-    pass
+    '''instruction : ADD register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100000),
+        'add ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_addu(p):
-    pass
+    '''instruction : ADDU register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100001),
+        'addu ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_sub(p):
-    pass
+    '''instruction : SUB register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100010),
+        'sub ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_subu(p):
-    pass
+    '''instruction : SUBU register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100011),
+        'subu ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_addi(p):
     pass
@@ -71,16 +91,36 @@ def p_addiu(p):
     pass
 
 def p_and(p):
-    pass
+    '''instruction : AND register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100100),
+        'and ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_or(p):
-    pass
+    '''instruction : OR register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100101),
+        'or ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_xor(p):
-    pass
+    '''instruction : XOR register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100110),
+        'xor ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_nor(p):
-    pass
+    '''instruction : NOR register register register'''
+    p[0] = (
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100111),
+        'nor ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_andi(p):
     pass
@@ -129,7 +169,7 @@ def p_jr(p):
 
 def p_jalr(p):
     pass
-    
+
 def p_register(p):
     '''register : REGPREFIX NUMBER'''
     p[0] = (p[2], '$' + str(p[2]))
@@ -147,6 +187,14 @@ if __name__ == '__main__':
     data = '''
     lw $4 4($3)
     sw $4 4($3)
-    lui $4 1000
+    lui $4 1000 # Whatever comment
+    add $4 $3 $4
+    addu $4 $3 $4
+    sub $4 $3 $4
+    subu $4 $3 $4
+    and $4 $3 $4
+    or $4 $3 $4
+    xor $4 $3 $4
+    nor $4 $3 $4
     '''
     parser.parse(data)
