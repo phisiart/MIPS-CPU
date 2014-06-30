@@ -91,6 +91,11 @@ if __name__ == '__main__':
     addi $sp $sp 4 # another comment
     # new line test
     '''
+
+    data = '''
+    lw $4 4($3)
+    '''
+    
     lexer.input(data)
     
     while True:

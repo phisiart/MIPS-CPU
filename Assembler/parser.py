@@ -4,117 +4,140 @@ import ply.yacc as yacc
 
 from lex import tokens
 
+# register
+# (5bit index, 'register name')
+#
+# instruction
+# (32bit code, 'instruction string')
+#
+# immediate
+# immediate
+
+def putins(ins):
+    print '0x%08X  # %s' % (ins[0], ins[1])
+
 def p_program(p):
     '''program : program instruction
                | instruction'''
     if len(p) == 3:
         p[0] = p[1] + [p[2]]
-    else
+    else:
         p[0] = [p[1]]
 
-def p_nop(p):
-    '''nop :'''
-    ??
+# def p_nop(p):
+#     '''nop :'''
+#     p[0] = (0, 'nop')
     
 def p_lw(p):
     '''instruction : LW register NUMBER LBRACKET register RBRACKET'''
-    print 'lw : reg =', p[2], 'pointer =', p[5], 'offset =', p[3]
+    p[0] = (
+        (0b100011 << 26) | (p[5][0] << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
+        'lw ' + p[2][1] + ' ' + str(p[3]) + '(' + p[5][1] + ')'
+    )
+    putins(p[0])
+
+def p_sw(p):
+    '''instruction : SW register NUMBER LBRACKET register RBRACKET'''
+    p[0] = (
+        (0b101011 << 26) | (p[5][0] << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
+        'sw ' + p[2][1] + ' ' + str(p[3]) + '(' + p[5][1] + ')'
+    )
+    putins(p[0])
+
+def p_lui(p):
+    '''instruction : LUI register NUMBER'''
+    p[0] = (
+        (0b001111 << 26) | (0 << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
+        'lui ' + p[2][1] + ' ' + str(p[3])
+    )
+    putins(p[0])
+
+def p_add(p):
+    pass
+
+def p_addu(p):
+    pass
+
+def p_sub(p):
+    pass
+
+def p_subu(p):
+    pass
+
+def p_addi(p):
+    pass
+
+def p_addiu(p):
+    pass
+
+def p_and(p):
+    pass
+
+def p_or(p):
+    pass
+
+def p_xor(p):
+    pass
+
+def p_nor(p):
+    pass
+
+def p_andi(p):
+    pass
+
+def p_sll(p):
+    pass
+
+def p_srl(p):
+    pass
+
+def p_sra(p):
+    pass
+
+def p_slt(p):
+    pass
+
+def p_slti(p):
+    pass
+
+def p_sltiu(p):
+    pass
+
+def p_beq(p):
+    pass
+
+def p_bne(p):
+    pass
+
+def p_blez(p):
+    pass
+
+def p_bgtz(p):
+    pass
+
+def p_bltz(p):
+    pass
+
+def p_j(p):
+    pass
+
+def p_jal(p):
+    pass
+
+def p_jr(p):
+    pass
+
+def p_jalr(p):
+    pass
+    
+def p_register(p):
+    '''register : REGPREFIX NUMBER'''
+    p[0] = (p[2], '$' + str(p[2]))
+
 params = {}
 
-# def p_program_with_params(p):
-#     'program : IDENTIFIER LBRACE INPUT COLON input_list OUTPUT COLON output_list RULES COLON rules_list RBRACE'
-#     p[0] = ('program', p[1], p[5], p[8], p[11])
-    
-def p_program(p):
-    '''program : IDENTIFIER LBRACE PARAMS COLON params_list INPUT COLON input_list OUTPUT COLON output_list RULES COLON rules_list RBRACE
-               | IDENTIFIER LBRACE INPUT COLON input_list OUTPUT COLON output_list RULES COLON rules_list RBRACE'''
-    if len(p) == 16:
-        p[0] = ('program', p[1], p[8], p[11], p[14])
-    else:
-        p[0] = ('program', p[1], p[5], p[8], p[11])
-
-def p_params_list(p):
-    '''params_list : params_list param
-                   | param'''
-    p[0] = 0
-    print('params')
-
-def p_param(p):
-    '''param : IDENTIFIER EQUAL NUMBER SEMICOLON'''
-    params[p[1]] = p[3]
-    p[0] = 0
-    print(params)
-
-def p_input_list(p):
-    '''input_list : input_list input
-                  | input'''
-    if len(p) == 3:
-        p[0] = p[1] + [p[2]]
-    else:
-        p[0] = [p[1]]
-    print('input_list')
-        
-def p_dispatch_1(p):
-    '''dispatch : IDENTIFIER LSQUARE NUMBER RSQUARE'''
-    p[0] = (p[1], p[3])
-    
-def p_dispatch_2(p):
-    '''dispatch : IDENTIFIER'''
-    p[0] = (p[1], -1)
-    
-def p_input(p):
-    '''input : dispatch SEMICOLON'''
-    p[0] = p[1]
-    print('input')
-    
-def p_output_list(p):
-    '''output_list : output_list output
-                   | output'''
-                   
-    if len(p) == 3:
-        p[0] = p[1] + [p[2]]
-    else:
-        p[0] = [p[1]]
-    print('output')
-        
-def p_output(p):
-    '''output : dispatch SEMICOLON'''
-    p[0] = p[1]
-    
-def p_rules_list(p):
-    '''rules_list : rules_list rule
-                  | rule'''
-    if len(p) == 3:
-        p[0] = p[1] + [p[2]]
-    else:
-        p[0] = [p[1]]
-        
-def p_rule(p):
-    '''rule : spec ARROW spec SEMICOLON'''
-    p[0] = (p[1], p[3])
-    
-def p_spec(p):
-    '''spec : spec COMMA assign
-            | assign'''
-    if len(p) == 4:
-        p[0] = p[1] + [p[3]]
-    else:
-        p[0] = [p[1]]
-
-def p_assign(p):
-    '''assign : dispatch EQUAL rvalue'''
-    p[0] = (p[1], p[3])
-    
-def p_rvalue_number(p):
-    '''rvalue : NUMBER'''
-    p[0] = p[1]
-
-def p_rvalue_param(p):
-    '''rvalue : IDENTIFIER'''
-    p[0] = params[p[1]]
-
-def p_error(p):
-    print('error!')
+# def p_error(p):
+#     print('error!')
 
 # Build parser.
 parser = yacc.yacc()
@@ -122,13 +145,8 @@ parser = yacc.yacc()
 
 if __name__ == '__main__':
     data = '''
-    Test {
-    input:
-        A;
-    output:
-        B[2];
-    rules:
-        A = 0 -> B = 1;    
-    }
+    lw $4 4($3)
+    sw $4 4($3)
+    lui $4 1000
     '''
-    print(parser.parse(data))
+    parser.parse(data)
