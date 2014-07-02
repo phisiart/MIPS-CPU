@@ -1,90 +1,88 @@
 Created by PLY version 3.4 (http://www.dabeaz.com/ply)
 
-Unused terminals:
-
-    BLTZ
-    SLTI
-    JR
-    BLEZ
-    BEQ
-    ANDI
-    IDENTIFIER
-    ADDIU
-    SRA
-    SLT
-    J
-    SRL
-    SLL
-    BGTZ
-    BNE
-    JALR
-    SLTIU
-    JAL
-    NOP
-    ADDI
-
 Grammar
 
 Rule 0     S' -> program
 Rule 1     program -> program instruction
 Rule 2     program -> instruction
-Rule 3     instruction -> LW register NUMBER LBRACKET register RBRACKET
-Rule 4     instruction -> SW register NUMBER LBRACKET register RBRACKET
-Rule 5     instruction -> LUI register NUMBER
-Rule 6     instruction -> ADD register register register
-Rule 7     instruction -> ADDU register register register
-Rule 8     instruction -> SUB register register register
-Rule 9     instruction -> SUBU register register register
-Rule 10    instruction -> AND register register register
-Rule 11    instruction -> OR register register register
-Rule 12    instruction -> XOR register register register
-Rule 13    instruction -> NOR register register register
-Rule 14    register -> REGPREFIX NUMBER
+Rule 3     instruction -> IDENTIFIER COLOM
+Rule 4     instruction -> NOP
+Rule 5     instruction -> LW register NUMBER LBRACKET register RBRACKET
+Rule 6     instruction -> SW register NUMBER LBRACKET register RBRACKET
+Rule 7     instruction -> LUI register NUMBER
+Rule 8     instruction -> ADD register register register
+Rule 9     instruction -> ADDU register register register
+Rule 10    instruction -> SUB register register register
+Rule 11    instruction -> SUBU register register register
+Rule 12    instruction -> ADDI register register NUMBER
+Rule 13    instruction -> ADDIU register register NUMBER
+Rule 14    instruction -> AND register register register
+Rule 15    instruction -> OR register register register
+Rule 16    instruction -> XOR register register register
+Rule 17    instruction -> NOR register register register
+Rule 18    instruction -> ANDI register register NUMBER
+Rule 19    instruction -> SLL register register NUMBER
+Rule 20    instruction -> SRL register register NUMBER
+Rule 21    instruction -> SRA register register NUMBER
+Rule 22    instruction -> SLT register register register
+Rule 23    instruction -> SLTI register register NUMBER
+Rule 24    instruction -> SLTIU register register NUMBER
+Rule 25    instruction -> BEQ register register IDENTIFIER
+Rule 26    instruction -> BNE register register IDENTIFIER
+Rule 27    instruction -> BLEZ register IDENTIFIER
+Rule 28    instruction -> BGTZ register IDENTIFIER
+Rule 29    instruction -> BLTZ register IDENTIFIER
+Rule 30    instruction -> J IDENTIFIER
+Rule 31    instruction -> JAL IDENTIFIER
+Rule 32    instruction -> JR register
+Rule 33    instruction -> JALR register register
+Rule 34    register -> REGPREFIX NUMBER
 
 Terminals, with rules where they appear
 
-ADD                  : 6
-ADDI                 : 
-ADDIU                : 
-ADDU                 : 7
-AND                  : 10
-ANDI                 : 
-BEQ                  : 
-BGTZ                 : 
-BLEZ                 : 
-BLTZ                 : 
-BNE                  : 
-IDENTIFIER           : 
-J                    : 
-JAL                  : 
-JALR                 : 
-JR                   : 
-LBRACKET             : 3 4
-LUI                  : 5
-LW                   : 3
-NOP                  : 
-NOR                  : 13
-NUMBER               : 3 4 5 14
-OR                   : 11
-RBRACKET             : 3 4
-REGPREFIX            : 14
-SLL                  : 
-SLT                  : 
-SLTI                 : 
-SLTIU                : 
-SRA                  : 
-SRL                  : 
-SUB                  : 8
-SUBU                 : 9
-SW                   : 4
-XOR                  : 12
+ADD                  : 8
+ADDI                 : 12
+ADDIU                : 13
+ADDU                 : 9
+AND                  : 14
+ANDI                 : 18
+BEQ                  : 25
+BGTZ                 : 28
+BLEZ                 : 27
+BLTZ                 : 29
+BNE                  : 26
+COLOM                : 3
+IDENTIFIER           : 3 25 26 27 28 29 30 31
+J                    : 30
+JAL                  : 31
+JALR                 : 33
+JR                   : 32
+LBRACKET             : 5 6
+LUI                  : 7
+LW                   : 5
+NOP                  : 4
+NOR                  : 17
+NUMBER               : 5 6 7 12 13 18 19 20 21 23 24 34
+OR                   : 15
+RBRACKET             : 5 6
+REGPREFIX            : 34
+SLL                  : 19
+SLT                  : 22
+SLTI                 : 23
+SLTIU                : 24
+SRA                  : 21
+SRL                  : 20
+SUB                  : 10
+SUBU                 : 11
+SW                   : 6
+XOR                  : 16
 error                : 
 
 Nonterminals, with rules where they appear
 
 instruction          : 1 2
 program              : 1 0
-register             : 3 3 4 4 5 6 6 6 7 7 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 12 13 13 13
+register             : 5 5 6 6 7 8 8 8 9 9 9 10 10 10 11 11 11 12 12 13 13 14 14 14 15 15 15 16 16 16 17 17 17 18 18 19 19 20 20 21 21 22 22 22 23 23 24 24 25 25 26 26 27 28 29 32 33 33
 
 Parsing method: LALR
 
@@ -93,73 +91,88 @@ state 0
     (0) S' -> . program
     (1) program -> . program instruction
     (2) program -> . instruction
-    (3) instruction -> . LW register NUMBER LBRACKET register RBRACKET
-    (4) instruction -> . SW register NUMBER LBRACKET register RBRACKET
-    (5) instruction -> . LUI register NUMBER
-    (6) instruction -> . ADD register register register
-    (7) instruction -> . ADDU register register register
-    (8) instruction -> . SUB register register register
-    (9) instruction -> . SUBU register register register
-    (10) instruction -> . AND register register register
-    (11) instruction -> . OR register register register
-    (12) instruction -> . XOR register register register
-    (13) instruction -> . NOR register register register
+    (3) instruction -> . IDENTIFIER COLOM
+    (4) instruction -> . NOP
+    (5) instruction -> . LW register NUMBER LBRACKET register RBRACKET
+    (6) instruction -> . SW register NUMBER LBRACKET register RBRACKET
+    (7) instruction -> . LUI register NUMBER
+    (8) instruction -> . ADD register register register
+    (9) instruction -> . ADDU register register register
+    (10) instruction -> . SUB register register register
+    (11) instruction -> . SUBU register register register
+    (12) instruction -> . ADDI register register NUMBER
+    (13) instruction -> . ADDIU register register NUMBER
+    (14) instruction -> . AND register register register
+    (15) instruction -> . OR register register register
+    (16) instruction -> . XOR register register register
+    (17) instruction -> . NOR register register register
+    (18) instruction -> . ANDI register register NUMBER
+    (19) instruction -> . SLL register register NUMBER
+    (20) instruction -> . SRL register register NUMBER
+    (21) instruction -> . SRA register register NUMBER
+    (22) instruction -> . SLT register register register
+    (23) instruction -> . SLTI register register NUMBER
+    (24) instruction -> . SLTIU register register NUMBER
+    (25) instruction -> . BEQ register register IDENTIFIER
+    (26) instruction -> . BNE register register IDENTIFIER
+    (27) instruction -> . BLEZ register IDENTIFIER
+    (28) instruction -> . BGTZ register IDENTIFIER
+    (29) instruction -> . BLTZ register IDENTIFIER
+    (30) instruction -> . J IDENTIFIER
+    (31) instruction -> . JAL IDENTIFIER
+    (32) instruction -> . JR register
+    (33) instruction -> . JALR register register
 
-    LW              shift and go to state 7
-    SW              shift and go to state 6
-    LUI             shift and go to state 11
-    ADD             shift and go to state 8
-    ADDU            shift and go to state 2
-    SUB             shift and go to state 4
-    SUBU            shift and go to state 10
-    AND             shift and go to state 1
-    OR              shift and go to state 12
-    XOR             shift and go to state 3
-    NOR             shift and go to state 13
+    IDENTIFIER      shift and go to state 13
+    NOP             shift and go to state 31
+    LW              shift and go to state 11
+    SW              shift and go to state 28
+    LUI             shift and go to state 8
+    ADD             shift and go to state 21
+    ADDU            shift and go to state 25
+    SUB             shift and go to state 3
+    SUBU            shift and go to state 15
+    ADDI            shift and go to state 30
+    ADDIU           shift and go to state 14
+    AND             shift and go to state 24
+    OR              shift and go to state 32
+    XOR             shift and go to state 16
+    NOR             shift and go to state 33
+    ANDI            shift and go to state 10
+    SLL             shift and go to state 20
+    SRL             shift and go to state 19
+    SRA             shift and go to state 7
+    SLT             shift and go to state 17
+    SLTI            shift and go to state 4
+    SLTIU           shift and go to state 27
+    BEQ             shift and go to state 9
+    BNE             shift and go to state 23
+    BLEZ            shift and go to state 6
+    BGTZ            shift and go to state 22
+    BLTZ            shift and go to state 1
+    J               shift and go to state 18
+    JAL             shift and go to state 29
+    JR              shift and go to state 5
+    JALR            shift and go to state 26
 
-    program                        shift and go to state 9
-    instruction                    shift and go to state 5
+    program                        shift and go to state 12
+    instruction                    shift and go to state 2
 
 state 1
 
-    (10) instruction -> AND . register register register
-    (14) register -> . REGPREFIX NUMBER
+    (29) instruction -> BLTZ . register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 14
+    register                       shift and go to state 34
 
 state 2
 
-    (7) instruction -> ADDU . register register register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 16
-
-state 3
-
-    (12) instruction -> XOR . register register register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 17
-
-state 4
-
-    (8) instruction -> SUB . register register register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 18
-
-state 5
-
     (2) program -> instruction .
 
+    IDENTIFIER      reduce using rule 2 (program -> instruction .)
+    NOP             reduce using rule 2 (program -> instruction .)
     LW              reduce using rule 2 (program -> instruction .)
     SW              reduce using rule 2 (program -> instruction .)
     LUI             reduce using rule 2 (program -> instruction .)
@@ -167,176 +180,518 @@ state 5
     ADDU            reduce using rule 2 (program -> instruction .)
     SUB             reduce using rule 2 (program -> instruction .)
     SUBU            reduce using rule 2 (program -> instruction .)
+    ADDI            reduce using rule 2 (program -> instruction .)
+    ADDIU           reduce using rule 2 (program -> instruction .)
     AND             reduce using rule 2 (program -> instruction .)
     OR              reduce using rule 2 (program -> instruction .)
     XOR             reduce using rule 2 (program -> instruction .)
     NOR             reduce using rule 2 (program -> instruction .)
+    ANDI            reduce using rule 2 (program -> instruction .)
+    SLL             reduce using rule 2 (program -> instruction .)
+    SRL             reduce using rule 2 (program -> instruction .)
+    SRA             reduce using rule 2 (program -> instruction .)
+    SLT             reduce using rule 2 (program -> instruction .)
+    SLTI            reduce using rule 2 (program -> instruction .)
+    SLTIU           reduce using rule 2 (program -> instruction .)
+    BEQ             reduce using rule 2 (program -> instruction .)
+    BNE             reduce using rule 2 (program -> instruction .)
+    BLEZ            reduce using rule 2 (program -> instruction .)
+    BGTZ            reduce using rule 2 (program -> instruction .)
+    BLTZ            reduce using rule 2 (program -> instruction .)
+    J               reduce using rule 2 (program -> instruction .)
+    JAL             reduce using rule 2 (program -> instruction .)
+    JR              reduce using rule 2 (program -> instruction .)
+    JALR            reduce using rule 2 (program -> instruction .)
     $end            reduce using rule 2 (program -> instruction .)
 
 
+state 3
+
+    (10) instruction -> SUB . register register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 36
+
+state 4
+
+    (23) instruction -> SLTI . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 37
+
+state 5
+
+    (32) instruction -> JR . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 38
+
 state 6
 
-    (4) instruction -> SW . register NUMBER LBRACKET register RBRACKET
-    (14) register -> . REGPREFIX NUMBER
+    (27) instruction -> BLEZ . register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 19
+    register                       shift and go to state 39
 
 state 7
 
-    (3) instruction -> LW . register NUMBER LBRACKET register RBRACKET
-    (14) register -> . REGPREFIX NUMBER
+    (21) instruction -> SRA . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 20
+    register                       shift and go to state 40
 
 state 8
 
-    (6) instruction -> ADD . register register register
-    (14) register -> . REGPREFIX NUMBER
+    (7) instruction -> LUI . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 21
+    register                       shift and go to state 41
 
 state 9
 
-    (0) S' -> program .
-    (1) program -> program . instruction
-    (3) instruction -> . LW register NUMBER LBRACKET register RBRACKET
-    (4) instruction -> . SW register NUMBER LBRACKET register RBRACKET
-    (5) instruction -> . LUI register NUMBER
-    (6) instruction -> . ADD register register register
-    (7) instruction -> . ADDU register register register
-    (8) instruction -> . SUB register register register
-    (9) instruction -> . SUBU register register register
-    (10) instruction -> . AND register register register
-    (11) instruction -> . OR register register register
-    (12) instruction -> . XOR register register register
-    (13) instruction -> . NOR register register register
+    (25) instruction -> BEQ . register register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
 
-    LW              shift and go to state 7
-    SW              shift and go to state 6
-    LUI             shift and go to state 11
-    ADD             shift and go to state 8
-    ADDU            shift and go to state 2
-    SUB             shift and go to state 4
-    SUBU            shift and go to state 10
-    AND             shift and go to state 1
-    OR              shift and go to state 12
-    XOR             shift and go to state 3
-    NOR             shift and go to state 13
+    REGPREFIX       shift and go to state 35
 
-    instruction                    shift and go to state 22
+    register                       shift and go to state 42
 
 state 10
 
-    (9) instruction -> SUBU . register register register
-    (14) register -> . REGPREFIX NUMBER
+    (18) instruction -> ANDI . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 23
+    register                       shift and go to state 43
 
 state 11
 
-    (5) instruction -> LUI . register NUMBER
-    (14) register -> . REGPREFIX NUMBER
+    (5) instruction -> LW . register NUMBER LBRACKET register RBRACKET
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 24
+    register                       shift and go to state 44
 
 state 12
 
-    (11) instruction -> OR . register register register
-    (14) register -> . REGPREFIX NUMBER
+    (0) S' -> program .
+    (1) program -> program . instruction
+    (3) instruction -> . IDENTIFIER COLOM
+    (4) instruction -> . NOP
+    (5) instruction -> . LW register NUMBER LBRACKET register RBRACKET
+    (6) instruction -> . SW register NUMBER LBRACKET register RBRACKET
+    (7) instruction -> . LUI register NUMBER
+    (8) instruction -> . ADD register register register
+    (9) instruction -> . ADDU register register register
+    (10) instruction -> . SUB register register register
+    (11) instruction -> . SUBU register register register
+    (12) instruction -> . ADDI register register NUMBER
+    (13) instruction -> . ADDIU register register NUMBER
+    (14) instruction -> . AND register register register
+    (15) instruction -> . OR register register register
+    (16) instruction -> . XOR register register register
+    (17) instruction -> . NOR register register register
+    (18) instruction -> . ANDI register register NUMBER
+    (19) instruction -> . SLL register register NUMBER
+    (20) instruction -> . SRL register register NUMBER
+    (21) instruction -> . SRA register register NUMBER
+    (22) instruction -> . SLT register register register
+    (23) instruction -> . SLTI register register NUMBER
+    (24) instruction -> . SLTIU register register NUMBER
+    (25) instruction -> . BEQ register register IDENTIFIER
+    (26) instruction -> . BNE register register IDENTIFIER
+    (27) instruction -> . BLEZ register IDENTIFIER
+    (28) instruction -> . BGTZ register IDENTIFIER
+    (29) instruction -> . BLTZ register IDENTIFIER
+    (30) instruction -> . J IDENTIFIER
+    (31) instruction -> . JAL IDENTIFIER
+    (32) instruction -> . JR register
+    (33) instruction -> . JALR register register
 
-    REGPREFIX       shift and go to state 15
+    IDENTIFIER      shift and go to state 13
+    NOP             shift and go to state 31
+    LW              shift and go to state 11
+    SW              shift and go to state 28
+    LUI             shift and go to state 8
+    ADD             shift and go to state 21
+    ADDU            shift and go to state 25
+    SUB             shift and go to state 3
+    SUBU            shift and go to state 15
+    ADDI            shift and go to state 30
+    ADDIU           shift and go to state 14
+    AND             shift and go to state 24
+    OR              shift and go to state 32
+    XOR             shift and go to state 16
+    NOR             shift and go to state 33
+    ANDI            shift and go to state 10
+    SLL             shift and go to state 20
+    SRL             shift and go to state 19
+    SRA             shift and go to state 7
+    SLT             shift and go to state 17
+    SLTI            shift and go to state 4
+    SLTIU           shift and go to state 27
+    BEQ             shift and go to state 9
+    BNE             shift and go to state 23
+    BLEZ            shift and go to state 6
+    BGTZ            shift and go to state 22
+    BLTZ            shift and go to state 1
+    J               shift and go to state 18
+    JAL             shift and go to state 29
+    JR              shift and go to state 5
+    JALR            shift and go to state 26
 
-    register                       shift and go to state 25
+    instruction                    shift and go to state 45
 
 state 13
 
-    (13) instruction -> NOR . register register register
-    (14) register -> . REGPREFIX NUMBER
+    (3) instruction -> IDENTIFIER . COLOM
 
-    REGPREFIX       shift and go to state 15
+    COLOM           shift and go to state 46
 
-    register                       shift and go to state 26
 
 state 14
 
-    (10) instruction -> AND register . register register
-    (14) register -> . REGPREFIX NUMBER
+    (13) instruction -> ADDIU . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 27
+    register                       shift and go to state 47
 
 state 15
 
-    (14) register -> REGPREFIX . NUMBER
+    (11) instruction -> SUBU . register register register
+    (34) register -> . REGPREFIX NUMBER
 
-    NUMBER          shift and go to state 28
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 48
 
 state 16
 
-    (7) instruction -> ADDU register . register register
-    (14) register -> . REGPREFIX NUMBER
+    (16) instruction -> XOR . register register register
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 29
+    register                       shift and go to state 49
 
 state 17
 
-    (12) instruction -> XOR register . register register
-    (14) register -> . REGPREFIX NUMBER
+    (22) instruction -> SLT . register register register
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 30
+    register                       shift and go to state 50
 
 state 18
 
-    (8) instruction -> SUB register . register register
-    (14) register -> . REGPREFIX NUMBER
+    (30) instruction -> J . IDENTIFIER
 
-    REGPREFIX       shift and go to state 15
+    IDENTIFIER      shift and go to state 51
 
-    register                       shift and go to state 31
 
 state 19
 
-    (4) instruction -> SW register . NUMBER LBRACKET register RBRACKET
+    (20) instruction -> SRL . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    NUMBER          shift and go to state 32
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 52
 
 state 20
 
-    (3) instruction -> LW register . NUMBER LBRACKET register RBRACKET
+    (19) instruction -> SLL . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    NUMBER          shift and go to state 33
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 53
 
 state 21
 
-    (6) instruction -> ADD register . register register
-    (14) register -> . REGPREFIX NUMBER
+    (8) instruction -> ADD . register register register
+    (34) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 15
+    REGPREFIX       shift and go to state 35
 
-    register                       shift and go to state 34
+    register                       shift and go to state 54
 
 state 22
 
+    (28) instruction -> BGTZ . register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 55
+
+state 23
+
+    (26) instruction -> BNE . register register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 56
+
+state 24
+
+    (14) instruction -> AND . register register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 57
+
+state 25
+
+    (9) instruction -> ADDU . register register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 58
+
+state 26
+
+    (33) instruction -> JALR . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 59
+
+state 27
+
+    (24) instruction -> SLTIU . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 60
+
+state 28
+
+    (6) instruction -> SW . register NUMBER LBRACKET register RBRACKET
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 61
+
+state 29
+
+    (31) instruction -> JAL . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 62
+
+
+state 30
+
+    (12) instruction -> ADDI . register register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 63
+
+state 31
+
+    (4) instruction -> NOP .
+
+    IDENTIFIER      reduce using rule 4 (instruction -> NOP .)
+    NOP             reduce using rule 4 (instruction -> NOP .)
+    LW              reduce using rule 4 (instruction -> NOP .)
+    SW              reduce using rule 4 (instruction -> NOP .)
+    LUI             reduce using rule 4 (instruction -> NOP .)
+    ADD             reduce using rule 4 (instruction -> NOP .)
+    ADDU            reduce using rule 4 (instruction -> NOP .)
+    SUB             reduce using rule 4 (instruction -> NOP .)
+    SUBU            reduce using rule 4 (instruction -> NOP .)
+    ADDI            reduce using rule 4 (instruction -> NOP .)
+    ADDIU           reduce using rule 4 (instruction -> NOP .)
+    AND             reduce using rule 4 (instruction -> NOP .)
+    OR              reduce using rule 4 (instruction -> NOP .)
+    XOR             reduce using rule 4 (instruction -> NOP .)
+    NOR             reduce using rule 4 (instruction -> NOP .)
+    ANDI            reduce using rule 4 (instruction -> NOP .)
+    SLL             reduce using rule 4 (instruction -> NOP .)
+    SRL             reduce using rule 4 (instruction -> NOP .)
+    SRA             reduce using rule 4 (instruction -> NOP .)
+    SLT             reduce using rule 4 (instruction -> NOP .)
+    SLTI            reduce using rule 4 (instruction -> NOP .)
+    SLTIU           reduce using rule 4 (instruction -> NOP .)
+    BEQ             reduce using rule 4 (instruction -> NOP .)
+    BNE             reduce using rule 4 (instruction -> NOP .)
+    BLEZ            reduce using rule 4 (instruction -> NOP .)
+    BGTZ            reduce using rule 4 (instruction -> NOP .)
+    BLTZ            reduce using rule 4 (instruction -> NOP .)
+    J               reduce using rule 4 (instruction -> NOP .)
+    JAL             reduce using rule 4 (instruction -> NOP .)
+    JR              reduce using rule 4 (instruction -> NOP .)
+    JALR            reduce using rule 4 (instruction -> NOP .)
+    $end            reduce using rule 4 (instruction -> NOP .)
+
+
+state 32
+
+    (15) instruction -> OR . register register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 64
+
+state 33
+
+    (17) instruction -> NOR . register register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 65
+
+state 34
+
+    (29) instruction -> BLTZ register . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 66
+
+
+state 35
+
+    (34) register -> REGPREFIX . NUMBER
+
+    NUMBER          shift and go to state 67
+
+
+state 36
+
+    (10) instruction -> SUB register . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 68
+
+state 37
+
+    (23) instruction -> SLTI register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 69
+
+state 38
+
+    (32) instruction -> JR register .
+
+    IDENTIFIER      reduce using rule 32 (instruction -> JR register .)
+    NOP             reduce using rule 32 (instruction -> JR register .)
+    LW              reduce using rule 32 (instruction -> JR register .)
+    SW              reduce using rule 32 (instruction -> JR register .)
+    LUI             reduce using rule 32 (instruction -> JR register .)
+    ADD             reduce using rule 32 (instruction -> JR register .)
+    ADDU            reduce using rule 32 (instruction -> JR register .)
+    SUB             reduce using rule 32 (instruction -> JR register .)
+    SUBU            reduce using rule 32 (instruction -> JR register .)
+    ADDI            reduce using rule 32 (instruction -> JR register .)
+    ADDIU           reduce using rule 32 (instruction -> JR register .)
+    AND             reduce using rule 32 (instruction -> JR register .)
+    OR              reduce using rule 32 (instruction -> JR register .)
+    XOR             reduce using rule 32 (instruction -> JR register .)
+    NOR             reduce using rule 32 (instruction -> JR register .)
+    ANDI            reduce using rule 32 (instruction -> JR register .)
+    SLL             reduce using rule 32 (instruction -> JR register .)
+    SRL             reduce using rule 32 (instruction -> JR register .)
+    SRA             reduce using rule 32 (instruction -> JR register .)
+    SLT             reduce using rule 32 (instruction -> JR register .)
+    SLTI            reduce using rule 32 (instruction -> JR register .)
+    SLTIU           reduce using rule 32 (instruction -> JR register .)
+    BEQ             reduce using rule 32 (instruction -> JR register .)
+    BNE             reduce using rule 32 (instruction -> JR register .)
+    BLEZ            reduce using rule 32 (instruction -> JR register .)
+    BGTZ            reduce using rule 32 (instruction -> JR register .)
+    BLTZ            reduce using rule 32 (instruction -> JR register .)
+    J               reduce using rule 32 (instruction -> JR register .)
+    JAL             reduce using rule 32 (instruction -> JR register .)
+    JR              reduce using rule 32 (instruction -> JR register .)
+    JALR            reduce using rule 32 (instruction -> JR register .)
+    $end            reduce using rule 32 (instruction -> JR register .)
+
+
+state 39
+
+    (27) instruction -> BLEZ register . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 70
+
+
+state 40
+
+    (21) instruction -> SRA register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 71
+
+state 41
+
+    (7) instruction -> LUI register . NUMBER
+
+    NUMBER          shift and go to state 72
+
+
+state 42
+
+    (25) instruction -> BEQ register . register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 73
+
+state 43
+
+    (18) instruction -> ANDI register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 74
+
+state 44
+
+    (5) instruction -> LW register . NUMBER LBRACKET register RBRACKET
+
+    NUMBER          shift and go to state 75
+
+
+state 45
+
     (1) program -> program instruction .
 
+    IDENTIFIER      reduce using rule 1 (program -> program instruction .)
+    NOP             reduce using rule 1 (program -> program instruction .)
     LW              reduce using rule 1 (program -> program instruction .)
     SW              reduce using rule 1 (program -> program instruction .)
     LUI             reduce using rule 1 (program -> program instruction .)
@@ -344,380 +699,1516 @@ state 22
     ADDU            reduce using rule 1 (program -> program instruction .)
     SUB             reduce using rule 1 (program -> program instruction .)
     SUBU            reduce using rule 1 (program -> program instruction .)
+    ADDI            reduce using rule 1 (program -> program instruction .)
+    ADDIU           reduce using rule 1 (program -> program instruction .)
     AND             reduce using rule 1 (program -> program instruction .)
     OR              reduce using rule 1 (program -> program instruction .)
     XOR             reduce using rule 1 (program -> program instruction .)
     NOR             reduce using rule 1 (program -> program instruction .)
+    ANDI            reduce using rule 1 (program -> program instruction .)
+    SLL             reduce using rule 1 (program -> program instruction .)
+    SRL             reduce using rule 1 (program -> program instruction .)
+    SRA             reduce using rule 1 (program -> program instruction .)
+    SLT             reduce using rule 1 (program -> program instruction .)
+    SLTI            reduce using rule 1 (program -> program instruction .)
+    SLTIU           reduce using rule 1 (program -> program instruction .)
+    BEQ             reduce using rule 1 (program -> program instruction .)
+    BNE             reduce using rule 1 (program -> program instruction .)
+    BLEZ            reduce using rule 1 (program -> program instruction .)
+    BGTZ            reduce using rule 1 (program -> program instruction .)
+    BLTZ            reduce using rule 1 (program -> program instruction .)
+    J               reduce using rule 1 (program -> program instruction .)
+    JAL             reduce using rule 1 (program -> program instruction .)
+    JR              reduce using rule 1 (program -> program instruction .)
+    JALR            reduce using rule 1 (program -> program instruction .)
     $end            reduce using rule 1 (program -> program instruction .)
-
-
-state 23
-
-    (9) instruction -> SUBU register . register register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 35
-
-state 24
-
-    (5) instruction -> LUI register . NUMBER
-
-    NUMBER          shift and go to state 36
-
-
-state 25
-
-    (11) instruction -> OR register . register register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 37
-
-state 26
-
-    (13) instruction -> NOR register . register register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 38
-
-state 27
-
-    (10) instruction -> AND register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 39
-
-state 28
-
-    (14) register -> REGPREFIX NUMBER .
-
-    REGPREFIX       reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    LW              reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    SW              reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    LUI             reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    ADD             reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    ADDU            reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    SUB             reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    SUBU            reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    AND             reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    OR              reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    XOR             reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    NOR             reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    $end            reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    RBRACKET        reduce using rule 14 (register -> REGPREFIX NUMBER .)
-    NUMBER          reduce using rule 14 (register -> REGPREFIX NUMBER .)
-
-
-state 29
-
-    (7) instruction -> ADDU register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 40
-
-state 30
-
-    (12) instruction -> XOR register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 41
-
-state 31
-
-    (8) instruction -> SUB register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 42
-
-state 32
-
-    (4) instruction -> SW register NUMBER . LBRACKET register RBRACKET
-
-    LBRACKET        shift and go to state 43
-
-
-state 33
-
-    (3) instruction -> LW register NUMBER . LBRACKET register RBRACKET
-
-    LBRACKET        shift and go to state 44
-
-
-state 34
-
-    (6) instruction -> ADD register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 45
-
-state 35
-
-    (9) instruction -> SUBU register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 46
-
-state 36
-
-    (5) instruction -> LUI register NUMBER .
-
-    LW              reduce using rule 5 (instruction -> LUI register NUMBER .)
-    SW              reduce using rule 5 (instruction -> LUI register NUMBER .)
-    LUI             reduce using rule 5 (instruction -> LUI register NUMBER .)
-    ADD             reduce using rule 5 (instruction -> LUI register NUMBER .)
-    ADDU            reduce using rule 5 (instruction -> LUI register NUMBER .)
-    SUB             reduce using rule 5 (instruction -> LUI register NUMBER .)
-    SUBU            reduce using rule 5 (instruction -> LUI register NUMBER .)
-    AND             reduce using rule 5 (instruction -> LUI register NUMBER .)
-    OR              reduce using rule 5 (instruction -> LUI register NUMBER .)
-    XOR             reduce using rule 5 (instruction -> LUI register NUMBER .)
-    NOR             reduce using rule 5 (instruction -> LUI register NUMBER .)
-    $end            reduce using rule 5 (instruction -> LUI register NUMBER .)
-
-
-state 37
-
-    (11) instruction -> OR register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 47
-
-state 38
-
-    (13) instruction -> NOR register register . register
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 48
-
-state 39
-
-    (10) instruction -> AND register register register .
-
-    LW              reduce using rule 10 (instruction -> AND register register register .)
-    SW              reduce using rule 10 (instruction -> AND register register register .)
-    LUI             reduce using rule 10 (instruction -> AND register register register .)
-    ADD             reduce using rule 10 (instruction -> AND register register register .)
-    ADDU            reduce using rule 10 (instruction -> AND register register register .)
-    SUB             reduce using rule 10 (instruction -> AND register register register .)
-    SUBU            reduce using rule 10 (instruction -> AND register register register .)
-    AND             reduce using rule 10 (instruction -> AND register register register .)
-    OR              reduce using rule 10 (instruction -> AND register register register .)
-    XOR             reduce using rule 10 (instruction -> AND register register register .)
-    NOR             reduce using rule 10 (instruction -> AND register register register .)
-    $end            reduce using rule 10 (instruction -> AND register register register .)
-
-
-state 40
-
-    (7) instruction -> ADDU register register register .
-
-    LW              reduce using rule 7 (instruction -> ADDU register register register .)
-    SW              reduce using rule 7 (instruction -> ADDU register register register .)
-    LUI             reduce using rule 7 (instruction -> ADDU register register register .)
-    ADD             reduce using rule 7 (instruction -> ADDU register register register .)
-    ADDU            reduce using rule 7 (instruction -> ADDU register register register .)
-    SUB             reduce using rule 7 (instruction -> ADDU register register register .)
-    SUBU            reduce using rule 7 (instruction -> ADDU register register register .)
-    AND             reduce using rule 7 (instruction -> ADDU register register register .)
-    OR              reduce using rule 7 (instruction -> ADDU register register register .)
-    XOR             reduce using rule 7 (instruction -> ADDU register register register .)
-    NOR             reduce using rule 7 (instruction -> ADDU register register register .)
-    $end            reduce using rule 7 (instruction -> ADDU register register register .)
-
-
-state 41
-
-    (12) instruction -> XOR register register register .
-
-    LW              reduce using rule 12 (instruction -> XOR register register register .)
-    SW              reduce using rule 12 (instruction -> XOR register register register .)
-    LUI             reduce using rule 12 (instruction -> XOR register register register .)
-    ADD             reduce using rule 12 (instruction -> XOR register register register .)
-    ADDU            reduce using rule 12 (instruction -> XOR register register register .)
-    SUB             reduce using rule 12 (instruction -> XOR register register register .)
-    SUBU            reduce using rule 12 (instruction -> XOR register register register .)
-    AND             reduce using rule 12 (instruction -> XOR register register register .)
-    OR              reduce using rule 12 (instruction -> XOR register register register .)
-    XOR             reduce using rule 12 (instruction -> XOR register register register .)
-    NOR             reduce using rule 12 (instruction -> XOR register register register .)
-    $end            reduce using rule 12 (instruction -> XOR register register register .)
-
-
-state 42
-
-    (8) instruction -> SUB register register register .
-
-    LW              reduce using rule 8 (instruction -> SUB register register register .)
-    SW              reduce using rule 8 (instruction -> SUB register register register .)
-    LUI             reduce using rule 8 (instruction -> SUB register register register .)
-    ADD             reduce using rule 8 (instruction -> SUB register register register .)
-    ADDU            reduce using rule 8 (instruction -> SUB register register register .)
-    SUB             reduce using rule 8 (instruction -> SUB register register register .)
-    SUBU            reduce using rule 8 (instruction -> SUB register register register .)
-    AND             reduce using rule 8 (instruction -> SUB register register register .)
-    OR              reduce using rule 8 (instruction -> SUB register register register .)
-    XOR             reduce using rule 8 (instruction -> SUB register register register .)
-    NOR             reduce using rule 8 (instruction -> SUB register register register .)
-    $end            reduce using rule 8 (instruction -> SUB register register register .)
-
-
-state 43
-
-    (4) instruction -> SW register NUMBER LBRACKET . register RBRACKET
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 49
-
-state 44
-
-    (3) instruction -> LW register NUMBER LBRACKET . register RBRACKET
-    (14) register -> . REGPREFIX NUMBER
-
-    REGPREFIX       shift and go to state 15
-
-    register                       shift and go to state 50
-
-state 45
-
-    (6) instruction -> ADD register register register .
-
-    LW              reduce using rule 6 (instruction -> ADD register register register .)
-    SW              reduce using rule 6 (instruction -> ADD register register register .)
-    LUI             reduce using rule 6 (instruction -> ADD register register register .)
-    ADD             reduce using rule 6 (instruction -> ADD register register register .)
-    ADDU            reduce using rule 6 (instruction -> ADD register register register .)
-    SUB             reduce using rule 6 (instruction -> ADD register register register .)
-    SUBU            reduce using rule 6 (instruction -> ADD register register register .)
-    AND             reduce using rule 6 (instruction -> ADD register register register .)
-    OR              reduce using rule 6 (instruction -> ADD register register register .)
-    XOR             reduce using rule 6 (instruction -> ADD register register register .)
-    NOR             reduce using rule 6 (instruction -> ADD register register register .)
-    $end            reduce using rule 6 (instruction -> ADD register register register .)
 
 
 state 46
 
-    (9) instruction -> SUBU register register register .
+    (3) instruction -> IDENTIFIER COLOM .
 
-    LW              reduce using rule 9 (instruction -> SUBU register register register .)
-    SW              reduce using rule 9 (instruction -> SUBU register register register .)
-    LUI             reduce using rule 9 (instruction -> SUBU register register register .)
-    ADD             reduce using rule 9 (instruction -> SUBU register register register .)
-    ADDU            reduce using rule 9 (instruction -> SUBU register register register .)
-    SUB             reduce using rule 9 (instruction -> SUBU register register register .)
-    SUBU            reduce using rule 9 (instruction -> SUBU register register register .)
-    AND             reduce using rule 9 (instruction -> SUBU register register register .)
-    OR              reduce using rule 9 (instruction -> SUBU register register register .)
-    XOR             reduce using rule 9 (instruction -> SUBU register register register .)
-    NOR             reduce using rule 9 (instruction -> SUBU register register register .)
-    $end            reduce using rule 9 (instruction -> SUBU register register register .)
+    IDENTIFIER      reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    NOP             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    LW              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SW              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    LUI             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    ADD             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    ADDU            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SUB             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SUBU            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    ADDI            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    ADDIU           reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    AND             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    OR              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    XOR             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    NOR             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    ANDI            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SLL             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SRL             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SRA             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SLT             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SLTI            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    SLTIU           reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    BEQ             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    BNE             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    BLEZ            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    BGTZ            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    BLTZ            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    J               reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    JAL             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    JR              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    JALR            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    $end            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
 
 
 state 47
 
-    (11) instruction -> OR register register register .
+    (13) instruction -> ADDIU register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    LW              reduce using rule 11 (instruction -> OR register register register .)
-    SW              reduce using rule 11 (instruction -> OR register register register .)
-    LUI             reduce using rule 11 (instruction -> OR register register register .)
-    ADD             reduce using rule 11 (instruction -> OR register register register .)
-    ADDU            reduce using rule 11 (instruction -> OR register register register .)
-    SUB             reduce using rule 11 (instruction -> OR register register register .)
-    SUBU            reduce using rule 11 (instruction -> OR register register register .)
-    AND             reduce using rule 11 (instruction -> OR register register register .)
-    OR              reduce using rule 11 (instruction -> OR register register register .)
-    XOR             reduce using rule 11 (instruction -> OR register register register .)
-    NOR             reduce using rule 11 (instruction -> OR register register register .)
-    $end            reduce using rule 11 (instruction -> OR register register register .)
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 76
 
 state 48
 
-    (13) instruction -> NOR register register register .
+    (11) instruction -> SUBU register . register register
+    (34) register -> . REGPREFIX NUMBER
 
-    LW              reduce using rule 13 (instruction -> NOR register register register .)
-    SW              reduce using rule 13 (instruction -> NOR register register register .)
-    LUI             reduce using rule 13 (instruction -> NOR register register register .)
-    ADD             reduce using rule 13 (instruction -> NOR register register register .)
-    ADDU            reduce using rule 13 (instruction -> NOR register register register .)
-    SUB             reduce using rule 13 (instruction -> NOR register register register .)
-    SUBU            reduce using rule 13 (instruction -> NOR register register register .)
-    AND             reduce using rule 13 (instruction -> NOR register register register .)
-    OR              reduce using rule 13 (instruction -> NOR register register register .)
-    XOR             reduce using rule 13 (instruction -> NOR register register register .)
-    NOR             reduce using rule 13 (instruction -> NOR register register register .)
-    $end            reduce using rule 13 (instruction -> NOR register register register .)
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 77
 
 state 49
 
-    (4) instruction -> SW register NUMBER LBRACKET register . RBRACKET
+    (16) instruction -> XOR register . register register
+    (34) register -> . REGPREFIX NUMBER
 
-    RBRACKET        shift and go to state 51
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 78
 
 state 50
 
-    (3) instruction -> LW register NUMBER LBRACKET register . RBRACKET
+    (22) instruction -> SLT register . register register
+    (34) register -> . REGPREFIX NUMBER
 
-    RBRACKET        shift and go to state 52
+    REGPREFIX       shift and go to state 35
 
+    register                       shift and go to state 79
 
 state 51
 
-    (4) instruction -> SW register NUMBER LBRACKET register RBRACKET .
+    (30) instruction -> J IDENTIFIER .
 
-    LW              reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    SW              reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    LUI             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    ADD             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    ADDU            reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    SUB             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    SUBU            reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    AND             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    OR              reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    XOR             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    NOR             reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
-    $end            reduce using rule 4 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    IDENTIFIER      reduce using rule 30 (instruction -> J IDENTIFIER .)
+    NOP             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    LW              reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SW              reduce using rule 30 (instruction -> J IDENTIFIER .)
+    LUI             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    ADD             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    ADDU            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SUB             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SUBU            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    ADDI            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    ADDIU           reduce using rule 30 (instruction -> J IDENTIFIER .)
+    AND             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    OR              reduce using rule 30 (instruction -> J IDENTIFIER .)
+    XOR             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    NOR             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    ANDI            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SLL             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SRL             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SRA             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SLT             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SLTI            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    SLTIU           reduce using rule 30 (instruction -> J IDENTIFIER .)
+    BEQ             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    BNE             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    BLEZ            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    BGTZ            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    BLTZ            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    J               reduce using rule 30 (instruction -> J IDENTIFIER .)
+    JAL             reduce using rule 30 (instruction -> J IDENTIFIER .)
+    JR              reduce using rule 30 (instruction -> J IDENTIFIER .)
+    JALR            reduce using rule 30 (instruction -> J IDENTIFIER .)
+    $end            reduce using rule 30 (instruction -> J IDENTIFIER .)
 
 
 state 52
 
-    (3) instruction -> LW register NUMBER LBRACKET register RBRACKET .
+    (20) instruction -> SRL register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
 
-    LW              reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    SW              reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    LUI             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    ADD             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    ADDU            reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    SUB             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    SUBU            reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    AND             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    OR              reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    XOR             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    NOR             reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
-    $end            reduce using rule 3 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 80
+
+state 53
+
+    (19) instruction -> SLL register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 81
+
+state 54
+
+    (8) instruction -> ADD register . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 82
+
+state 55
+
+    (28) instruction -> BGTZ register . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 83
+
+
+state 56
+
+    (26) instruction -> BNE register . register IDENTIFIER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 84
+
+state 57
+
+    (14) instruction -> AND register . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 85
+
+state 58
+
+    (9) instruction -> ADDU register . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 86
+
+state 59
+
+    (33) instruction -> JALR register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 87
+
+state 60
+
+    (24) instruction -> SLTIU register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 88
+
+state 61
+
+    (6) instruction -> SW register . NUMBER LBRACKET register RBRACKET
+
+    NUMBER          shift and go to state 89
+
+
+state 62
+
+    (31) instruction -> JAL IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    NOP             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    LW              reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SW              reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    LUI             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    ADD             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    ADDU            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SUB             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SUBU            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    ADDI            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    ADDIU           reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    AND             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    OR              reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    XOR             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    NOR             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    ANDI            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SLL             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SRL             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SRA             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SLT             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SLTI            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    SLTIU           reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    BEQ             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    BNE             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    BLEZ            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    BGTZ            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    BLTZ            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    J               reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    JAL             reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    JR              reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    JALR            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+    $end            reduce using rule 31 (instruction -> JAL IDENTIFIER .)
+
+
+state 63
+
+    (12) instruction -> ADDI register . register NUMBER
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 90
+
+state 64
+
+    (15) instruction -> OR register . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 91
+
+state 65
+
+    (17) instruction -> NOR register . register register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 92
+
+state 66
+
+    (29) instruction -> BLTZ register IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    NOP             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    LW              reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SW              reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    LUI             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    ADD             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    ADDU            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SUB             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SUBU            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    ADDI            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    ADDIU           reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    AND             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    OR              reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    XOR             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    NOR             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    ANDI            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SLL             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SRL             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SRA             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SLT             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SLTI            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    SLTIU           reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    BEQ             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    BNE             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    BLEZ            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    BGTZ            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    BLTZ            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    J               reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    JAL             reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    JR              reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    JALR            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+    $end            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
+
+
+state 67
+
+    (34) register -> REGPREFIX NUMBER .
+
+    REGPREFIX       reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    NUMBER          reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    IDENTIFIER      reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    NOP             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    LW              reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SW              reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    LUI             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    ADD             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    ADDU            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SUB             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SUBU            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    ADDI            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    ADDIU           reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    AND             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    OR              reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    XOR             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    NOR             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    ANDI            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SLL             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SRL             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SRA             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SLT             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SLTI            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    SLTIU           reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    BEQ             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    BNE             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    BLEZ            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    BGTZ            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    BLTZ            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    J               reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    JAL             reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    JR              reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    JALR            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    $end            reduce using rule 34 (register -> REGPREFIX NUMBER .)
+    RBRACKET        reduce using rule 34 (register -> REGPREFIX NUMBER .)
+
+
+state 68
+
+    (10) instruction -> SUB register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 93
+
+state 69
+
+    (23) instruction -> SLTI register register . NUMBER
+
+    NUMBER          shift and go to state 94
+
+
+state 70
+
+    (27) instruction -> BLEZ register IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    NOP             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    LW              reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SW              reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    LUI             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    ADD             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    ADDU            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SUB             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SUBU            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    ADDI            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    ADDIU           reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    AND             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    OR              reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    XOR             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    NOR             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    ANDI            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SLL             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SRL             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SRA             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SLT             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SLTI            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    SLTIU           reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    BEQ             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    BNE             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    BLEZ            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    BGTZ            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    BLTZ            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    J               reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    JAL             reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    JR              reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    JALR            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+    $end            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
+
+
+state 71
+
+    (21) instruction -> SRA register register . NUMBER
+
+    NUMBER          shift and go to state 95
+
+
+state 72
+
+    (7) instruction -> LUI register NUMBER .
+
+    IDENTIFIER      reduce using rule 7 (instruction -> LUI register NUMBER .)
+    NOP             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    LW              reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SW              reduce using rule 7 (instruction -> LUI register NUMBER .)
+    LUI             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    ADD             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    ADDU            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SUB             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SUBU            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    ADDI            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    ADDIU           reduce using rule 7 (instruction -> LUI register NUMBER .)
+    AND             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    OR              reduce using rule 7 (instruction -> LUI register NUMBER .)
+    XOR             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    NOR             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    ANDI            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SLL             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SRL             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SRA             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SLT             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SLTI            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    SLTIU           reduce using rule 7 (instruction -> LUI register NUMBER .)
+    BEQ             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    BNE             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    BLEZ            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    BGTZ            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    BLTZ            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    J               reduce using rule 7 (instruction -> LUI register NUMBER .)
+    JAL             reduce using rule 7 (instruction -> LUI register NUMBER .)
+    JR              reduce using rule 7 (instruction -> LUI register NUMBER .)
+    JALR            reduce using rule 7 (instruction -> LUI register NUMBER .)
+    $end            reduce using rule 7 (instruction -> LUI register NUMBER .)
+
+
+state 73
+
+    (25) instruction -> BEQ register register . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 96
+
+
+state 74
+
+    (18) instruction -> ANDI register register . NUMBER
+
+    NUMBER          shift and go to state 97
+
+
+state 75
+
+    (5) instruction -> LW register NUMBER . LBRACKET register RBRACKET
+
+    LBRACKET        shift and go to state 98
+
+
+state 76
+
+    (13) instruction -> ADDIU register register . NUMBER
+
+    NUMBER          shift and go to state 99
+
+
+state 77
+
+    (11) instruction -> SUBU register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 100
+
+state 78
+
+    (16) instruction -> XOR register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 101
+
+state 79
+
+    (22) instruction -> SLT register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 102
+
+state 80
+
+    (20) instruction -> SRL register register . NUMBER
+
+    NUMBER          shift and go to state 103
+
+
+state 81
+
+    (19) instruction -> SLL register register . NUMBER
+
+    NUMBER          shift and go to state 104
+
+
+state 82
+
+    (8) instruction -> ADD register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 105
+
+state 83
+
+    (28) instruction -> BGTZ register IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    NOP             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    LW              reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SW              reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    LUI             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    ADD             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    ADDU            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SUB             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SUBU            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    ADDI            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    ADDIU           reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    AND             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    OR              reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    XOR             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    NOR             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    ANDI            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SLL             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SRL             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SRA             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SLT             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SLTI            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    SLTIU           reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    BEQ             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    BNE             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    BLEZ            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    BGTZ            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    BLTZ            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    J               reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    JAL             reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    JR              reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    JALR            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+    $end            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
+
+
+state 84
+
+    (26) instruction -> BNE register register . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 106
+
+
+state 85
+
+    (14) instruction -> AND register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 107
+
+state 86
+
+    (9) instruction -> ADDU register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 108
+
+state 87
+
+    (33) instruction -> JALR register register .
+
+    IDENTIFIER      reduce using rule 33 (instruction -> JALR register register .)
+    NOP             reduce using rule 33 (instruction -> JALR register register .)
+    LW              reduce using rule 33 (instruction -> JALR register register .)
+    SW              reduce using rule 33 (instruction -> JALR register register .)
+    LUI             reduce using rule 33 (instruction -> JALR register register .)
+    ADD             reduce using rule 33 (instruction -> JALR register register .)
+    ADDU            reduce using rule 33 (instruction -> JALR register register .)
+    SUB             reduce using rule 33 (instruction -> JALR register register .)
+    SUBU            reduce using rule 33 (instruction -> JALR register register .)
+    ADDI            reduce using rule 33 (instruction -> JALR register register .)
+    ADDIU           reduce using rule 33 (instruction -> JALR register register .)
+    AND             reduce using rule 33 (instruction -> JALR register register .)
+    OR              reduce using rule 33 (instruction -> JALR register register .)
+    XOR             reduce using rule 33 (instruction -> JALR register register .)
+    NOR             reduce using rule 33 (instruction -> JALR register register .)
+    ANDI            reduce using rule 33 (instruction -> JALR register register .)
+    SLL             reduce using rule 33 (instruction -> JALR register register .)
+    SRL             reduce using rule 33 (instruction -> JALR register register .)
+    SRA             reduce using rule 33 (instruction -> JALR register register .)
+    SLT             reduce using rule 33 (instruction -> JALR register register .)
+    SLTI            reduce using rule 33 (instruction -> JALR register register .)
+    SLTIU           reduce using rule 33 (instruction -> JALR register register .)
+    BEQ             reduce using rule 33 (instruction -> JALR register register .)
+    BNE             reduce using rule 33 (instruction -> JALR register register .)
+    BLEZ            reduce using rule 33 (instruction -> JALR register register .)
+    BGTZ            reduce using rule 33 (instruction -> JALR register register .)
+    BLTZ            reduce using rule 33 (instruction -> JALR register register .)
+    J               reduce using rule 33 (instruction -> JALR register register .)
+    JAL             reduce using rule 33 (instruction -> JALR register register .)
+    JR              reduce using rule 33 (instruction -> JALR register register .)
+    JALR            reduce using rule 33 (instruction -> JALR register register .)
+    $end            reduce using rule 33 (instruction -> JALR register register .)
+
+
+state 88
+
+    (24) instruction -> SLTIU register register . NUMBER
+
+    NUMBER          shift and go to state 109
+
+
+state 89
+
+    (6) instruction -> SW register NUMBER . LBRACKET register RBRACKET
+
+    LBRACKET        shift and go to state 110
+
+
+state 90
+
+    (12) instruction -> ADDI register register . NUMBER
+
+    NUMBER          shift and go to state 111
+
+
+state 91
+
+    (15) instruction -> OR register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 112
+
+state 92
+
+    (17) instruction -> NOR register register . register
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 113
+
+state 93
+
+    (10) instruction -> SUB register register register .
+
+    IDENTIFIER      reduce using rule 10 (instruction -> SUB register register register .)
+    NOP             reduce using rule 10 (instruction -> SUB register register register .)
+    LW              reduce using rule 10 (instruction -> SUB register register register .)
+    SW              reduce using rule 10 (instruction -> SUB register register register .)
+    LUI             reduce using rule 10 (instruction -> SUB register register register .)
+    ADD             reduce using rule 10 (instruction -> SUB register register register .)
+    ADDU            reduce using rule 10 (instruction -> SUB register register register .)
+    SUB             reduce using rule 10 (instruction -> SUB register register register .)
+    SUBU            reduce using rule 10 (instruction -> SUB register register register .)
+    ADDI            reduce using rule 10 (instruction -> SUB register register register .)
+    ADDIU           reduce using rule 10 (instruction -> SUB register register register .)
+    AND             reduce using rule 10 (instruction -> SUB register register register .)
+    OR              reduce using rule 10 (instruction -> SUB register register register .)
+    XOR             reduce using rule 10 (instruction -> SUB register register register .)
+    NOR             reduce using rule 10 (instruction -> SUB register register register .)
+    ANDI            reduce using rule 10 (instruction -> SUB register register register .)
+    SLL             reduce using rule 10 (instruction -> SUB register register register .)
+    SRL             reduce using rule 10 (instruction -> SUB register register register .)
+    SRA             reduce using rule 10 (instruction -> SUB register register register .)
+    SLT             reduce using rule 10 (instruction -> SUB register register register .)
+    SLTI            reduce using rule 10 (instruction -> SUB register register register .)
+    SLTIU           reduce using rule 10 (instruction -> SUB register register register .)
+    BEQ             reduce using rule 10 (instruction -> SUB register register register .)
+    BNE             reduce using rule 10 (instruction -> SUB register register register .)
+    BLEZ            reduce using rule 10 (instruction -> SUB register register register .)
+    BGTZ            reduce using rule 10 (instruction -> SUB register register register .)
+    BLTZ            reduce using rule 10 (instruction -> SUB register register register .)
+    J               reduce using rule 10 (instruction -> SUB register register register .)
+    JAL             reduce using rule 10 (instruction -> SUB register register register .)
+    JR              reduce using rule 10 (instruction -> SUB register register register .)
+    JALR            reduce using rule 10 (instruction -> SUB register register register .)
+    $end            reduce using rule 10 (instruction -> SUB register register register .)
+
+
+state 94
+
+    (23) instruction -> SLTI register register NUMBER .
+
+    IDENTIFIER      reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    NOP             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    LW              reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SW              reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    LUI             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    ADD             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    ADDU            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SUB             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SUBU            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    ADDI            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    ADDIU           reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    AND             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    OR              reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    XOR             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    NOR             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    ANDI            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SLL             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SRL             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SRA             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SLT             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SLTI            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    SLTIU           reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    BEQ             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    BNE             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    BLEZ            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    BGTZ            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    BLTZ            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    J               reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    JAL             reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    JR              reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    JALR            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+    $end            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
+
+
+state 95
+
+    (21) instruction -> SRA register register NUMBER .
+
+    IDENTIFIER      reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    NOP             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    LW              reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SW              reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    LUI             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    ADD             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    ADDU            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SUB             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SUBU            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    ADDI            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    ADDIU           reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    AND             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    OR              reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    XOR             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    NOR             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    ANDI            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SLL             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SRL             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SRA             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SLT             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SLTI            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    SLTIU           reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    BEQ             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    BNE             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    BLEZ            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    BGTZ            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    BLTZ            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    J               reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    JAL             reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    JR              reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    JALR            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+    $end            reduce using rule 21 (instruction -> SRA register register NUMBER .)
+
+
+state 96
+
+    (25) instruction -> BEQ register register IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    NOP             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    LW              reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SW              reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    LUI             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    ADD             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    ADDU            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SUB             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SUBU            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    ADDI            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    ADDIU           reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    AND             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    OR              reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    XOR             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    NOR             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    ANDI            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SLL             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SRL             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SRA             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SLT             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SLTI            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    SLTIU           reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    BEQ             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    BNE             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    BLEZ            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    BGTZ            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    BLTZ            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    J               reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    JAL             reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    JR              reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    JALR            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+    $end            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
+
+
+state 97
+
+    (18) instruction -> ANDI register register NUMBER .
+
+    IDENTIFIER      reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    NOP             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    LW              reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SW              reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    LUI             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    ADD             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    ADDU            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SUB             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SUBU            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    ADDI            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    ADDIU           reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    AND             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    OR              reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    XOR             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    NOR             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    ANDI            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SLL             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SRL             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SRA             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SLT             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SLTI            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    SLTIU           reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    BEQ             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    BNE             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    BLEZ            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    BGTZ            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    BLTZ            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    J               reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    JAL             reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    JR              reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    JALR            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+    $end            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
+
+
+state 98
+
+    (5) instruction -> LW register NUMBER LBRACKET . register RBRACKET
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 114
+
+state 99
+
+    (13) instruction -> ADDIU register register NUMBER .
+
+    IDENTIFIER      reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    NOP             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    LW              reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SW              reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    LUI             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    ADD             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    ADDU            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SUB             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SUBU            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    ADDI            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    ADDIU           reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    AND             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    OR              reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    XOR             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    NOR             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    ANDI            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SLL             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SRL             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SRA             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SLT             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SLTI            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    SLTIU           reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    BEQ             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    BNE             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    BLEZ            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    BGTZ            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    BLTZ            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    J               reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    JAL             reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    JR              reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    JALR            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+    $end            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
+
+
+state 100
+
+    (11) instruction -> SUBU register register register .
+
+    IDENTIFIER      reduce using rule 11 (instruction -> SUBU register register register .)
+    NOP             reduce using rule 11 (instruction -> SUBU register register register .)
+    LW              reduce using rule 11 (instruction -> SUBU register register register .)
+    SW              reduce using rule 11 (instruction -> SUBU register register register .)
+    LUI             reduce using rule 11 (instruction -> SUBU register register register .)
+    ADD             reduce using rule 11 (instruction -> SUBU register register register .)
+    ADDU            reduce using rule 11 (instruction -> SUBU register register register .)
+    SUB             reduce using rule 11 (instruction -> SUBU register register register .)
+    SUBU            reduce using rule 11 (instruction -> SUBU register register register .)
+    ADDI            reduce using rule 11 (instruction -> SUBU register register register .)
+    ADDIU           reduce using rule 11 (instruction -> SUBU register register register .)
+    AND             reduce using rule 11 (instruction -> SUBU register register register .)
+    OR              reduce using rule 11 (instruction -> SUBU register register register .)
+    XOR             reduce using rule 11 (instruction -> SUBU register register register .)
+    NOR             reduce using rule 11 (instruction -> SUBU register register register .)
+    ANDI            reduce using rule 11 (instruction -> SUBU register register register .)
+    SLL             reduce using rule 11 (instruction -> SUBU register register register .)
+    SRL             reduce using rule 11 (instruction -> SUBU register register register .)
+    SRA             reduce using rule 11 (instruction -> SUBU register register register .)
+    SLT             reduce using rule 11 (instruction -> SUBU register register register .)
+    SLTI            reduce using rule 11 (instruction -> SUBU register register register .)
+    SLTIU           reduce using rule 11 (instruction -> SUBU register register register .)
+    BEQ             reduce using rule 11 (instruction -> SUBU register register register .)
+    BNE             reduce using rule 11 (instruction -> SUBU register register register .)
+    BLEZ            reduce using rule 11 (instruction -> SUBU register register register .)
+    BGTZ            reduce using rule 11 (instruction -> SUBU register register register .)
+    BLTZ            reduce using rule 11 (instruction -> SUBU register register register .)
+    J               reduce using rule 11 (instruction -> SUBU register register register .)
+    JAL             reduce using rule 11 (instruction -> SUBU register register register .)
+    JR              reduce using rule 11 (instruction -> SUBU register register register .)
+    JALR            reduce using rule 11 (instruction -> SUBU register register register .)
+    $end            reduce using rule 11 (instruction -> SUBU register register register .)
+
+
+state 101
+
+    (16) instruction -> XOR register register register .
+
+    IDENTIFIER      reduce using rule 16 (instruction -> XOR register register register .)
+    NOP             reduce using rule 16 (instruction -> XOR register register register .)
+    LW              reduce using rule 16 (instruction -> XOR register register register .)
+    SW              reduce using rule 16 (instruction -> XOR register register register .)
+    LUI             reduce using rule 16 (instruction -> XOR register register register .)
+    ADD             reduce using rule 16 (instruction -> XOR register register register .)
+    ADDU            reduce using rule 16 (instruction -> XOR register register register .)
+    SUB             reduce using rule 16 (instruction -> XOR register register register .)
+    SUBU            reduce using rule 16 (instruction -> XOR register register register .)
+    ADDI            reduce using rule 16 (instruction -> XOR register register register .)
+    ADDIU           reduce using rule 16 (instruction -> XOR register register register .)
+    AND             reduce using rule 16 (instruction -> XOR register register register .)
+    OR              reduce using rule 16 (instruction -> XOR register register register .)
+    XOR             reduce using rule 16 (instruction -> XOR register register register .)
+    NOR             reduce using rule 16 (instruction -> XOR register register register .)
+    ANDI            reduce using rule 16 (instruction -> XOR register register register .)
+    SLL             reduce using rule 16 (instruction -> XOR register register register .)
+    SRL             reduce using rule 16 (instruction -> XOR register register register .)
+    SRA             reduce using rule 16 (instruction -> XOR register register register .)
+    SLT             reduce using rule 16 (instruction -> XOR register register register .)
+    SLTI            reduce using rule 16 (instruction -> XOR register register register .)
+    SLTIU           reduce using rule 16 (instruction -> XOR register register register .)
+    BEQ             reduce using rule 16 (instruction -> XOR register register register .)
+    BNE             reduce using rule 16 (instruction -> XOR register register register .)
+    BLEZ            reduce using rule 16 (instruction -> XOR register register register .)
+    BGTZ            reduce using rule 16 (instruction -> XOR register register register .)
+    BLTZ            reduce using rule 16 (instruction -> XOR register register register .)
+    J               reduce using rule 16 (instruction -> XOR register register register .)
+    JAL             reduce using rule 16 (instruction -> XOR register register register .)
+    JR              reduce using rule 16 (instruction -> XOR register register register .)
+    JALR            reduce using rule 16 (instruction -> XOR register register register .)
+    $end            reduce using rule 16 (instruction -> XOR register register register .)
+
+
+state 102
+
+    (22) instruction -> SLT register register register .
+
+    IDENTIFIER      reduce using rule 22 (instruction -> SLT register register register .)
+    NOP             reduce using rule 22 (instruction -> SLT register register register .)
+    LW              reduce using rule 22 (instruction -> SLT register register register .)
+    SW              reduce using rule 22 (instruction -> SLT register register register .)
+    LUI             reduce using rule 22 (instruction -> SLT register register register .)
+    ADD             reduce using rule 22 (instruction -> SLT register register register .)
+    ADDU            reduce using rule 22 (instruction -> SLT register register register .)
+    SUB             reduce using rule 22 (instruction -> SLT register register register .)
+    SUBU            reduce using rule 22 (instruction -> SLT register register register .)
+    ADDI            reduce using rule 22 (instruction -> SLT register register register .)
+    ADDIU           reduce using rule 22 (instruction -> SLT register register register .)
+    AND             reduce using rule 22 (instruction -> SLT register register register .)
+    OR              reduce using rule 22 (instruction -> SLT register register register .)
+    XOR             reduce using rule 22 (instruction -> SLT register register register .)
+    NOR             reduce using rule 22 (instruction -> SLT register register register .)
+    ANDI            reduce using rule 22 (instruction -> SLT register register register .)
+    SLL             reduce using rule 22 (instruction -> SLT register register register .)
+    SRL             reduce using rule 22 (instruction -> SLT register register register .)
+    SRA             reduce using rule 22 (instruction -> SLT register register register .)
+    SLT             reduce using rule 22 (instruction -> SLT register register register .)
+    SLTI            reduce using rule 22 (instruction -> SLT register register register .)
+    SLTIU           reduce using rule 22 (instruction -> SLT register register register .)
+    BEQ             reduce using rule 22 (instruction -> SLT register register register .)
+    BNE             reduce using rule 22 (instruction -> SLT register register register .)
+    BLEZ            reduce using rule 22 (instruction -> SLT register register register .)
+    BGTZ            reduce using rule 22 (instruction -> SLT register register register .)
+    BLTZ            reduce using rule 22 (instruction -> SLT register register register .)
+    J               reduce using rule 22 (instruction -> SLT register register register .)
+    JAL             reduce using rule 22 (instruction -> SLT register register register .)
+    JR              reduce using rule 22 (instruction -> SLT register register register .)
+    JALR            reduce using rule 22 (instruction -> SLT register register register .)
+    $end            reduce using rule 22 (instruction -> SLT register register register .)
+
+
+state 103
+
+    (20) instruction -> SRL register register NUMBER .
+
+    IDENTIFIER      reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    NOP             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    LW              reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SW              reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    LUI             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    ADD             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    ADDU            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SUB             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SUBU            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    ADDI            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    ADDIU           reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    AND             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    OR              reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    XOR             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    NOR             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    ANDI            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SLL             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SRL             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SRA             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SLT             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SLTI            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    SLTIU           reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    BEQ             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    BNE             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    BLEZ            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    BGTZ            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    BLTZ            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    J               reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    JAL             reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    JR              reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    JALR            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+    $end            reduce using rule 20 (instruction -> SRL register register NUMBER .)
+
+
+state 104
+
+    (19) instruction -> SLL register register NUMBER .
+
+    IDENTIFIER      reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    NOP             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    LW              reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SW              reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    LUI             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    ADD             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    ADDU            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SUB             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SUBU            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    ADDI            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    ADDIU           reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    AND             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    OR              reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    XOR             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    NOR             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    ANDI            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SLL             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SRL             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SRA             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SLT             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SLTI            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    SLTIU           reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    BEQ             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    BNE             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    BLEZ            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    BGTZ            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    BLTZ            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    J               reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    JAL             reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    JR              reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    JALR            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+    $end            reduce using rule 19 (instruction -> SLL register register NUMBER .)
+
+
+state 105
+
+    (8) instruction -> ADD register register register .
+
+    IDENTIFIER      reduce using rule 8 (instruction -> ADD register register register .)
+    NOP             reduce using rule 8 (instruction -> ADD register register register .)
+    LW              reduce using rule 8 (instruction -> ADD register register register .)
+    SW              reduce using rule 8 (instruction -> ADD register register register .)
+    LUI             reduce using rule 8 (instruction -> ADD register register register .)
+    ADD             reduce using rule 8 (instruction -> ADD register register register .)
+    ADDU            reduce using rule 8 (instruction -> ADD register register register .)
+    SUB             reduce using rule 8 (instruction -> ADD register register register .)
+    SUBU            reduce using rule 8 (instruction -> ADD register register register .)
+    ADDI            reduce using rule 8 (instruction -> ADD register register register .)
+    ADDIU           reduce using rule 8 (instruction -> ADD register register register .)
+    AND             reduce using rule 8 (instruction -> ADD register register register .)
+    OR              reduce using rule 8 (instruction -> ADD register register register .)
+    XOR             reduce using rule 8 (instruction -> ADD register register register .)
+    NOR             reduce using rule 8 (instruction -> ADD register register register .)
+    ANDI            reduce using rule 8 (instruction -> ADD register register register .)
+    SLL             reduce using rule 8 (instruction -> ADD register register register .)
+    SRL             reduce using rule 8 (instruction -> ADD register register register .)
+    SRA             reduce using rule 8 (instruction -> ADD register register register .)
+    SLT             reduce using rule 8 (instruction -> ADD register register register .)
+    SLTI            reduce using rule 8 (instruction -> ADD register register register .)
+    SLTIU           reduce using rule 8 (instruction -> ADD register register register .)
+    BEQ             reduce using rule 8 (instruction -> ADD register register register .)
+    BNE             reduce using rule 8 (instruction -> ADD register register register .)
+    BLEZ            reduce using rule 8 (instruction -> ADD register register register .)
+    BGTZ            reduce using rule 8 (instruction -> ADD register register register .)
+    BLTZ            reduce using rule 8 (instruction -> ADD register register register .)
+    J               reduce using rule 8 (instruction -> ADD register register register .)
+    JAL             reduce using rule 8 (instruction -> ADD register register register .)
+    JR              reduce using rule 8 (instruction -> ADD register register register .)
+    JALR            reduce using rule 8 (instruction -> ADD register register register .)
+    $end            reduce using rule 8 (instruction -> ADD register register register .)
+
+
+state 106
+
+    (26) instruction -> BNE register register IDENTIFIER .
+
+    IDENTIFIER      reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    NOP             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    LW              reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SW              reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    LUI             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    ADD             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    ADDU            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SUB             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SUBU            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    ADDI            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    ADDIU           reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    AND             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    OR              reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    XOR             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    NOR             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    ANDI            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SLL             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SRL             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SRA             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SLT             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SLTI            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    SLTIU           reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    BEQ             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    BNE             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    BLEZ            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    BGTZ            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    BLTZ            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    J               reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    JAL             reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    JR              reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    JALR            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+    $end            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
+
+
+state 107
+
+    (14) instruction -> AND register register register .
+
+    IDENTIFIER      reduce using rule 14 (instruction -> AND register register register .)
+    NOP             reduce using rule 14 (instruction -> AND register register register .)
+    LW              reduce using rule 14 (instruction -> AND register register register .)
+    SW              reduce using rule 14 (instruction -> AND register register register .)
+    LUI             reduce using rule 14 (instruction -> AND register register register .)
+    ADD             reduce using rule 14 (instruction -> AND register register register .)
+    ADDU            reduce using rule 14 (instruction -> AND register register register .)
+    SUB             reduce using rule 14 (instruction -> AND register register register .)
+    SUBU            reduce using rule 14 (instruction -> AND register register register .)
+    ADDI            reduce using rule 14 (instruction -> AND register register register .)
+    ADDIU           reduce using rule 14 (instruction -> AND register register register .)
+    AND             reduce using rule 14 (instruction -> AND register register register .)
+    OR              reduce using rule 14 (instruction -> AND register register register .)
+    XOR             reduce using rule 14 (instruction -> AND register register register .)
+    NOR             reduce using rule 14 (instruction -> AND register register register .)
+    ANDI            reduce using rule 14 (instruction -> AND register register register .)
+    SLL             reduce using rule 14 (instruction -> AND register register register .)
+    SRL             reduce using rule 14 (instruction -> AND register register register .)
+    SRA             reduce using rule 14 (instruction -> AND register register register .)
+    SLT             reduce using rule 14 (instruction -> AND register register register .)
+    SLTI            reduce using rule 14 (instruction -> AND register register register .)
+    SLTIU           reduce using rule 14 (instruction -> AND register register register .)
+    BEQ             reduce using rule 14 (instruction -> AND register register register .)
+    BNE             reduce using rule 14 (instruction -> AND register register register .)
+    BLEZ            reduce using rule 14 (instruction -> AND register register register .)
+    BGTZ            reduce using rule 14 (instruction -> AND register register register .)
+    BLTZ            reduce using rule 14 (instruction -> AND register register register .)
+    J               reduce using rule 14 (instruction -> AND register register register .)
+    JAL             reduce using rule 14 (instruction -> AND register register register .)
+    JR              reduce using rule 14 (instruction -> AND register register register .)
+    JALR            reduce using rule 14 (instruction -> AND register register register .)
+    $end            reduce using rule 14 (instruction -> AND register register register .)
+
+
+state 108
+
+    (9) instruction -> ADDU register register register .
+
+    IDENTIFIER      reduce using rule 9 (instruction -> ADDU register register register .)
+    NOP             reduce using rule 9 (instruction -> ADDU register register register .)
+    LW              reduce using rule 9 (instruction -> ADDU register register register .)
+    SW              reduce using rule 9 (instruction -> ADDU register register register .)
+    LUI             reduce using rule 9 (instruction -> ADDU register register register .)
+    ADD             reduce using rule 9 (instruction -> ADDU register register register .)
+    ADDU            reduce using rule 9 (instruction -> ADDU register register register .)
+    SUB             reduce using rule 9 (instruction -> ADDU register register register .)
+    SUBU            reduce using rule 9 (instruction -> ADDU register register register .)
+    ADDI            reduce using rule 9 (instruction -> ADDU register register register .)
+    ADDIU           reduce using rule 9 (instruction -> ADDU register register register .)
+    AND             reduce using rule 9 (instruction -> ADDU register register register .)
+    OR              reduce using rule 9 (instruction -> ADDU register register register .)
+    XOR             reduce using rule 9 (instruction -> ADDU register register register .)
+    NOR             reduce using rule 9 (instruction -> ADDU register register register .)
+    ANDI            reduce using rule 9 (instruction -> ADDU register register register .)
+    SLL             reduce using rule 9 (instruction -> ADDU register register register .)
+    SRL             reduce using rule 9 (instruction -> ADDU register register register .)
+    SRA             reduce using rule 9 (instruction -> ADDU register register register .)
+    SLT             reduce using rule 9 (instruction -> ADDU register register register .)
+    SLTI            reduce using rule 9 (instruction -> ADDU register register register .)
+    SLTIU           reduce using rule 9 (instruction -> ADDU register register register .)
+    BEQ             reduce using rule 9 (instruction -> ADDU register register register .)
+    BNE             reduce using rule 9 (instruction -> ADDU register register register .)
+    BLEZ            reduce using rule 9 (instruction -> ADDU register register register .)
+    BGTZ            reduce using rule 9 (instruction -> ADDU register register register .)
+    BLTZ            reduce using rule 9 (instruction -> ADDU register register register .)
+    J               reduce using rule 9 (instruction -> ADDU register register register .)
+    JAL             reduce using rule 9 (instruction -> ADDU register register register .)
+    JR              reduce using rule 9 (instruction -> ADDU register register register .)
+    JALR            reduce using rule 9 (instruction -> ADDU register register register .)
+    $end            reduce using rule 9 (instruction -> ADDU register register register .)
+
+
+state 109
+
+    (24) instruction -> SLTIU register register NUMBER .
+
+    IDENTIFIER      reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    NOP             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    LW              reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SW              reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    LUI             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    ADD             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    ADDU            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SUB             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SUBU            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    ADDI            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    ADDIU           reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    AND             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    OR              reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    XOR             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    NOR             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    ANDI            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SLL             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SRL             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SRA             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SLT             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SLTI            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    SLTIU           reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    BEQ             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    BNE             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    BLEZ            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    BGTZ            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    BLTZ            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    J               reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    JAL             reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    JR              reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    JALR            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+    $end            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
+
+
+state 110
+
+    (6) instruction -> SW register NUMBER LBRACKET . register RBRACKET
+    (34) register -> . REGPREFIX NUMBER
+
+    REGPREFIX       shift and go to state 35
+
+    register                       shift and go to state 115
+
+state 111
+
+    (12) instruction -> ADDI register register NUMBER .
+
+    IDENTIFIER      reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    NOP             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    LW              reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SW              reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    LUI             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    ADD             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    ADDU            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SUB             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SUBU            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    ADDI            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    ADDIU           reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    AND             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    OR              reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    XOR             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    NOR             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    ANDI            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SLL             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SRL             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SRA             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SLT             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SLTI            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    SLTIU           reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    BEQ             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    BNE             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    BLEZ            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    BGTZ            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    BLTZ            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    J               reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    JAL             reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    JR              reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    JALR            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+    $end            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
+
+
+state 112
+
+    (15) instruction -> OR register register register .
+
+    IDENTIFIER      reduce using rule 15 (instruction -> OR register register register .)
+    NOP             reduce using rule 15 (instruction -> OR register register register .)
+    LW              reduce using rule 15 (instruction -> OR register register register .)
+    SW              reduce using rule 15 (instruction -> OR register register register .)
+    LUI             reduce using rule 15 (instruction -> OR register register register .)
+    ADD             reduce using rule 15 (instruction -> OR register register register .)
+    ADDU            reduce using rule 15 (instruction -> OR register register register .)
+    SUB             reduce using rule 15 (instruction -> OR register register register .)
+    SUBU            reduce using rule 15 (instruction -> OR register register register .)
+    ADDI            reduce using rule 15 (instruction -> OR register register register .)
+    ADDIU           reduce using rule 15 (instruction -> OR register register register .)
+    AND             reduce using rule 15 (instruction -> OR register register register .)
+    OR              reduce using rule 15 (instruction -> OR register register register .)
+    XOR             reduce using rule 15 (instruction -> OR register register register .)
+    NOR             reduce using rule 15 (instruction -> OR register register register .)
+    ANDI            reduce using rule 15 (instruction -> OR register register register .)
+    SLL             reduce using rule 15 (instruction -> OR register register register .)
+    SRL             reduce using rule 15 (instruction -> OR register register register .)
+    SRA             reduce using rule 15 (instruction -> OR register register register .)
+    SLT             reduce using rule 15 (instruction -> OR register register register .)
+    SLTI            reduce using rule 15 (instruction -> OR register register register .)
+    SLTIU           reduce using rule 15 (instruction -> OR register register register .)
+    BEQ             reduce using rule 15 (instruction -> OR register register register .)
+    BNE             reduce using rule 15 (instruction -> OR register register register .)
+    BLEZ            reduce using rule 15 (instruction -> OR register register register .)
+    BGTZ            reduce using rule 15 (instruction -> OR register register register .)
+    BLTZ            reduce using rule 15 (instruction -> OR register register register .)
+    J               reduce using rule 15 (instruction -> OR register register register .)
+    JAL             reduce using rule 15 (instruction -> OR register register register .)
+    JR              reduce using rule 15 (instruction -> OR register register register .)
+    JALR            reduce using rule 15 (instruction -> OR register register register .)
+    $end            reduce using rule 15 (instruction -> OR register register register .)
+
+
+state 113
+
+    (17) instruction -> NOR register register register .
+
+    IDENTIFIER      reduce using rule 17 (instruction -> NOR register register register .)
+    NOP             reduce using rule 17 (instruction -> NOR register register register .)
+    LW              reduce using rule 17 (instruction -> NOR register register register .)
+    SW              reduce using rule 17 (instruction -> NOR register register register .)
+    LUI             reduce using rule 17 (instruction -> NOR register register register .)
+    ADD             reduce using rule 17 (instruction -> NOR register register register .)
+    ADDU            reduce using rule 17 (instruction -> NOR register register register .)
+    SUB             reduce using rule 17 (instruction -> NOR register register register .)
+    SUBU            reduce using rule 17 (instruction -> NOR register register register .)
+    ADDI            reduce using rule 17 (instruction -> NOR register register register .)
+    ADDIU           reduce using rule 17 (instruction -> NOR register register register .)
+    AND             reduce using rule 17 (instruction -> NOR register register register .)
+    OR              reduce using rule 17 (instruction -> NOR register register register .)
+    XOR             reduce using rule 17 (instruction -> NOR register register register .)
+    NOR             reduce using rule 17 (instruction -> NOR register register register .)
+    ANDI            reduce using rule 17 (instruction -> NOR register register register .)
+    SLL             reduce using rule 17 (instruction -> NOR register register register .)
+    SRL             reduce using rule 17 (instruction -> NOR register register register .)
+    SRA             reduce using rule 17 (instruction -> NOR register register register .)
+    SLT             reduce using rule 17 (instruction -> NOR register register register .)
+    SLTI            reduce using rule 17 (instruction -> NOR register register register .)
+    SLTIU           reduce using rule 17 (instruction -> NOR register register register .)
+    BEQ             reduce using rule 17 (instruction -> NOR register register register .)
+    BNE             reduce using rule 17 (instruction -> NOR register register register .)
+    BLEZ            reduce using rule 17 (instruction -> NOR register register register .)
+    BGTZ            reduce using rule 17 (instruction -> NOR register register register .)
+    BLTZ            reduce using rule 17 (instruction -> NOR register register register .)
+    J               reduce using rule 17 (instruction -> NOR register register register .)
+    JAL             reduce using rule 17 (instruction -> NOR register register register .)
+    JR              reduce using rule 17 (instruction -> NOR register register register .)
+    JALR            reduce using rule 17 (instruction -> NOR register register register .)
+    $end            reduce using rule 17 (instruction -> NOR register register register .)
+
+
+state 114
+
+    (5) instruction -> LW register NUMBER LBRACKET register . RBRACKET
+
+    RBRACKET        shift and go to state 116
+
+
+state 115
+
+    (6) instruction -> SW register NUMBER LBRACKET register . RBRACKET
+
+    RBRACKET        shift and go to state 117
+
+
+state 116
+
+    (5) instruction -> LW register NUMBER LBRACKET register RBRACKET .
+
+    IDENTIFIER      reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    NOP             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    LW              reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SW              reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    LUI             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ADD             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ADDU            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SUB             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SUBU            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ADDI            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ADDIU           reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    AND             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    OR              reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    XOR             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    NOR             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    ANDI            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SLL             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SRL             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SRA             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SLT             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SLTI            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    SLTIU           reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    BEQ             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    BNE             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    BLEZ            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    BGTZ            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    BLTZ            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    J               reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    JAL             reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    JR              reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    JALR            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+    $end            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
+
+
+state 117
+
+    (6) instruction -> SW register NUMBER LBRACKET register RBRACKET .
+
+    IDENTIFIER      reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    NOP             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    LW              reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SW              reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    LUI             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ADD             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ADDU            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SUB             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SUBU            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ADDI            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ADDIU           reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    AND             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    OR              reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    XOR             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    NOR             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    ANDI            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SLL             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SRL             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SRA             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SLT             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SLTI            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    SLTIU           reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    BEQ             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    BNE             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    BLEZ            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    BGTZ            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    BLTZ            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    J               reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    JAL             reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    JR              reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    JALR            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
+    $end            reduce using rule 6 (instruction -> SW register NUMBER LBRACKET register RBRACKET .)
 

@@ -46,6 +46,7 @@ tokens = [
     'RBRACKET',     # )
     'NUMBER',       # number
     'REGPREFIX',    # $
+    'COLOM'         # :
 ] + list(reserved.keys())
 
 # Regular expression rules for simple tokens
@@ -53,6 +54,7 @@ tokens = [
 t_LBRACKET = r'\('
 t_RBRACKET = r'\)'
 t_REGPREFIX = r'\$'
+t_COLOM = r'\:'
 
 # 有的 token 也可以被定义为函数，参数为识别出来的 token，返回值还是 token
 
@@ -64,7 +66,8 @@ def t_NUMBER(t):
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     for (_token, _pattern) in reserved.iteritems():
-        if (re.match(_pattern, t.value)):
+        # if (re.match(_pattern, t.value)):
+        if (_token.lower() == t.value.lower()):
             t.type = _token
     return t
 
@@ -87,15 +90,22 @@ lexer = lex.lex()
 
 if __name__ == '__main__':
     data = '''
-    lw $s0 4($sp) # comment
-    addi $sp $sp 4 # another comment
-    # new line test
+    addr:
+    lw $4 4($3)
+    sw $4 4($3)
+    lui $4 1000 # Whatever comment
+    add $4 $3 $4
+    addu $4 $3 $4
+    sub $4 $3 $4
+    subu $4 $3 $4
+    and $4 $3 $4
+    or $4 $3 $4
+    xor $4 $3 $4
+    nor $4 $3 $4
+    addi $4 $4 100
+    addiu $4 $3 200
     '''
 
-    data = '''
-    lw $4 4($3)
-    '''
-    
     lexer.input(data)
     
     while True:

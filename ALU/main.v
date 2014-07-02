@@ -73,12 +73,31 @@ module main;
         A = {32{1'b1}};
         B = 1;
         Signed = 0;
-        #20 $display("%b = A\n%b = B\n%b = A - B\n", A, B, S);
+        #20 $display("%b = A\n%b = B\n%b = A - B (signed = %d)\n", A, B, S, Signed);
             //$display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
 
         ALUFunc = ALUFUNC_ADD;
-        #20 $display("%b = A\n%b = B\n%b = A + B\n", A, B, S);
+        #20 $display("%b = A\n%b = B\n%b = A + B (signed = %d)\n", A, B, S, Signed);
             //$display("Overflow = %d\nZero = %d\nNegative = %d", Overflow, Zero, Negative);
+
+        ALUFunc = ALUFUNC_EQ;
+        #20 $display("%b = A\n%b = B\n%b = A == B (signed = %d)\n", A, B, S, Signed);
+
+        ALUFunc = ALUFUNC_NEQ;
+        #20 $display("%b = A\n%b = B\n%b = A != B (signed = %d)\n", A, B, S, Signed);
+
+        ALUFunc = ALUFUNC_LT;
+        #20 $display("%b = A\n%b = B\n%b = A < B (signed = %d)\n", A, B, S, Signed);
+
+        ALUFunc = ALUFUNC_LEZ;
+        Signed = 1;
+        #20 $display("%b = A\n%b = B\n%b = A <= 0 (signed = %d)\n", A, B, S, Signed);
+
+        ALUFunc = ALUFUNC_GEZ;
+        #20 $display("%b = A\n%b = B\n%b = A >= 0 (signed = %d)\n", A, B, S, Signed);
+
+        ALUFunc = ALUFUNC_GTZ;
+        #20 $display("%b = A\n%b = B\n%b = A > 0 (signed = %d)\n", A, B, S, Signed);
 
     end
 

@@ -4,6 +4,10 @@ import ply.yacc as yacc
 
 from lex import tokens
 
+addr = 0x00400000
+
+addrTags = {}
+
 # register
 # (5bit index, 'register name')
 #
@@ -14,23 +18,44 @@ from lex import tokens
 # immediate
 
 def putins(ins):
-    print '0x%08X  # %s' % (ins[0], ins[1])
+    global addr
+    global addrTags
+    if (addrTags.has_key(addr)):
+
+        print '[0x%08X]  0x%08X  %s:' % (ins[0], ins[1], addrTags[addr])
+        print ' ' * 26 + '%s' % ins[2]
+    else:
+        print '[0x%08X]  0x%08X  %s' % (ins[0], ins[1], ins[2])
+    addr += 4
+
 
 def p_program(p):
     '''program : program instruction
                | instruction'''
     if len(p) == 3:
-        p[0] = p[1] + [p[2]]
+        if p[2] != None:
+            p[0] = p[1] + [p[2]]
+        else:
+            p[0] = p[1]
     else:
-        p[0] = [p[1]]
+        if p[1] != None:
+            p[0] = [p[1]]
+        else:
+            p[0] = []
 
-# def p_nop(p):
-#     '''nop :'''
-#     p[0] = (0, 'nop')
+def p_tag(p):
+    '''instruction : IDENTIFIER COLOM'''
+    addrTags[addr] = p[1]
+
+def p_nop(p):
+    '''instruction : NOP'''
+    p[0] = (addr, 0, 'nop')
+    putins(p[0])
     
 def p_lw(p):
     '''instruction : LW register NUMBER LBRACKET register RBRACKET'''
     p[0] = (
+        addr,
         (0b100011 << 26) | (p[5][0] << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
         'lw ' + p[2][1] + ' ' + str(p[3]) + '(' + p[5][1] + ')'
     )
@@ -39,6 +64,7 @@ def p_lw(p):
 def p_sw(p):
     '''instruction : SW register NUMBER LBRACKET register RBRACKET'''
     p[0] = (
+        addr,
         (0b101011 << 26) | (p[5][0] << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
         'sw ' + p[2][1] + ' ' + str(p[3]) + '(' + p[5][1] + ')'
     )
@@ -47,6 +73,7 @@ def p_sw(p):
 def p_lui(p):
     '''instruction : LUI register NUMBER'''
     p[0] = (
+        addr,
         (0b001111 << 26) | (0 << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
         'lui ' + p[2][1] + ' ' + str(p[3])
     )
@@ -55,6 +82,7 @@ def p_lui(p):
 def p_add(p):
     '''instruction : ADD register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100000),
         'add ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
@@ -63,6 +91,7 @@ def p_add(p):
 def p_addu(p):
     '''instruction : ADDU register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100001),
         'addu ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
@@ -71,6 +100,7 @@ def p_addu(p):
 def p_sub(p):
     '''instruction : SUB register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100010),
         'sub ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
@@ -79,20 +109,34 @@ def p_sub(p):
 def p_subu(p):
     '''instruction : SUBU register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100011),
         'subu ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
     putins(p[0])
 
 def p_addi(p):
-    pass
+    '''instruction : ADDI register register NUMBER'''
+    p[0] = (
+        addr,
+        (0b001000 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
+        'addi ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_addiu(p):
-    pass
+    '''instruction : ADDIU register register NUMBER'''
+    p[0] = (
+        addr,
+        (0b001001 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
+        'addiu ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_and(p):
     '''instruction : AND register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100100),
         'and ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
@@ -101,6 +145,7 @@ def p_and(p):
 def p_or(p):
     '''instruction : OR register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100101),
         'or ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
@@ -109,6 +154,7 @@ def p_or(p):
 def p_xor(p):
     '''instruction : XOR register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100110),
         'xor ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
@@ -117,58 +163,162 @@ def p_xor(p):
 def p_nor(p):
     '''instruction : NOR register register register'''
     p[0] = (
+        addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100111),
         'nor ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
     )
     putins(p[0])
 
 def p_andi(p):
-    pass
+    '''instruction : ANDI register register NUMBER'''
+    p[0] = (
+        addr,
+        (0b000110 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
+        'andi ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_sll(p):
-    pass
+    '''instruction : SLL register register NUMBER'''
+    p[0] = (
+        addr,
+        (0 << 26) | (0 << 21) | (p[3][0] << 16) | (p[2][0] << 11) | ((p[4] % (1 << 5)) << 6) | (0 << 0),
+        'sll ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_srl(p):
-    pass
+    '''instruction : SRL register register NUMBER'''
+    p[0] = (
+        addr,
+        (0 << 26) | (0 << 21) | (p[3][0] << 16) | (p[2][0] << 11) | ((p[4] % (1 << 5)) << 6) | (0b000010 << 0),
+        'srl ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_sra(p):
-    pass
+    '''instruction : SRA register register NUMBER'''
+    p[0] = (
+        addr,
+        (0 << 26) | (0 << 21) | (p[3][0] << 16) | (p[2][0] << 11) | ((p[4] % (1 << 5)) << 6) | (0b000011 << 0),
+        'sra ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_slt(p):
-    pass
+    '''instruction : SLT register register register'''
+    p[0] = (
+        addr,
+        (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0x2A),
+        'slt ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
+    )
+    putins(p[0])
 
 def p_slti(p):
-    pass
+    '''instruction : SLTI register register NUMBER'''
+    p[0] = (
+        addr,
+        (0b001010 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
+        'slti ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_sltiu(p):
-    pass
+    '''instruction : SLTIU register register NUMBER'''
+    p[0] = (
+        addr,
+        (0b001011 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
+        'sltiu ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
+    )
+    putins(p[0])
 
 def p_beq(p):
-    pass
+    '''instruction : BEQ register register IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000100 << 26) | (p[2][0] << 21) | (p[3][0] << 16) | (0),
+        'beq ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4],
+        p[4]
+    )
+    putins(p[0])
 
 def p_bne(p):
-    pass
+    '''instruction : BNE register register IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000101 << 26) | (p[2][0] << 21) | (p[3][0] << 16) | (0),
+        'bne ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4],
+        p[4]
+    )
+    putins(p[0])
 
 def p_blez(p):
-    pass
+    '''instruction : BLEZ register IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000110 << 26) | (p[2][0] << 21) | (0 << 16) | (0),
+        'blez ' + p[2][1] + ' ' + p[3],
+        p[3]
+    )
+    putins(p[0])
 
 def p_bgtz(p):
-    pass
+    '''instruction : BGTZ register IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000111 << 26) | (p[2][0] << 21) | (0 << 16) | (0),
+        'bgtz ' + p[2][1] + ' ' + p[3],
+        p[3]
+    )
+    putins(p[0])
 
 def p_bltz(p):
-    pass
+    '''instruction : BLTZ register IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000001 << 26) | (p[2][0] << 21) | (0 << 16) | (0),
+        'bltz ' + p[2][1] + ' ' + p[3],
+        p[3]
+    )
+    putins(p[0])
 
 def p_j(p):
-    pass
+    '''instruction : J IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000010 << 26) | (0),
+        'j ' + p[2],
+        p[2]
+    )
+    putins(p[0])
 
 def p_jal(p):
-    pass
+    '''instruction : JAL IDENTIFIER'''
+    p[0] = (
+        addr,
+        (0b000011 << 26) | (0),
+        'jal ' + p[2],
+        p[2]
+    )
+    putins(p[0])
 
 def p_jr(p):
-    pass
+    '''instruction : JR register'''
+    p[0] = (
+        addr,
+        (0b000000 << 26) | (p[2][0] << 21) | (0 << 6) | (0b001000),
+        'jr ' + p[2][1]
+    )
+    putins(p[0])
 
 def p_jalr(p):
-    pass
+    '''instruction : JALR register register'''
+    p[0] = (
+        addr,
+        (0b000000 << 26) | (p[2][0] << 21) | (0 << 16) | (p[3][0] << 11) | (0 << 6) | (9),
+        '(buggy)jalr ' + p[2][1] + ' ' + p[3][1]
+    )
+    putins(p[0])
 
 def p_register(p):
     '''register : REGPREFIX NUMBER'''
@@ -184,8 +334,9 @@ parser = yacc.yacc()
 
 
 if __name__ == '__main__':
-    data = '''
-    lw $4 4($3)
+    addr = 0x00400000
+    data = '''addr: lw $4 4($3) # User code starts at [0x00400000]
+    nop
     sw $4 4($3)
     lui $4 1000 # Whatever comment
     add $4 $3 $4
@@ -196,5 +347,22 @@ if __name__ == '__main__':
     or $4 $3 $4
     xor $4 $3 $4
     nor $4 $3 $4
+    addi $4 $4 100
+    addiu $4 $3 200
+    sll $4 $3 10
+    srl $4 $3 10
+    sra $4 $3 10
+    slt $4 $4 $4
+    slti $4 $4 10
+    beq $0 $0 addr
+    bne $0 $0 addr
+    blez $3 addr
+    bltz $4 addr
+    bgtz $5 addr
+    j addr
+    jal addr
+    jalr $3 $31
+    jr $3
     '''
     parser.parse(data)
+    print addrTags

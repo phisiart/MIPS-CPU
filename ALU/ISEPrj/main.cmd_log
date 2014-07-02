@@ -1,0 +1,2 @@
+xst -intstyle ise -ifn "/home/johnson/GitHub/CPU/ALU/ISEPrj/main.xst" -ofn "/home/johnson/GitHub/CPU/ALU/ISEPrj/main.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx16-csg324-3 main.ngc main.ngd  
