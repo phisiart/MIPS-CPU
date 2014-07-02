@@ -49,280 +49,280 @@ def p_tag(p):
 
 def p_nop(p):
     '''instruction : NOP'''
-    p[0] = (addr, 0, 'nop')
+    p[0] = [addr, 0, 'nop']
     putins(p[0])
     
 def p_lw(p):
     '''instruction : LW register NUMBER LBRACKET register RBRACKET'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b100011 << 26) | (p[5][0] << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
         'lw ' + p[2][1] + ' ' + str(p[3]) + '(' + p[5][1] + ')'
-    )
+    ]
     putins(p[0])
 
 def p_sw(p):
     '''instruction : SW register NUMBER LBRACKET register RBRACKET'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b101011 << 26) | (p[5][0] << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
         'sw ' + p[2][1] + ' ' + str(p[3]) + '(' + p[5][1] + ')'
-    )
+    ]
     putins(p[0])
 
 def p_lui(p):
     '''instruction : LUI register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b001111 << 26) | (0 << 21) | (p[2][0] << 16) | (p[3] % (1 << 16)),
         'lui ' + p[2][1] + ' ' + str(p[3])
-    )
+    ]
     putins(p[0])
 
 def p_add(p):
     '''instruction : ADD register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100000),
         'add ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_addu(p):
     '''instruction : ADDU register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100001),
         'addu ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_sub(p):
     '''instruction : SUB register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100010),
         'sub ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_subu(p):
     '''instruction : SUBU register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100011),
         'subu ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_addi(p):
     '''instruction : ADDI register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b001000 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
         'addi ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_addiu(p):
     '''instruction : ADDIU register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b001001 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
         'addiu ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_and(p):
     '''instruction : AND register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100100),
         'and ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_or(p):
     '''instruction : OR register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100101),
         'or ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_xor(p):
     '''instruction : XOR register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100110),
         'xor ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_nor(p):
     '''instruction : NOR register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0b00000100111),
         'nor ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_andi(p):
     '''instruction : ANDI register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000110 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
         'andi ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_sll(p):
     '''instruction : SLL register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (0 << 21) | (p[3][0] << 16) | (p[2][0] << 11) | ((p[4] % (1 << 5)) << 6) | (0 << 0),
         'sll ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_srl(p):
     '''instruction : SRL register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (0 << 21) | (p[3][0] << 16) | (p[2][0] << 11) | ((p[4] % (1 << 5)) << 6) | (0b000010 << 0),
         'srl ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_sra(p):
     '''instruction : SRA register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (0 << 21) | (p[3][0] << 16) | (p[2][0] << 11) | ((p[4] % (1 << 5)) << 6) | (0b000011 << 0),
         'sra ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_slt(p):
     '''instruction : SLT register register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0 << 26) | (p[3][0] << 21) | (p[4][0] << 16) | (p[2][0] << 11) | (0x2A),
         'slt ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4][1]
-    )
+    ]
     putins(p[0])
 
 def p_slti(p):
     '''instruction : SLTI register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b001010 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
         'slti ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_sltiu(p):
     '''instruction : SLTIU register register NUMBER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b001011 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
         'sltiu ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
-    )
+    ]
     putins(p[0])
 
 def p_beq(p):
     '''instruction : BEQ register register IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000100 << 26) | (p[2][0] << 21) | (p[3][0] << 16) | (0),
         'beq ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4],
         p[4]
-    )
+    ]
     putins(p[0])
 
 def p_bne(p):
     '''instruction : BNE register register IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000101 << 26) | (p[2][0] << 21) | (p[3][0] << 16) | (0),
         'bne ' + p[2][1] + ' ' + p[3][1] + ' ' + p[4],
         p[4]
-    )
+    ]
     putins(p[0])
 
 def p_blez(p):
     '''instruction : BLEZ register IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000110 << 26) | (p[2][0] << 21) | (0 << 16) | (0),
         'blez ' + p[2][1] + ' ' + p[3],
         p[3]
-    )
+    ]
     putins(p[0])
 
 def p_bgtz(p):
     '''instruction : BGTZ register IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000111 << 26) | (p[2][0] << 21) | (0 << 16) | (0),
         'bgtz ' + p[2][1] + ' ' + p[3],
         p[3]
-    )
+    ]
     putins(p[0])
 
 def p_bltz(p):
     '''instruction : BLTZ register IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000001 << 26) | (p[2][0] << 21) | (0 << 16) | (0),
         'bltz ' + p[2][1] + ' ' + p[3],
         p[3]
-    )
+    ]
     putins(p[0])
 
 def p_j(p):
     '''instruction : J IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000010 << 26) | (0),
         'j ' + p[2],
         p[2]
-    )
+    ]
     putins(p[0])
 
 def p_jal(p):
     '''instruction : JAL IDENTIFIER'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000011 << 26) | (0),
         'jal ' + p[2],
         p[2]
-    )
+    ]
     putins(p[0])
 
 def p_jr(p):
     '''instruction : JR register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000000 << 26) | (p[2][0] << 21) | (0 << 6) | (0b001000),
         'jr ' + p[2][1]
-    )
+    ]
     putins(p[0])
 
 def p_jalr(p):
     '''instruction : JALR register register'''
-    p[0] = (
+    p[0] = [
         addr,
         (0b000000 << 26) | (p[2][0] << 21) | (0 << 16) | (p[3][0] << 11) | (0 << 6) | (9),
         '(buggy)jalr ' + p[2][1] + ' ' + p[3][1]
-    )
+    ]
     putins(p[0])
 
 def p_register(p):
     '''register : REGPREFIX NUMBER'''
-    p[0] = (p[2], '$' + str(p[2]))
+    p[0] = [p[2], '$' + str(p[2])]
 
 params = {}
 

@@ -1,4 +1,3 @@
-addr:
     lw $4 4($3) # User code starts at [0x00400000]
     nop
     sw $4 4($3)
@@ -18,6 +17,7 @@ addr:
     sra $4 $3 10
     slt $4 $4 $4
     slti $4 $4 10
+    addr:
     beq $0 $0 addr
     bne $0 $0 addr
     blez $3 addr
