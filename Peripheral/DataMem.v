@@ -10,24 +10,28 @@ module DataMem(
     input reset,
     input read,
     input write,
-    output [31:0] rdata,
+	 input [31:0] addr,
+    output reg [31:0] rdata,
     input [31:0] wdata,
     output [7:0] led,
     input [7:0] switch,
     output [11:0] digits,
     output [7:0] UART_TXD,
     input [7:0] UART_RXD,
+	 input TX_STATUS,
+	 input RX_EFF,
+	 output TX_EN,
+	 output RX_READ,
     output interrupt,
 	 output reg read_acc,
 	 output reg write_acc
     );
 
-reg [31:0] rdata;
 wire [31:0] peripheral_rdata;
 wire peripheral_racc;
 wire peripheral_wacc;
 Peripheral peripheral_inst(
-	.reset(resest),
+	.reset(reset),
 	.clk(clk),
 	.read(read),
 	.write(write),
@@ -39,9 +43,13 @@ Peripheral peripheral_inst(
 	.digits(digits),
 	.UART_TXD(UART_TXD),
 	.UART_RXD(UART_RXD),
+	.TX_STATUS(TX_STATUS),
+	.RX_EFF(RX_EFF),
+	.TX_EN(TX_EN),
+	.RX_READ(RX_READ),
 	.read_acc(peripheral_racc),
 	.write_acc(peripheral_wacc),
-	.interrupt(interrput)
+	.interrupt(interrupt)
 	);
 	
 	parameter RAM_SIZE = 256;
@@ -88,9 +96,10 @@ Peripheral peripheral_inst(
 			for(i = 1; i < RAM_SIZE; i = i+1) begin
 				RAM_DATA[i] <= 32'h0;
 			end
+			write_acc <= 1'b0;
 		end
 		else begin
-			write_acc = 1'b0;
+			write_acc <= 1'b0;
 			if (addr_lower == 2'b00) begin
 				case(addr_upper)
 				20'b0: begin
