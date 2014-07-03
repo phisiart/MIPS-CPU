@@ -326,9 +326,64 @@ def p_jalr(p):
     ]
     putins(p[0])
 
+def p_reg_zero(p):
+    '''register : REGPREFIX ZERO'''
+    p[0] = [0, '$zero']
+
+def p_reg_at(p):
+    '''register : REGPREFIX AT'''
+    p[0] = [1, '$at']
+
+def p_reg_v(p):
+    '''register : REGPREFIX V'''
+    index = int(p[2][1:])
+    p[0] = [index + 2, '$v%d' % index]
+
+def p_reg_a(p):
+    '''register : REGPREFIX A'''
+    index = int(p[2][1:])
+    p[0] = [index + 4, '$a%d' % index]
+
+def p_reg_t(p):
+    '''register : REGPREFIX T'''
+    index = int(p[2][1:])
+    if index < 8:
+        p[0] = [index + 8, '$t%d' % index]
+    else:
+        p[0] = [index + 16, '$t%d' % index]
+
+def p_reg_s(p):
+    '''register : REGPREFIX S'''
+    index = int(p[2][1:])
+    p[0] = [index + 16, '$s%d' % index]
+
+def p_reg_k(p):
+    '''register : REGPREFIX K'''
+    index = int(p[2][1:])
+    p[0] = [index + 26, '$k%d' % index]
+
+def p_reg_gp(p):
+    '''register : REGPREFIX GP'''
+    p[0] = [28, '$gp']
+
+def p_reg_sp(p):
+    '''register : REGPREFIX SP'''
+    p[0] = [29, '$sp']
+
+def p_reg_fp(p):
+    '''register : REGPREFIX FP'''
+    p[0] = [30, '$fp']
+
+def p_reg_ra(p):
+    '''register : REGPREFIX RA'''
+    p[0] = [31, '$ra']
+
 def p_register(p):
     '''register : REGPREFIX NUMBER'''
     p[0] = [p[2], '$' + str(p[2])]
+
+def p_error(p):
+    print('\033[93mParser error\033[0m at or near \033[93m%s\033[0m of line %d' % (p.value, p.lexer.lineno))
 
 params = {}
 
@@ -337,7 +392,6 @@ params = {}
 
 # Build parser.
 parser = yacc.yacc()
-
 
 if __name__ == '__main__':
     addr = 0x00400000

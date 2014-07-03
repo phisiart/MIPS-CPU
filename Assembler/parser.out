@@ -36,46 +36,68 @@ Rule 30    instruction -> J IDENTIFIER
 Rule 31    instruction -> JAL IDENTIFIER
 Rule 32    instruction -> JR register
 Rule 33    instruction -> JALR register register
-Rule 34    register -> REGPREFIX NUMBER
+Rule 34    register -> REGPREFIX ZERO
+Rule 35    register -> REGPREFIX AT
+Rule 36    register -> REGPREFIX V
+Rule 37    register -> REGPREFIX A
+Rule 38    register -> REGPREFIX T
+Rule 39    register -> REGPREFIX S
+Rule 40    register -> REGPREFIX K
+Rule 41    register -> REGPREFIX GP
+Rule 42    register -> REGPREFIX SP
+Rule 43    register -> REGPREFIX FP
+Rule 44    register -> REGPREFIX RA
+Rule 45    register -> REGPREFIX NUMBER
 
 Terminals, with rules where they appear
 
+A                    : 37
 ADD                  : 8
 ADDI                 : 12
 ADDIU                : 13
 ADDU                 : 9
 AND                  : 14
 ANDI                 : 18
+AT                   : 35
 BEQ                  : 25
 BGTZ                 : 28
 BLEZ                 : 27
 BLTZ                 : 29
 BNE                  : 26
 COLON                : 3
+FP                   : 43
+GP                   : 41
 IDENTIFIER           : 3 25 26 27 28 29 30 31
 J                    : 30
 JAL                  : 31
 JALR                 : 33
 JR                   : 32
+K                    : 40
 LBRACKET             : 5 6
 LUI                  : 7
 LW                   : 5
 NOP                  : 4
 NOR                  : 17
-NUMBER               : 5 6 7 12 13 18 19 20 21 23 24 34
+NUMBER               : 5 6 7 12 13 18 19 20 21 23 24 45
 OR                   : 15
+RA                   : 44
 RBRACKET             : 5 6
-REGPREFIX            : 34
+REGPREFIX            : 34 35 36 37 38 39 40 41 42 43 44 45
+S                    : 39
 SLL                  : 19
 SLT                  : 22
 SLTI                 : 23
 SLTIU                : 24
+SP                   : 42
 SRA                  : 21
 SRL                  : 20
 SUB                  : 10
 SUBU                 : 11
 SW                   : 6
+T                    : 38
+V                    : 36
 XOR                  : 16
+ZERO                 : 34
 error                : 
 
 Nonterminals, with rules where they appear
@@ -161,11 +183,22 @@ state 0
 state 1
 
     (29) instruction -> BLTZ . register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 34
+    register                       shift and go to state 35
 
 state 2
 
@@ -208,81 +241,180 @@ state 2
 state 3
 
     (10) instruction -> SUB . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 36
 
 state 4
 
     (23) instruction -> SLTI . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 37
 
 state 5
 
     (32) instruction -> JR . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 38
 
 state 6
 
     (27) instruction -> BLEZ . register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 39
 
 state 7
 
     (21) instruction -> SRA . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 40
 
 state 8
 
     (7) instruction -> LUI . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 41
 
 state 9
 
     (25) instruction -> BEQ . register register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 42
 
 state 10
 
     (18) instruction -> ANDI . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 43
 
 state 11
 
     (5) instruction -> LW . register NUMBER LBRACKET register RBRACKET
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 44
 
@@ -366,36 +498,80 @@ state 13
 state 14
 
     (13) instruction -> ADDIU . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 47
 
 state 15
 
     (11) instruction -> SUBU . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 48
 
 state 16
 
     (16) instruction -> XOR . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 49
 
 state 17
 
     (22) instruction -> SLT . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 50
 
@@ -409,90 +585,200 @@ state 18
 state 19
 
     (20) instruction -> SRL . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 52
 
 state 20
 
     (19) instruction -> SLL . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 53
 
 state 21
 
     (8) instruction -> ADD . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 54
 
 state 22
 
     (28) instruction -> BGTZ . register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 55
 
 state 23
 
     (26) instruction -> BNE . register register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 56
 
 state 24
 
     (14) instruction -> AND . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 57
 
 state 25
 
     (9) instruction -> ADDU . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 58
 
 state 26
 
     (33) instruction -> JALR . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 59
 
 state 27
 
     (24) instruction -> SLTIU . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 60
 
 state 28
 
     (6) instruction -> SW . register NUMBER LBRACKET register RBRACKET
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 61
 
@@ -506,9 +792,20 @@ state 29
 state 30
 
     (12) instruction -> ADDI . register register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 63
 
@@ -553,52 +850,118 @@ state 31
 state 32
 
     (15) instruction -> OR . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 64
 
 state 33
 
     (17) instruction -> NOR . register register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
     register                       shift and go to state 65
 
 state 34
 
-    (29) instruction -> BLTZ register . IDENTIFIER
+    (34) register -> REGPREFIX . ZERO
+    (35) register -> REGPREFIX . AT
+    (36) register -> REGPREFIX . V
+    (37) register -> REGPREFIX . A
+    (38) register -> REGPREFIX . T
+    (39) register -> REGPREFIX . S
+    (40) register -> REGPREFIX . K
+    (41) register -> REGPREFIX . GP
+    (42) register -> REGPREFIX . SP
+    (43) register -> REGPREFIX . FP
+    (44) register -> REGPREFIX . RA
+    (45) register -> REGPREFIX . NUMBER
 
-    IDENTIFIER      shift and go to state 66
+    ZERO            shift and go to state 74
+    AT              shift and go to state 75
+    V               shift and go to state 76
+    A               shift and go to state 66
+    T               shift and go to state 77
+    S               shift and go to state 72
+    K               shift and go to state 69
+    GP              shift and go to state 68
+    SP              shift and go to state 70
+    FP              shift and go to state 67
+    RA              shift and go to state 71
+    NUMBER          shift and go to state 73
 
 
 state 35
 
-    (34) register -> REGPREFIX . NUMBER
+    (29) instruction -> BLTZ register . IDENTIFIER
 
-    NUMBER          shift and go to state 67
+    IDENTIFIER      shift and go to state 78
 
 
 state 36
 
     (10) instruction -> SUB register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 68
+    register                       shift and go to state 79
 
 state 37
 
     (23) instruction -> SLTI register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 69
+    register                       shift and go to state 80
 
 state 38
 
@@ -642,48 +1005,81 @@ state 39
 
     (27) instruction -> BLEZ register . IDENTIFIER
 
-    IDENTIFIER      shift and go to state 70
+    IDENTIFIER      shift and go to state 81
 
 
 state 40
 
     (21) instruction -> SRA register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 71
+    register                       shift and go to state 82
 
 state 41
 
     (7) instruction -> LUI register . NUMBER
 
-    NUMBER          shift and go to state 72
+    NUMBER          shift and go to state 83
 
 
 state 42
 
     (25) instruction -> BEQ register . register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 73
+    register                       shift and go to state 84
 
 state 43
 
     (18) instruction -> ANDI register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 74
+    register                       shift and go to state 85
 
 state 44
 
     (5) instruction -> LW register . NUMBER LBRACKET register RBRACKET
 
-    NUMBER          shift and go to state 75
+    NUMBER          shift and go to state 86
 
 
 state 45
@@ -765,38 +1161,82 @@ state 46
 state 47
 
     (13) instruction -> ADDIU register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 76
+    register                       shift and go to state 87
 
 state 48
 
     (11) instruction -> SUBU register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 77
+    register                       shift and go to state 88
 
 state 49
 
     (16) instruction -> XOR register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 78
+    register                       shift and go to state 89
 
 state 50
 
     (22) instruction -> SLT register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 79
+    register                       shift and go to state 90
 
 state 51
 
@@ -839,87 +1279,175 @@ state 51
 state 52
 
     (20) instruction -> SRL register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 80
+    register                       shift and go to state 91
 
 state 53
 
     (19) instruction -> SLL register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 81
+    register                       shift and go to state 92
 
 state 54
 
     (8) instruction -> ADD register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 82
+    register                       shift and go to state 93
 
 state 55
 
     (28) instruction -> BGTZ register . IDENTIFIER
 
-    IDENTIFIER      shift and go to state 83
+    IDENTIFIER      shift and go to state 94
 
 
 state 56
 
     (26) instruction -> BNE register . register IDENTIFIER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 84
+    register                       shift and go to state 95
 
 state 57
 
     (14) instruction -> AND register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 85
+    register                       shift and go to state 96
 
 state 58
 
     (9) instruction -> ADDU register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 86
+    register                       shift and go to state 97
 
 state 59
 
     (33) instruction -> JALR register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 87
+    register                       shift and go to state 98
 
 state 60
 
     (24) instruction -> SLTIU register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 88
+    register                       shift and go to state 99
 
 state 61
 
     (6) instruction -> SW register . NUMBER LBRACKET register RBRACKET
 
-    NUMBER          shift and go to state 89
+    NUMBER          shift and go to state 100
 
 
 state 62
@@ -963,31 +1491,556 @@ state 62
 state 63
 
     (12) instruction -> ADDI register . register NUMBER
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 90
+    register                       shift and go to state 101
 
 state 64
 
     (15) instruction -> OR register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 91
+    register                       shift and go to state 102
 
 state 65
 
     (17) instruction -> NOR register . register register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 92
+    register                       shift and go to state 103
 
 state 66
+
+    (37) register -> REGPREFIX A .
+
+    REGPREFIX       reduce using rule 37 (register -> REGPREFIX A .)
+    RBRACKET        reduce using rule 37 (register -> REGPREFIX A .)
+    NUMBER          reduce using rule 37 (register -> REGPREFIX A .)
+    IDENTIFIER      reduce using rule 37 (register -> REGPREFIX A .)
+    NOP             reduce using rule 37 (register -> REGPREFIX A .)
+    LW              reduce using rule 37 (register -> REGPREFIX A .)
+    SW              reduce using rule 37 (register -> REGPREFIX A .)
+    LUI             reduce using rule 37 (register -> REGPREFIX A .)
+    ADD             reduce using rule 37 (register -> REGPREFIX A .)
+    ADDU            reduce using rule 37 (register -> REGPREFIX A .)
+    SUB             reduce using rule 37 (register -> REGPREFIX A .)
+    SUBU            reduce using rule 37 (register -> REGPREFIX A .)
+    ADDI            reduce using rule 37 (register -> REGPREFIX A .)
+    ADDIU           reduce using rule 37 (register -> REGPREFIX A .)
+    AND             reduce using rule 37 (register -> REGPREFIX A .)
+    OR              reduce using rule 37 (register -> REGPREFIX A .)
+    XOR             reduce using rule 37 (register -> REGPREFIX A .)
+    NOR             reduce using rule 37 (register -> REGPREFIX A .)
+    ANDI            reduce using rule 37 (register -> REGPREFIX A .)
+    SLL             reduce using rule 37 (register -> REGPREFIX A .)
+    SRL             reduce using rule 37 (register -> REGPREFIX A .)
+    SRA             reduce using rule 37 (register -> REGPREFIX A .)
+    SLT             reduce using rule 37 (register -> REGPREFIX A .)
+    SLTI            reduce using rule 37 (register -> REGPREFIX A .)
+    SLTIU           reduce using rule 37 (register -> REGPREFIX A .)
+    BEQ             reduce using rule 37 (register -> REGPREFIX A .)
+    BNE             reduce using rule 37 (register -> REGPREFIX A .)
+    BLEZ            reduce using rule 37 (register -> REGPREFIX A .)
+    BGTZ            reduce using rule 37 (register -> REGPREFIX A .)
+    BLTZ            reduce using rule 37 (register -> REGPREFIX A .)
+    J               reduce using rule 37 (register -> REGPREFIX A .)
+    JAL             reduce using rule 37 (register -> REGPREFIX A .)
+    JR              reduce using rule 37 (register -> REGPREFIX A .)
+    JALR            reduce using rule 37 (register -> REGPREFIX A .)
+    $end            reduce using rule 37 (register -> REGPREFIX A .)
+
+
+state 67
+
+    (43) register -> REGPREFIX FP .
+
+    REGPREFIX       reduce using rule 43 (register -> REGPREFIX FP .)
+    RBRACKET        reduce using rule 43 (register -> REGPREFIX FP .)
+    NUMBER          reduce using rule 43 (register -> REGPREFIX FP .)
+    IDENTIFIER      reduce using rule 43 (register -> REGPREFIX FP .)
+    NOP             reduce using rule 43 (register -> REGPREFIX FP .)
+    LW              reduce using rule 43 (register -> REGPREFIX FP .)
+    SW              reduce using rule 43 (register -> REGPREFIX FP .)
+    LUI             reduce using rule 43 (register -> REGPREFIX FP .)
+    ADD             reduce using rule 43 (register -> REGPREFIX FP .)
+    ADDU            reduce using rule 43 (register -> REGPREFIX FP .)
+    SUB             reduce using rule 43 (register -> REGPREFIX FP .)
+    SUBU            reduce using rule 43 (register -> REGPREFIX FP .)
+    ADDI            reduce using rule 43 (register -> REGPREFIX FP .)
+    ADDIU           reduce using rule 43 (register -> REGPREFIX FP .)
+    AND             reduce using rule 43 (register -> REGPREFIX FP .)
+    OR              reduce using rule 43 (register -> REGPREFIX FP .)
+    XOR             reduce using rule 43 (register -> REGPREFIX FP .)
+    NOR             reduce using rule 43 (register -> REGPREFIX FP .)
+    ANDI            reduce using rule 43 (register -> REGPREFIX FP .)
+    SLL             reduce using rule 43 (register -> REGPREFIX FP .)
+    SRL             reduce using rule 43 (register -> REGPREFIX FP .)
+    SRA             reduce using rule 43 (register -> REGPREFIX FP .)
+    SLT             reduce using rule 43 (register -> REGPREFIX FP .)
+    SLTI            reduce using rule 43 (register -> REGPREFIX FP .)
+    SLTIU           reduce using rule 43 (register -> REGPREFIX FP .)
+    BEQ             reduce using rule 43 (register -> REGPREFIX FP .)
+    BNE             reduce using rule 43 (register -> REGPREFIX FP .)
+    BLEZ            reduce using rule 43 (register -> REGPREFIX FP .)
+    BGTZ            reduce using rule 43 (register -> REGPREFIX FP .)
+    BLTZ            reduce using rule 43 (register -> REGPREFIX FP .)
+    J               reduce using rule 43 (register -> REGPREFIX FP .)
+    JAL             reduce using rule 43 (register -> REGPREFIX FP .)
+    JR              reduce using rule 43 (register -> REGPREFIX FP .)
+    JALR            reduce using rule 43 (register -> REGPREFIX FP .)
+    $end            reduce using rule 43 (register -> REGPREFIX FP .)
+
+
+state 68
+
+    (41) register -> REGPREFIX GP .
+
+    REGPREFIX       reduce using rule 41 (register -> REGPREFIX GP .)
+    RBRACKET        reduce using rule 41 (register -> REGPREFIX GP .)
+    NUMBER          reduce using rule 41 (register -> REGPREFIX GP .)
+    IDENTIFIER      reduce using rule 41 (register -> REGPREFIX GP .)
+    NOP             reduce using rule 41 (register -> REGPREFIX GP .)
+    LW              reduce using rule 41 (register -> REGPREFIX GP .)
+    SW              reduce using rule 41 (register -> REGPREFIX GP .)
+    LUI             reduce using rule 41 (register -> REGPREFIX GP .)
+    ADD             reduce using rule 41 (register -> REGPREFIX GP .)
+    ADDU            reduce using rule 41 (register -> REGPREFIX GP .)
+    SUB             reduce using rule 41 (register -> REGPREFIX GP .)
+    SUBU            reduce using rule 41 (register -> REGPREFIX GP .)
+    ADDI            reduce using rule 41 (register -> REGPREFIX GP .)
+    ADDIU           reduce using rule 41 (register -> REGPREFIX GP .)
+    AND             reduce using rule 41 (register -> REGPREFIX GP .)
+    OR              reduce using rule 41 (register -> REGPREFIX GP .)
+    XOR             reduce using rule 41 (register -> REGPREFIX GP .)
+    NOR             reduce using rule 41 (register -> REGPREFIX GP .)
+    ANDI            reduce using rule 41 (register -> REGPREFIX GP .)
+    SLL             reduce using rule 41 (register -> REGPREFIX GP .)
+    SRL             reduce using rule 41 (register -> REGPREFIX GP .)
+    SRA             reduce using rule 41 (register -> REGPREFIX GP .)
+    SLT             reduce using rule 41 (register -> REGPREFIX GP .)
+    SLTI            reduce using rule 41 (register -> REGPREFIX GP .)
+    SLTIU           reduce using rule 41 (register -> REGPREFIX GP .)
+    BEQ             reduce using rule 41 (register -> REGPREFIX GP .)
+    BNE             reduce using rule 41 (register -> REGPREFIX GP .)
+    BLEZ            reduce using rule 41 (register -> REGPREFIX GP .)
+    BGTZ            reduce using rule 41 (register -> REGPREFIX GP .)
+    BLTZ            reduce using rule 41 (register -> REGPREFIX GP .)
+    J               reduce using rule 41 (register -> REGPREFIX GP .)
+    JAL             reduce using rule 41 (register -> REGPREFIX GP .)
+    JR              reduce using rule 41 (register -> REGPREFIX GP .)
+    JALR            reduce using rule 41 (register -> REGPREFIX GP .)
+    $end            reduce using rule 41 (register -> REGPREFIX GP .)
+
+
+state 69
+
+    (40) register -> REGPREFIX K .
+
+    REGPREFIX       reduce using rule 40 (register -> REGPREFIX K .)
+    RBRACKET        reduce using rule 40 (register -> REGPREFIX K .)
+    NUMBER          reduce using rule 40 (register -> REGPREFIX K .)
+    IDENTIFIER      reduce using rule 40 (register -> REGPREFIX K .)
+    NOP             reduce using rule 40 (register -> REGPREFIX K .)
+    LW              reduce using rule 40 (register -> REGPREFIX K .)
+    SW              reduce using rule 40 (register -> REGPREFIX K .)
+    LUI             reduce using rule 40 (register -> REGPREFIX K .)
+    ADD             reduce using rule 40 (register -> REGPREFIX K .)
+    ADDU            reduce using rule 40 (register -> REGPREFIX K .)
+    SUB             reduce using rule 40 (register -> REGPREFIX K .)
+    SUBU            reduce using rule 40 (register -> REGPREFIX K .)
+    ADDI            reduce using rule 40 (register -> REGPREFIX K .)
+    ADDIU           reduce using rule 40 (register -> REGPREFIX K .)
+    AND             reduce using rule 40 (register -> REGPREFIX K .)
+    OR              reduce using rule 40 (register -> REGPREFIX K .)
+    XOR             reduce using rule 40 (register -> REGPREFIX K .)
+    NOR             reduce using rule 40 (register -> REGPREFIX K .)
+    ANDI            reduce using rule 40 (register -> REGPREFIX K .)
+    SLL             reduce using rule 40 (register -> REGPREFIX K .)
+    SRL             reduce using rule 40 (register -> REGPREFIX K .)
+    SRA             reduce using rule 40 (register -> REGPREFIX K .)
+    SLT             reduce using rule 40 (register -> REGPREFIX K .)
+    SLTI            reduce using rule 40 (register -> REGPREFIX K .)
+    SLTIU           reduce using rule 40 (register -> REGPREFIX K .)
+    BEQ             reduce using rule 40 (register -> REGPREFIX K .)
+    BNE             reduce using rule 40 (register -> REGPREFIX K .)
+    BLEZ            reduce using rule 40 (register -> REGPREFIX K .)
+    BGTZ            reduce using rule 40 (register -> REGPREFIX K .)
+    BLTZ            reduce using rule 40 (register -> REGPREFIX K .)
+    J               reduce using rule 40 (register -> REGPREFIX K .)
+    JAL             reduce using rule 40 (register -> REGPREFIX K .)
+    JR              reduce using rule 40 (register -> REGPREFIX K .)
+    JALR            reduce using rule 40 (register -> REGPREFIX K .)
+    $end            reduce using rule 40 (register -> REGPREFIX K .)
+
+
+state 70
+
+    (42) register -> REGPREFIX SP .
+
+    REGPREFIX       reduce using rule 42 (register -> REGPREFIX SP .)
+    RBRACKET        reduce using rule 42 (register -> REGPREFIX SP .)
+    NUMBER          reduce using rule 42 (register -> REGPREFIX SP .)
+    IDENTIFIER      reduce using rule 42 (register -> REGPREFIX SP .)
+    NOP             reduce using rule 42 (register -> REGPREFIX SP .)
+    LW              reduce using rule 42 (register -> REGPREFIX SP .)
+    SW              reduce using rule 42 (register -> REGPREFIX SP .)
+    LUI             reduce using rule 42 (register -> REGPREFIX SP .)
+    ADD             reduce using rule 42 (register -> REGPREFIX SP .)
+    ADDU            reduce using rule 42 (register -> REGPREFIX SP .)
+    SUB             reduce using rule 42 (register -> REGPREFIX SP .)
+    SUBU            reduce using rule 42 (register -> REGPREFIX SP .)
+    ADDI            reduce using rule 42 (register -> REGPREFIX SP .)
+    ADDIU           reduce using rule 42 (register -> REGPREFIX SP .)
+    AND             reduce using rule 42 (register -> REGPREFIX SP .)
+    OR              reduce using rule 42 (register -> REGPREFIX SP .)
+    XOR             reduce using rule 42 (register -> REGPREFIX SP .)
+    NOR             reduce using rule 42 (register -> REGPREFIX SP .)
+    ANDI            reduce using rule 42 (register -> REGPREFIX SP .)
+    SLL             reduce using rule 42 (register -> REGPREFIX SP .)
+    SRL             reduce using rule 42 (register -> REGPREFIX SP .)
+    SRA             reduce using rule 42 (register -> REGPREFIX SP .)
+    SLT             reduce using rule 42 (register -> REGPREFIX SP .)
+    SLTI            reduce using rule 42 (register -> REGPREFIX SP .)
+    SLTIU           reduce using rule 42 (register -> REGPREFIX SP .)
+    BEQ             reduce using rule 42 (register -> REGPREFIX SP .)
+    BNE             reduce using rule 42 (register -> REGPREFIX SP .)
+    BLEZ            reduce using rule 42 (register -> REGPREFIX SP .)
+    BGTZ            reduce using rule 42 (register -> REGPREFIX SP .)
+    BLTZ            reduce using rule 42 (register -> REGPREFIX SP .)
+    J               reduce using rule 42 (register -> REGPREFIX SP .)
+    JAL             reduce using rule 42 (register -> REGPREFIX SP .)
+    JR              reduce using rule 42 (register -> REGPREFIX SP .)
+    JALR            reduce using rule 42 (register -> REGPREFIX SP .)
+    $end            reduce using rule 42 (register -> REGPREFIX SP .)
+
+
+state 71
+
+    (44) register -> REGPREFIX RA .
+
+    REGPREFIX       reduce using rule 44 (register -> REGPREFIX RA .)
+    RBRACKET        reduce using rule 44 (register -> REGPREFIX RA .)
+    NUMBER          reduce using rule 44 (register -> REGPREFIX RA .)
+    IDENTIFIER      reduce using rule 44 (register -> REGPREFIX RA .)
+    NOP             reduce using rule 44 (register -> REGPREFIX RA .)
+    LW              reduce using rule 44 (register -> REGPREFIX RA .)
+    SW              reduce using rule 44 (register -> REGPREFIX RA .)
+    LUI             reduce using rule 44 (register -> REGPREFIX RA .)
+    ADD             reduce using rule 44 (register -> REGPREFIX RA .)
+    ADDU            reduce using rule 44 (register -> REGPREFIX RA .)
+    SUB             reduce using rule 44 (register -> REGPREFIX RA .)
+    SUBU            reduce using rule 44 (register -> REGPREFIX RA .)
+    ADDI            reduce using rule 44 (register -> REGPREFIX RA .)
+    ADDIU           reduce using rule 44 (register -> REGPREFIX RA .)
+    AND             reduce using rule 44 (register -> REGPREFIX RA .)
+    OR              reduce using rule 44 (register -> REGPREFIX RA .)
+    XOR             reduce using rule 44 (register -> REGPREFIX RA .)
+    NOR             reduce using rule 44 (register -> REGPREFIX RA .)
+    ANDI            reduce using rule 44 (register -> REGPREFIX RA .)
+    SLL             reduce using rule 44 (register -> REGPREFIX RA .)
+    SRL             reduce using rule 44 (register -> REGPREFIX RA .)
+    SRA             reduce using rule 44 (register -> REGPREFIX RA .)
+    SLT             reduce using rule 44 (register -> REGPREFIX RA .)
+    SLTI            reduce using rule 44 (register -> REGPREFIX RA .)
+    SLTIU           reduce using rule 44 (register -> REGPREFIX RA .)
+    BEQ             reduce using rule 44 (register -> REGPREFIX RA .)
+    BNE             reduce using rule 44 (register -> REGPREFIX RA .)
+    BLEZ            reduce using rule 44 (register -> REGPREFIX RA .)
+    BGTZ            reduce using rule 44 (register -> REGPREFIX RA .)
+    BLTZ            reduce using rule 44 (register -> REGPREFIX RA .)
+    J               reduce using rule 44 (register -> REGPREFIX RA .)
+    JAL             reduce using rule 44 (register -> REGPREFIX RA .)
+    JR              reduce using rule 44 (register -> REGPREFIX RA .)
+    JALR            reduce using rule 44 (register -> REGPREFIX RA .)
+    $end            reduce using rule 44 (register -> REGPREFIX RA .)
+
+
+state 72
+
+    (39) register -> REGPREFIX S .
+
+    REGPREFIX       reduce using rule 39 (register -> REGPREFIX S .)
+    RBRACKET        reduce using rule 39 (register -> REGPREFIX S .)
+    NUMBER          reduce using rule 39 (register -> REGPREFIX S .)
+    IDENTIFIER      reduce using rule 39 (register -> REGPREFIX S .)
+    NOP             reduce using rule 39 (register -> REGPREFIX S .)
+    LW              reduce using rule 39 (register -> REGPREFIX S .)
+    SW              reduce using rule 39 (register -> REGPREFIX S .)
+    LUI             reduce using rule 39 (register -> REGPREFIX S .)
+    ADD             reduce using rule 39 (register -> REGPREFIX S .)
+    ADDU            reduce using rule 39 (register -> REGPREFIX S .)
+    SUB             reduce using rule 39 (register -> REGPREFIX S .)
+    SUBU            reduce using rule 39 (register -> REGPREFIX S .)
+    ADDI            reduce using rule 39 (register -> REGPREFIX S .)
+    ADDIU           reduce using rule 39 (register -> REGPREFIX S .)
+    AND             reduce using rule 39 (register -> REGPREFIX S .)
+    OR              reduce using rule 39 (register -> REGPREFIX S .)
+    XOR             reduce using rule 39 (register -> REGPREFIX S .)
+    NOR             reduce using rule 39 (register -> REGPREFIX S .)
+    ANDI            reduce using rule 39 (register -> REGPREFIX S .)
+    SLL             reduce using rule 39 (register -> REGPREFIX S .)
+    SRL             reduce using rule 39 (register -> REGPREFIX S .)
+    SRA             reduce using rule 39 (register -> REGPREFIX S .)
+    SLT             reduce using rule 39 (register -> REGPREFIX S .)
+    SLTI            reduce using rule 39 (register -> REGPREFIX S .)
+    SLTIU           reduce using rule 39 (register -> REGPREFIX S .)
+    BEQ             reduce using rule 39 (register -> REGPREFIX S .)
+    BNE             reduce using rule 39 (register -> REGPREFIX S .)
+    BLEZ            reduce using rule 39 (register -> REGPREFIX S .)
+    BGTZ            reduce using rule 39 (register -> REGPREFIX S .)
+    BLTZ            reduce using rule 39 (register -> REGPREFIX S .)
+    J               reduce using rule 39 (register -> REGPREFIX S .)
+    JAL             reduce using rule 39 (register -> REGPREFIX S .)
+    JR              reduce using rule 39 (register -> REGPREFIX S .)
+    JALR            reduce using rule 39 (register -> REGPREFIX S .)
+    $end            reduce using rule 39 (register -> REGPREFIX S .)
+
+
+state 73
+
+    (45) register -> REGPREFIX NUMBER .
+
+    REGPREFIX       reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    RBRACKET        reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    NUMBER          reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    IDENTIFIER      reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    NOP             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    LW              reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SW              reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    LUI             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    ADD             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    ADDU            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SUB             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SUBU            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    ADDI            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    ADDIU           reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    AND             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    OR              reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    XOR             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    NOR             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    ANDI            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SLL             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SRL             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SRA             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SLT             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SLTI            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    SLTIU           reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    BEQ             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    BNE             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    BLEZ            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    BGTZ            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    BLTZ            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    J               reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    JAL             reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    JR              reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    JALR            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+    $end            reduce using rule 45 (register -> REGPREFIX NUMBER .)
+
+
+state 74
+
+    (34) register -> REGPREFIX ZERO .
+
+    REGPREFIX       reduce using rule 34 (register -> REGPREFIX ZERO .)
+    RBRACKET        reduce using rule 34 (register -> REGPREFIX ZERO .)
+    NUMBER          reduce using rule 34 (register -> REGPREFIX ZERO .)
+    IDENTIFIER      reduce using rule 34 (register -> REGPREFIX ZERO .)
+    NOP             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    LW              reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SW              reduce using rule 34 (register -> REGPREFIX ZERO .)
+    LUI             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    ADD             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    ADDU            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SUB             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SUBU            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    ADDI            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    ADDIU           reduce using rule 34 (register -> REGPREFIX ZERO .)
+    AND             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    OR              reduce using rule 34 (register -> REGPREFIX ZERO .)
+    XOR             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    NOR             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    ANDI            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SLL             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SRL             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SRA             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SLT             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SLTI            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    SLTIU           reduce using rule 34 (register -> REGPREFIX ZERO .)
+    BEQ             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    BNE             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    BLEZ            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    BGTZ            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    BLTZ            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    J               reduce using rule 34 (register -> REGPREFIX ZERO .)
+    JAL             reduce using rule 34 (register -> REGPREFIX ZERO .)
+    JR              reduce using rule 34 (register -> REGPREFIX ZERO .)
+    JALR            reduce using rule 34 (register -> REGPREFIX ZERO .)
+    $end            reduce using rule 34 (register -> REGPREFIX ZERO .)
+
+
+state 75
+
+    (35) register -> REGPREFIX AT .
+
+    REGPREFIX       reduce using rule 35 (register -> REGPREFIX AT .)
+    RBRACKET        reduce using rule 35 (register -> REGPREFIX AT .)
+    NUMBER          reduce using rule 35 (register -> REGPREFIX AT .)
+    IDENTIFIER      reduce using rule 35 (register -> REGPREFIX AT .)
+    NOP             reduce using rule 35 (register -> REGPREFIX AT .)
+    LW              reduce using rule 35 (register -> REGPREFIX AT .)
+    SW              reduce using rule 35 (register -> REGPREFIX AT .)
+    LUI             reduce using rule 35 (register -> REGPREFIX AT .)
+    ADD             reduce using rule 35 (register -> REGPREFIX AT .)
+    ADDU            reduce using rule 35 (register -> REGPREFIX AT .)
+    SUB             reduce using rule 35 (register -> REGPREFIX AT .)
+    SUBU            reduce using rule 35 (register -> REGPREFIX AT .)
+    ADDI            reduce using rule 35 (register -> REGPREFIX AT .)
+    ADDIU           reduce using rule 35 (register -> REGPREFIX AT .)
+    AND             reduce using rule 35 (register -> REGPREFIX AT .)
+    OR              reduce using rule 35 (register -> REGPREFIX AT .)
+    XOR             reduce using rule 35 (register -> REGPREFIX AT .)
+    NOR             reduce using rule 35 (register -> REGPREFIX AT .)
+    ANDI            reduce using rule 35 (register -> REGPREFIX AT .)
+    SLL             reduce using rule 35 (register -> REGPREFIX AT .)
+    SRL             reduce using rule 35 (register -> REGPREFIX AT .)
+    SRA             reduce using rule 35 (register -> REGPREFIX AT .)
+    SLT             reduce using rule 35 (register -> REGPREFIX AT .)
+    SLTI            reduce using rule 35 (register -> REGPREFIX AT .)
+    SLTIU           reduce using rule 35 (register -> REGPREFIX AT .)
+    BEQ             reduce using rule 35 (register -> REGPREFIX AT .)
+    BNE             reduce using rule 35 (register -> REGPREFIX AT .)
+    BLEZ            reduce using rule 35 (register -> REGPREFIX AT .)
+    BGTZ            reduce using rule 35 (register -> REGPREFIX AT .)
+    BLTZ            reduce using rule 35 (register -> REGPREFIX AT .)
+    J               reduce using rule 35 (register -> REGPREFIX AT .)
+    JAL             reduce using rule 35 (register -> REGPREFIX AT .)
+    JR              reduce using rule 35 (register -> REGPREFIX AT .)
+    JALR            reduce using rule 35 (register -> REGPREFIX AT .)
+    $end            reduce using rule 35 (register -> REGPREFIX AT .)
+
+
+state 76
+
+    (36) register -> REGPREFIX V .
+
+    REGPREFIX       reduce using rule 36 (register -> REGPREFIX V .)
+    RBRACKET        reduce using rule 36 (register -> REGPREFIX V .)
+    NUMBER          reduce using rule 36 (register -> REGPREFIX V .)
+    IDENTIFIER      reduce using rule 36 (register -> REGPREFIX V .)
+    NOP             reduce using rule 36 (register -> REGPREFIX V .)
+    LW              reduce using rule 36 (register -> REGPREFIX V .)
+    SW              reduce using rule 36 (register -> REGPREFIX V .)
+    LUI             reduce using rule 36 (register -> REGPREFIX V .)
+    ADD             reduce using rule 36 (register -> REGPREFIX V .)
+    ADDU            reduce using rule 36 (register -> REGPREFIX V .)
+    SUB             reduce using rule 36 (register -> REGPREFIX V .)
+    SUBU            reduce using rule 36 (register -> REGPREFIX V .)
+    ADDI            reduce using rule 36 (register -> REGPREFIX V .)
+    ADDIU           reduce using rule 36 (register -> REGPREFIX V .)
+    AND             reduce using rule 36 (register -> REGPREFIX V .)
+    OR              reduce using rule 36 (register -> REGPREFIX V .)
+    XOR             reduce using rule 36 (register -> REGPREFIX V .)
+    NOR             reduce using rule 36 (register -> REGPREFIX V .)
+    ANDI            reduce using rule 36 (register -> REGPREFIX V .)
+    SLL             reduce using rule 36 (register -> REGPREFIX V .)
+    SRL             reduce using rule 36 (register -> REGPREFIX V .)
+    SRA             reduce using rule 36 (register -> REGPREFIX V .)
+    SLT             reduce using rule 36 (register -> REGPREFIX V .)
+    SLTI            reduce using rule 36 (register -> REGPREFIX V .)
+    SLTIU           reduce using rule 36 (register -> REGPREFIX V .)
+    BEQ             reduce using rule 36 (register -> REGPREFIX V .)
+    BNE             reduce using rule 36 (register -> REGPREFIX V .)
+    BLEZ            reduce using rule 36 (register -> REGPREFIX V .)
+    BGTZ            reduce using rule 36 (register -> REGPREFIX V .)
+    BLTZ            reduce using rule 36 (register -> REGPREFIX V .)
+    J               reduce using rule 36 (register -> REGPREFIX V .)
+    JAL             reduce using rule 36 (register -> REGPREFIX V .)
+    JR              reduce using rule 36 (register -> REGPREFIX V .)
+    JALR            reduce using rule 36 (register -> REGPREFIX V .)
+    $end            reduce using rule 36 (register -> REGPREFIX V .)
+
+
+state 77
+
+    (38) register -> REGPREFIX T .
+
+    REGPREFIX       reduce using rule 38 (register -> REGPREFIX T .)
+    RBRACKET        reduce using rule 38 (register -> REGPREFIX T .)
+    NUMBER          reduce using rule 38 (register -> REGPREFIX T .)
+    IDENTIFIER      reduce using rule 38 (register -> REGPREFIX T .)
+    NOP             reduce using rule 38 (register -> REGPREFIX T .)
+    LW              reduce using rule 38 (register -> REGPREFIX T .)
+    SW              reduce using rule 38 (register -> REGPREFIX T .)
+    LUI             reduce using rule 38 (register -> REGPREFIX T .)
+    ADD             reduce using rule 38 (register -> REGPREFIX T .)
+    ADDU            reduce using rule 38 (register -> REGPREFIX T .)
+    SUB             reduce using rule 38 (register -> REGPREFIX T .)
+    SUBU            reduce using rule 38 (register -> REGPREFIX T .)
+    ADDI            reduce using rule 38 (register -> REGPREFIX T .)
+    ADDIU           reduce using rule 38 (register -> REGPREFIX T .)
+    AND             reduce using rule 38 (register -> REGPREFIX T .)
+    OR              reduce using rule 38 (register -> REGPREFIX T .)
+    XOR             reduce using rule 38 (register -> REGPREFIX T .)
+    NOR             reduce using rule 38 (register -> REGPREFIX T .)
+    ANDI            reduce using rule 38 (register -> REGPREFIX T .)
+    SLL             reduce using rule 38 (register -> REGPREFIX T .)
+    SRL             reduce using rule 38 (register -> REGPREFIX T .)
+    SRA             reduce using rule 38 (register -> REGPREFIX T .)
+    SLT             reduce using rule 38 (register -> REGPREFIX T .)
+    SLTI            reduce using rule 38 (register -> REGPREFIX T .)
+    SLTIU           reduce using rule 38 (register -> REGPREFIX T .)
+    BEQ             reduce using rule 38 (register -> REGPREFIX T .)
+    BNE             reduce using rule 38 (register -> REGPREFIX T .)
+    BLEZ            reduce using rule 38 (register -> REGPREFIX T .)
+    BGTZ            reduce using rule 38 (register -> REGPREFIX T .)
+    BLTZ            reduce using rule 38 (register -> REGPREFIX T .)
+    J               reduce using rule 38 (register -> REGPREFIX T .)
+    JAL             reduce using rule 38 (register -> REGPREFIX T .)
+    JR              reduce using rule 38 (register -> REGPREFIX T .)
+    JALR            reduce using rule 38 (register -> REGPREFIX T .)
+    $end            reduce using rule 38 (register -> REGPREFIX T .)
+
+
+state 78
 
     (29) instruction -> BLTZ register IDENTIFIER .
 
@@ -1025,64 +2078,34 @@ state 66
     $end            reduce using rule 29 (instruction -> BLTZ register IDENTIFIER .)
 
 
-state 67
-
-    (34) register -> REGPREFIX NUMBER .
-
-    REGPREFIX       reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    NUMBER          reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    IDENTIFIER      reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    NOP             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    LW              reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SW              reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    LUI             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    ADD             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    ADDU            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SUB             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SUBU            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    ADDI            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    ADDIU           reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    AND             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    OR              reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    XOR             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    NOR             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    ANDI            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SLL             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SRL             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SRA             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SLT             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SLTI            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    SLTIU           reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    BEQ             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    BNE             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    BLEZ            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    BGTZ            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    BLTZ            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    J               reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    JAL             reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    JR              reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    JALR            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    $end            reduce using rule 34 (register -> REGPREFIX NUMBER .)
-    RBRACKET        reduce using rule 34 (register -> REGPREFIX NUMBER .)
-
-
-state 68
+state 79
 
     (10) instruction -> SUB register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 93
+    register                       shift and go to state 104
 
-state 69
+state 80
 
     (23) instruction -> SLTI register register . NUMBER
 
-    NUMBER          shift and go to state 94
+    NUMBER          shift and go to state 105
 
 
-state 70
+state 81
 
     (27) instruction -> BLEZ register IDENTIFIER .
 
@@ -1120,14 +2143,14 @@ state 70
     $end            reduce using rule 27 (instruction -> BLEZ register IDENTIFIER .)
 
 
-state 71
+state 82
 
     (21) instruction -> SRA register register . NUMBER
 
-    NUMBER          shift and go to state 95
+    NUMBER          shift and go to state 106
 
 
-state 72
+state 83
 
     (7) instruction -> LUI register NUMBER .
 
@@ -1165,85 +2188,129 @@ state 72
     $end            reduce using rule 7 (instruction -> LUI register NUMBER .)
 
 
-state 73
+state 84
 
     (25) instruction -> BEQ register register . IDENTIFIER
 
-    IDENTIFIER      shift and go to state 96
+    IDENTIFIER      shift and go to state 107
 
 
-state 74
+state 85
 
     (18) instruction -> ANDI register register . NUMBER
 
-    NUMBER          shift and go to state 97
+    NUMBER          shift and go to state 108
 
 
-state 75
+state 86
 
     (5) instruction -> LW register NUMBER . LBRACKET register RBRACKET
 
-    LBRACKET        shift and go to state 98
+    LBRACKET        shift and go to state 109
 
 
-state 76
+state 87
 
     (13) instruction -> ADDIU register register . NUMBER
 
-    NUMBER          shift and go to state 99
+    NUMBER          shift and go to state 110
 
 
-state 77
+state 88
 
     (11) instruction -> SUBU register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 100
+    register                       shift and go to state 111
 
-state 78
+state 89
 
     (16) instruction -> XOR register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 101
+    register                       shift and go to state 112
 
-state 79
+state 90
 
     (22) instruction -> SLT register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 102
+    register                       shift and go to state 113
 
-state 80
+state 91
 
     (20) instruction -> SRL register register . NUMBER
 
-    NUMBER          shift and go to state 103
+    NUMBER          shift and go to state 114
 
 
-state 81
+state 92
 
     (19) instruction -> SLL register register . NUMBER
 
-    NUMBER          shift and go to state 104
+    NUMBER          shift and go to state 115
 
 
-state 82
+state 93
 
     (8) instruction -> ADD register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 105
+    register                       shift and go to state 116
 
-state 83
+state 94
 
     (28) instruction -> BGTZ register IDENTIFIER .
 
@@ -1281,32 +2348,54 @@ state 83
     $end            reduce using rule 28 (instruction -> BGTZ register IDENTIFIER .)
 
 
-state 84
+state 95
 
     (26) instruction -> BNE register register . IDENTIFIER
 
-    IDENTIFIER      shift and go to state 106
+    IDENTIFIER      shift and go to state 117
 
 
-state 85
+state 96
 
     (14) instruction -> AND register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 107
+    register                       shift and go to state 118
 
-state 86
+state 97
 
     (9) instruction -> ADDU register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 108
+    register                       shift and go to state 119
 
-state 87
+state 98
 
     (33) instruction -> JALR register register .
 
@@ -1344,46 +2433,68 @@ state 87
     $end            reduce using rule 33 (instruction -> JALR register register .)
 
 
-state 88
+state 99
 
     (24) instruction -> SLTIU register register . NUMBER
 
-    NUMBER          shift and go to state 109
+    NUMBER          shift and go to state 120
 
 
-state 89
+state 100
 
     (6) instruction -> SW register NUMBER . LBRACKET register RBRACKET
 
-    LBRACKET        shift and go to state 110
+    LBRACKET        shift and go to state 121
 
 
-state 90
+state 101
 
     (12) instruction -> ADDI register register . NUMBER
 
-    NUMBER          shift and go to state 111
+    NUMBER          shift and go to state 122
 
 
-state 91
+state 102
 
     (15) instruction -> OR register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 112
+    register                       shift and go to state 123
 
-state 92
+state 103
 
     (17) instruction -> NOR register register . register
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 113
+    register                       shift and go to state 124
 
-state 93
+state 104
 
     (10) instruction -> SUB register register register .
 
@@ -1421,7 +2532,7 @@ state 93
     $end            reduce using rule 10 (instruction -> SUB register register register .)
 
 
-state 94
+state 105
 
     (23) instruction -> SLTI register register NUMBER .
 
@@ -1459,7 +2570,7 @@ state 94
     $end            reduce using rule 23 (instruction -> SLTI register register NUMBER .)
 
 
-state 95
+state 106
 
     (21) instruction -> SRA register register NUMBER .
 
@@ -1497,7 +2608,7 @@ state 95
     $end            reduce using rule 21 (instruction -> SRA register register NUMBER .)
 
 
-state 96
+state 107
 
     (25) instruction -> BEQ register register IDENTIFIER .
 
@@ -1535,7 +2646,7 @@ state 96
     $end            reduce using rule 25 (instruction -> BEQ register register IDENTIFIER .)
 
 
-state 97
+state 108
 
     (18) instruction -> ANDI register register NUMBER .
 
@@ -1573,16 +2684,27 @@ state 97
     $end            reduce using rule 18 (instruction -> ANDI register register NUMBER .)
 
 
-state 98
+state 109
 
     (5) instruction -> LW register NUMBER LBRACKET . register RBRACKET
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 114
+    register                       shift and go to state 125
 
-state 99
+state 110
 
     (13) instruction -> ADDIU register register NUMBER .
 
@@ -1620,7 +2742,7 @@ state 99
     $end            reduce using rule 13 (instruction -> ADDIU register register NUMBER .)
 
 
-state 100
+state 111
 
     (11) instruction -> SUBU register register register .
 
@@ -1658,7 +2780,7 @@ state 100
     $end            reduce using rule 11 (instruction -> SUBU register register register .)
 
 
-state 101
+state 112
 
     (16) instruction -> XOR register register register .
 
@@ -1696,7 +2818,7 @@ state 101
     $end            reduce using rule 16 (instruction -> XOR register register register .)
 
 
-state 102
+state 113
 
     (22) instruction -> SLT register register register .
 
@@ -1734,7 +2856,7 @@ state 102
     $end            reduce using rule 22 (instruction -> SLT register register register .)
 
 
-state 103
+state 114
 
     (20) instruction -> SRL register register NUMBER .
 
@@ -1772,7 +2894,7 @@ state 103
     $end            reduce using rule 20 (instruction -> SRL register register NUMBER .)
 
 
-state 104
+state 115
 
     (19) instruction -> SLL register register NUMBER .
 
@@ -1810,7 +2932,7 @@ state 104
     $end            reduce using rule 19 (instruction -> SLL register register NUMBER .)
 
 
-state 105
+state 116
 
     (8) instruction -> ADD register register register .
 
@@ -1848,7 +2970,7 @@ state 105
     $end            reduce using rule 8 (instruction -> ADD register register register .)
 
 
-state 106
+state 117
 
     (26) instruction -> BNE register register IDENTIFIER .
 
@@ -1886,7 +3008,7 @@ state 106
     $end            reduce using rule 26 (instruction -> BNE register register IDENTIFIER .)
 
 
-state 107
+state 118
 
     (14) instruction -> AND register register register .
 
@@ -1924,7 +3046,7 @@ state 107
     $end            reduce using rule 14 (instruction -> AND register register register .)
 
 
-state 108
+state 119
 
     (9) instruction -> ADDU register register register .
 
@@ -1962,7 +3084,7 @@ state 108
     $end            reduce using rule 9 (instruction -> ADDU register register register .)
 
 
-state 109
+state 120
 
     (24) instruction -> SLTIU register register NUMBER .
 
@@ -2000,16 +3122,27 @@ state 109
     $end            reduce using rule 24 (instruction -> SLTIU register register NUMBER .)
 
 
-state 110
+state 121
 
     (6) instruction -> SW register NUMBER LBRACKET . register RBRACKET
-    (34) register -> . REGPREFIX NUMBER
+    (34) register -> . REGPREFIX ZERO
+    (35) register -> . REGPREFIX AT
+    (36) register -> . REGPREFIX V
+    (37) register -> . REGPREFIX A
+    (38) register -> . REGPREFIX T
+    (39) register -> . REGPREFIX S
+    (40) register -> . REGPREFIX K
+    (41) register -> . REGPREFIX GP
+    (42) register -> . REGPREFIX SP
+    (43) register -> . REGPREFIX FP
+    (44) register -> . REGPREFIX RA
+    (45) register -> . REGPREFIX NUMBER
 
-    REGPREFIX       shift and go to state 35
+    REGPREFIX       shift and go to state 34
 
-    register                       shift and go to state 115
+    register                       shift and go to state 126
 
-state 111
+state 122
 
     (12) instruction -> ADDI register register NUMBER .
 
@@ -2047,7 +3180,7 @@ state 111
     $end            reduce using rule 12 (instruction -> ADDI register register NUMBER .)
 
 
-state 112
+state 123
 
     (15) instruction -> OR register register register .
 
@@ -2085,7 +3218,7 @@ state 112
     $end            reduce using rule 15 (instruction -> OR register register register .)
 
 
-state 113
+state 124
 
     (17) instruction -> NOR register register register .
 
@@ -2123,21 +3256,21 @@ state 113
     $end            reduce using rule 17 (instruction -> NOR register register register .)
 
 
-state 114
+state 125
 
     (5) instruction -> LW register NUMBER LBRACKET register . RBRACKET
 
-    RBRACKET        shift and go to state 116
+    RBRACKET        shift and go to state 127
 
 
-state 115
+state 126
 
     (6) instruction -> SW register NUMBER LBRACKET register . RBRACKET
 
-    RBRACKET        shift and go to state 117
+    RBRACKET        shift and go to state 128
 
 
-state 116
+state 127
 
     (5) instruction -> LW register NUMBER LBRACKET register RBRACKET .
 
@@ -2175,7 +3308,7 @@ state 116
     $end            reduce using rule 5 (instruction -> LW register NUMBER LBRACKET register RBRACKET .)
 
 
-state 117
+state 128
 
     (6) instruction -> SW register NUMBER LBRACKET register RBRACKET .
 

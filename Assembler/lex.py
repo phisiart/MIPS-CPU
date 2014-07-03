@@ -49,6 +49,9 @@ reserved = {
     'RA'    : r'ra'         ,
 }
 
+for key in reserved.keys():
+    reserved[key] += r'$'
+
 # List of token names. This is always required.
 # token 列表的名字一定要叫 tokens
 tokens = [
@@ -76,10 +79,15 @@ def t_NUMBER(t):
 
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
+    # for (_token, _pattern) in reserved.iteritems():
+    #     # if (re.match(_pattern, t.value)):
+    #     if (_token.lower() == t.value.lower()):
+    #         t.type = _token
+    #         return t
     for (_token, _pattern) in reserved.iteritems():
-        # if (re.match(_pattern, t.value)):
-        if (_token.lower() == t.value.lower()):
+        if (re.match(_pattern, t.value)):
             t.type = _token
+            return t
     return t
 
 t_ignore = " \t"
@@ -89,8 +97,8 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
     
 def t_comment(t):
-    r'\#[^\n]*\n'
-    t.lexer.lineno += 1
+    r'\#[^\n]*'
+    #t.lexer.lineno += 1
 
 def t_error(t):
     print ("Illegal character '%s'" % t.value[0])
@@ -101,8 +109,19 @@ lexer = lex.lex()
 
 if __name__ == '__main__':
     data = '''
-    addr:
-    lw $4 4($3)
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+    nop
+main:
+    lw $4 4($3) # User code starts at [0x00400000]
+    nop
     sw $4 4($3)
     lui $4 1000 # Whatever comment
     add $4 $3 $4
@@ -110,11 +129,33 @@ if __name__ == '__main__':
     sub $4 $3 $4
     subu $4 $3 $4
     and $4 $3 $4
-    or $4 $3 $4
+    or $v0 $3 $4
     xor $4 $3 $4
     nor $4 $3 $4
     addi $4 $4 100
     addiu $4 $3 200
+    sll $4 $3 10
+    srl $4 $3 10
+    sra $4 $3 10
+    slt $4 $4 $4
+    slti $4 $4 10
+    addr:
+    beq $0 $0 addr
+    bne $0 $0 addr
+    blez $3 addr
+    bltz $4 addr
+    bgtz $5 addr
+    j addr
+    jal addr
+    jalr $3 $31
+    jr $3
+        addi $s2 $zero 10         # line 0
+        addi $s0 $zero 1          # line 1
+loop:   add $s1 $s1 $s0   # line 2
+        addi $s0 $s0 1    # line 3
+        bne $s0 $s2 loop  # line 4
+        add $v0 $s1 $0    # line 5
+        jr $ra            # line 6
     '''
 
     lexer.input(data)

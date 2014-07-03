@@ -14,7 +14,7 @@ def print_inst(ins):
 
     if len(ins) == 4:
         print ' ' * 26 + '(-> %X)' % ins[3]
- 
+
 def asbl_file(file_name):
     file_handle = open(file_name, 'r')
     source = file_handle.read()
