@@ -27,18 +27,20 @@ if __name__ == '__main__':
                     instype = ((inst[1] >> 26) % (1 << 6))
                     print inst[2]
                     finded = 1
-                    if instype in [1, 4, 5, 6, 7]:
-                        offset = ((key - inst[0] - 4) / 4) % (1 << 16)
-                        inst[1] = inst[1] | offset
-                        print '  offset =', offset
-                    elif instype in [2, 3]:
-                        print '  jump'
+                    if instype in [1, 4, 5, 6, 7]: # branch
+                        offset = ((key - inst[0] - 4) / 4)
+                        inst[1] = inst[1] | (offset % (1 << 16))
+                        inst[3] = offset
+                    elif instype in [2, 3]: # jump
+                        direction = (key / 4) % (1 << 28)
+                        inst[1] = inst[1] | direction
+                        inst[3] = direction
                     else:
-                        print 'Error: Unknown instype'
+                        print 'Error: I don\'t know this instruction'
             if not finded:
                 print 'Error: Cannot find address tag ' + inst[3]
 
-    
+    global addrTags
     for inst in insts:
         putins(inst)
         

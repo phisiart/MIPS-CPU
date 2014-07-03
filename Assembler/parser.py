@@ -20,12 +20,18 @@ addrTags = {}
 def putins(ins):
     global addr
     global addrTags
-    if (addrTags.has_key(addr)):
-
-        print '[0x%08X]  0x%08X  %s:' % (ins[0], ins[1], addrTags[addr])
-        print ' ' * 26 + '%s' % ins[2]
+    if (addrTags.has_key(ins[0])):
+        print '[0x%08X]  0x%08X  %s:' % (ins[0], ins[1], addrTags[ins[0]])
+        print ' ' * 26 + '%s' % ins[2],
     else:
-        print '[0x%08X]  0x%08X  %s' % (ins[0], ins[1], ins[2])
+        print '[0x%08X]  0x%08X  %s' % (ins[0], ins[1], ins[2]),
+    if len(ins) == 4:
+        if (type(ins[3]) == int):
+            print '  (%X)' % ins[3]
+        else:
+            print '  %s' % ins[3]
+    else:
+        print
     addr += 4
 
 
