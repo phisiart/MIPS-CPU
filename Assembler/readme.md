@@ -11,6 +11,12 @@ This program turns MIPS assembly language into bitcode. It is implemented with p
 
 * The `branch` and `jump` instructions are tricky. I'm writting a documentation for them so that you will get it right.
 
+### Branches:
+
+This CPU implements 5 branching instructions: `beq`, `bne`, `blez`, `bgtz`, and `bltz`.
+
+For branches, the addresses are calculated on an `offset` basis. The [15:0] of the instruction is 
+
 ### Features:
 
 * comments are correctly ignored
