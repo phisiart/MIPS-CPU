@@ -5,7 +5,7 @@ Grammar
 Rule 0     S' -> program
 Rule 1     program -> program instruction
 Rule 2     program -> instruction
-Rule 3     instruction -> IDENTIFIER COLOM
+Rule 3     instruction -> IDENTIFIER COLON
 Rule 4     instruction -> NOP
 Rule 5     instruction -> LW register NUMBER LBRACKET register RBRACKET
 Rule 6     instruction -> SW register NUMBER LBRACKET register RBRACKET
@@ -51,7 +51,7 @@ BGTZ                 : 28
 BLEZ                 : 27
 BLTZ                 : 29
 BNE                  : 26
-COLOM                : 3
+COLON                : 3
 IDENTIFIER           : 3 25 26 27 28 29 30 31
 J                    : 30
 JAL                  : 31
@@ -91,7 +91,7 @@ state 0
     (0) S' -> . program
     (1) program -> . program instruction
     (2) program -> . instruction
-    (3) instruction -> . IDENTIFIER COLOM
+    (3) instruction -> . IDENTIFIER COLON
     (4) instruction -> . NOP
     (5) instruction -> . LW register NUMBER LBRACKET register RBRACKET
     (6) instruction -> . SW register NUMBER LBRACKET register RBRACKET
@@ -290,7 +290,7 @@ state 12
 
     (0) S' -> program .
     (1) program -> program . instruction
-    (3) instruction -> . IDENTIFIER COLOM
+    (3) instruction -> . IDENTIFIER COLON
     (4) instruction -> . NOP
     (5) instruction -> . LW register NUMBER LBRACKET register RBRACKET
     (6) instruction -> . SW register NUMBER LBRACKET register RBRACKET
@@ -358,9 +358,9 @@ state 12
 
 state 13
 
-    (3) instruction -> IDENTIFIER . COLOM
+    (3) instruction -> IDENTIFIER . COLON
 
-    COLOM           shift and go to state 46
+    COLON           shift and go to state 46
 
 
 state 14
@@ -726,40 +726,40 @@ state 45
 
 state 46
 
-    (3) instruction -> IDENTIFIER COLOM .
+    (3) instruction -> IDENTIFIER COLON .
 
-    IDENTIFIER      reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    NOP             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    LW              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SW              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    LUI             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    ADD             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    ADDU            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SUB             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SUBU            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    ADDI            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    ADDIU           reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    AND             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    OR              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    XOR             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    NOR             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    ANDI            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SLL             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SRL             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SRA             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SLT             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SLTI            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    SLTIU           reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    BEQ             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    BNE             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    BLEZ            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    BGTZ            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    BLTZ            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    J               reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    JAL             reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    JR              reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    JALR            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
-    $end            reduce using rule 3 (instruction -> IDENTIFIER COLOM .)
+    IDENTIFIER      reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    NOP             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    LW              reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SW              reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    LUI             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    ADD             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    ADDU            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SUB             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SUBU            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    ADDI            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    ADDIU           reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    AND             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    OR              reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    XOR             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    NOR             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    ANDI            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SLL             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SRL             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SRA             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SLT             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SLTI            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    SLTIU           reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    BEQ             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    BNE             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    BLEZ            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    BGTZ            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    BLTZ            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    J               reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    JAL             reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    JR              reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    JALR            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
+    $end            reduce using rule 3 (instruction -> IDENTIFIER COLON .)
 
 
 state 47

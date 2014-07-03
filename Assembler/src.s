@@ -31,14 +31,6 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-    .data
-msg:
-    .asciiz "Hello World"
-    .extern foobar 4
-
-.text
-
-.globl main
     nop
     nop
     nop

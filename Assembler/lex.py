@@ -36,6 +36,17 @@ reserved = {
     'JAL'   : r'(?i)jal'    ,
     'JR'    : r'(?i)jr'     ,
     'JALR'  : r'(?i)jalr'   ,
+    'ZERO'  : r'zero'       ,
+    'AT'    : r'at'         ,
+    'V'     : r'v[01]'      ,
+    'A'     : r'a[0-3]'     ,
+    'T'     : r't[0-9]'     ,
+    'S'     : r's[0-7]'     ,
+    'K'     : r'k[01]'      ,
+    'GP'    : r'gp'         ,
+    'SP'    : r'sp'         ,
+    'FP'    : r'fp'         ,
+    'RA'    : r'ra'         ,
 }
 
 # List of token names. This is always required.
@@ -46,7 +57,7 @@ tokens = [
     'RBRACKET',     # )
     'NUMBER',       # number
     'REGPREFIX',    # $
-    'COLOM'         # :
+    'COLON'         # :
 ] + list(reserved.keys())
 
 # Regular expression rules for simple tokens
@@ -54,7 +65,7 @@ tokens = [
 t_LBRACKET = r'\('
 t_RBRACKET = r'\)'
 t_REGPREFIX = r'\$'
-t_COLOM = r'\:'
+t_COLON = r'\:'
 
 # 有的 token 也可以被定义为函数，参数为识别出来的 token，返回值还是 token
 
