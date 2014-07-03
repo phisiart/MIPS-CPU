@@ -3,7 +3,7 @@
 // Peripheral Module
 // Created by Zhengrong Wang
 // Created 02/07/2014
-// Last Modified 03/07/2014
+// Last Modified 02/07/2014
 
 module Peripheral(
     input clk,
