@@ -65,7 +65,7 @@ Now I'm going to show you how to use the assembler.
 
 There are 3 python code files in the Assembler directory: `lex.py`, `parser.py`, and `assembler.py`. You will be using the `assembler.py` file only. There are generally two ways of using the assembler.
 
-1) You go to the `Assembler` directory and type this command in the terminal:
+1) The first way to use the assembler is through command line. You go to the `Assembler` directory and type this command in the terminal:
 
     python assembler.py src.s
     
@@ -73,12 +73,69 @@ Note that `src.s` can be whatever file of your MIPS source code.
 
 In our case, the source code is
 
-Now I'm goinging to show you how to use the assembler.
+            li $s2 10         # line 1
+            li $s0 1          # line 2
+    loop:   add $s1 $s1 $s0   # line 3
+            addi $s0 $s0 1    # line 4
+            bne $s0 $s2 loop  # line 5
+            add $v0 $s1 $0    # line 6
+            jr $ra            # line 7
 
-                    li $s2 10         # line 0
-                    li $s0 1          # line 1
-            loop:   add $s1 $s1 $s0   # line 2
-                    addi $s0 $s0 1    # line 3
-                    bne $s0 $s2 loop  # line 4
-                    add $v0 $s1 $0    # line 5
-                    jr $ra            # line 6
+As soon as you press ENTER, the assembler gives you this output:
+
+    --------------------------------------------------------------------------------
+                                     MIPS Assembler
+
+    Parser error at or near $ of line 1
+    [0x00400000]  0x02308820  loop:
+                              add $s1 $s1 $s0
+    [0x00400004]  0x22100001  addi $s0 $s0 1
+    [0x00400008]  0x1612FFFD  bne $s0 $s2 loop
+                              (-> -3)
+    [0x0040000C]  0x02201020  add $v0 $s1 $0
+    [0x00400010]  0x03E00008  jr $ra
+
+Oops! It says that you have a parsing error at line 1. Let's have a look at line 1. The code is
+
+    li $2 10
+
+You should notice that our CPU does not support the `li` instruction. That's the problem. Now we have to change the first two lines of code into
+
+    addi $s2 $zero 10
+    addi $s0 $zero 1
+
+And run the assembler again. Now we are getting the correct answer. The style of the output is:
+
+    [address] bitcode instruction
+
+Note that if a tag is in the code (e.g. `loop` in the example), it will be shown in the output.
+
+What is the `(-> -3)`? It shows the offset of the branch direction.
+
+2) You may notice that the output style isn't what you want. So here comes the second usage. You can use the assembler through python code.
+
+First, make sure your python code file is in the same directory where the 3 assembler files are stored, or open a python in the terminal in this directory.
+
+Second, write the following python code:
+
+    from assembler import *
+
+This loads all the stuff in `assembler.py`. Then you write:
+
+    insts = asbl_file('src.s')
+
+`asbl_file` is a function that takes in a file name, and assemble the MIPS code in it. It returns a list of instructions. You may want to check what it has returned, so just write:
+
+    print insts
+
+Then you get something like
+
+    [[4194304, 538050570, 'addi $s2 $zero 10'], [4194308, 537919489, 'addi $s0 $zero 1'], [4194312, 36735008, 'add $s1 $s1 $s0'], [4194316, 571473921, 'addi $s0 $s0 1'], [4194320, 370343933, 'bne $s0 $s2 loop', -3], [4194324, 35655712, 'add $v0 $s1 $0'], [4194328, 65011720, 'jr $ra']]
+
+You can see that each element in the list is also a list, storing info of an instruction. Take the first instruction as an example:
+
+    [4194304, 538050570, 'addi $s2 $zero 10']
+
+The first element is the address of this instruction in the memory, the second is the bitcode, the third is just the instruction itself.
+
+Now you know what you've get. You can do anything with it!
