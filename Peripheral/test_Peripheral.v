@@ -1,26 +1,9 @@
 `timescale 1ns / 1ps
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   15:42:50 07/03/2014
-// Design Name:   Peripheral
-// Module Name:   /opt/Xilinx/14.7/ISE_DS/CPU/test_Peripheral.v
-// Project Name:  CPU
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: Peripheral
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
+// TESTBENCH for Peripheral Module
+// Created by Zhengrong Wang
+// Created 03/07/2014
+// Last modified 04/07/2014
 
 module test_Peripheral;
 
@@ -109,4 +92,3 @@ module test_Peripheral;
 	always #100 clk = ~clk;
       
 endmodule
-
