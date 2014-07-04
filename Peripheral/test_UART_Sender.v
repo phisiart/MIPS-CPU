@@ -1,26 +1,9 @@
 `timescale 1ns / 1ps
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   14:32:54 07/03/2014
-// Design Name:   UART_Sender
-// Module Name:   /opt/Xilinx/14.7/ISE_DS/CPU/test_UART_Sender.v
-// Project Name:  CPU
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: UART_Sender
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
+// TESTBENCH for UART_Sender
+// Created by Zhengrong Wang
+// Created 03/07/2014
+// Last modified 04/07/2014
 
 module test_UART_Sender;
 
