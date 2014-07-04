@@ -1,9 +1,10 @@
 `timescale 1ns / 1ps
 
-// UART_Receiver Module
+// UART_Reciver Module
+// Reveives data from UART_RX, and generates an impluse RX_STATUS
 // Created by Zhengrong Wang
-// Created 03/07/2014
-// Last Modified 03/07/2014
+// Created 02/07/2014
+// Last modified 04/07/2014
 
 module UART_Receiver(
     input UART_RX,
@@ -24,7 +25,7 @@ reg [7:0] RX_DATA_REG;
 reg [7:0] RX_DATA_TEMP;
 assign RX_DATA = RX_DATA_REG;
 reg RX_STATUS_REG;
-assign RX_STATUS = RX_STATUS_REG;
+assign RX_STATUS = (~RX_STATUS_REG) && (x);
 
 always @(posedge brclk or negedge reset) begin
 	if (!reset) begin
@@ -52,6 +53,19 @@ always @(posedge brclk or negedge reset) begin
 	end
 end
 
+reg x;
+always @(posedge sysclk or negedge reset) begin
+	if (~reset) begin
+		x <= 1'b0;
+	end
+	else if (count == 8'h90) begin
+		x <= 1'b1;
+	end
+	else begin
+		x <= 1'b0;
+	end
+end
+
 always @(posedge sysclk or negedge reset) begin
 	if (!reset) begin
 		RX_STATUS_REG <= 1'b0;
@@ -59,12 +73,9 @@ always @(posedge sysclk or negedge reset) begin
 	end
 	else begin
 		if (count == 8'h90) begin
-			RX_STATUS_REG <= 1'b1;
 			RX_DATA_REG <= RX_DATA_TEMP;
 		end
-		else begin
-			RX_STATUS_REG <= 1'b0;
-		end
+		RX_STATUS_REG <= x;
 	end
 end
 
