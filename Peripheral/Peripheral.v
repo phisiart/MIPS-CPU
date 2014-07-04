@@ -3,7 +3,7 @@
 // Peripheral Module
 // Created by Zhengrong Wang
 // Created 02/07/2014
-// Last Modified 03/07/2014
+// Last Modified 04/07/2014
 
 module Peripheral(
     input clk,
@@ -37,27 +37,31 @@ reg [2:0] TCON;
 
 assign interrupt = TCON[2];
 
+// Read the UART_RXD will trigue an impluse on RX_READ
+// to tell UART that the data has been read
 always @(*) begin
 	read_acc = 1'b1;
 	RX_READ = 1'b0;
-	case(addr)
-		32'h40000000: rdata = TH;
-		32'h40000004: rdata = TL;
-		32'h40000008: rdata = {29'h0, TCON};
-		32'h4000000c: rdata = {24'h0, led};
-		32'h40000010: rdata = {24'h0, switch};
-		32'h40000014: rdata = {20'h0, digits};
-		32'h40000018: rdata = {24'h0, UART_TXD};
-		32'h4000001c: begin
-			rdata = {24'h0, UART_RXD};
-			RX_READ = 1'b1;
-		end
-		32'h40000020: rdata = {29'h0, UART_CON};
-		default: begin
-			rdata = 32'hcccccccc;
-			read_acc = 1'b0;
-		end
-	endcase
+	if (read == 1'b1) begin
+		case(addr)
+			32'h40000000: rdata = TH;
+			32'h40000004: rdata = TL;
+			32'h40000008: rdata = {29'h0, TCON};
+			32'h4000000c: rdata = {24'h0, led};
+			32'h40000010: rdata = {24'h0, switch};
+			32'h40000014: rdata = {20'h0, digits};
+			32'h40000018: rdata = {24'h0, UART_TXD};
+			32'h4000001c: begin
+				rdata = {24'h0, UART_RXD};
+				RX_READ = 1'b1;
+			end
+			32'h40000020: rdata = {29'h0, UART_CON};
+			default: begin
+				rdata = 32'hcccccccc;
+				read_acc = 1'b0;
+			end
+		endcase
+	end
 end
 
 always @(posedge clk or negedge reset) begin
