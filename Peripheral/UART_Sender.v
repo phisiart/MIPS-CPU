@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
-// UART_Sender Module
+// UART_Sender module
 // Created by Zhengrong Wang
-// Created 03/07/2014
-// Last Modified 03/07/2014
+// Created 02/07/2014
+// Last modified 04/07/2014
 
 module UART_Sender(
     input sysclk,
