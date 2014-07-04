@@ -1,26 +1,9 @@
 `timescale 1ns / 1ps
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   15:06:11 07/03/2014
-// Design Name:   DataMem
-// Module Name:   /opt/Xilinx/14.7/ISE_DS/CPU/test_DataMem.v
-// Project Name:  CPU
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: DataMem
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
+// testbench for DataMem Module
+// Created by Zhengrong Wang
+// Created 04/07/2014
+// Last modified 04/07/2014
 
 module test_DataMem;
 
@@ -117,4 +100,3 @@ module test_DataMem;
 	
 	always #100 clk = ~clk;
 endmodule
-
