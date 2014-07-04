@@ -1,26 +1,9 @@
 `timescale 1ns / 1ps
 
-////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer:
-//
-// Create Date:   16:46:22 07/03/2014
-// Design Name:   UART
-// Module Name:   /opt/Xilinx/14.7/ISE_DS/CPU/test_UART_2.v
-// Project Name:  CPU
-// Target Device:  
-// Tool versions:  
-// Description: 
-//
-// Verilog Test Fixture created by ISE for module: UART
-//
-// Dependencies:
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-////////////////////////////////////////////////////////////////////////////////
+// TESTBENCH 2 for UART
+// Created by Zhengrong Wang
+// Created 03/07/2014
+// Last modified 04/07/2014
 
 module test_UART_2;
 
@@ -76,4 +59,3 @@ module test_UART_2;
 	always #5 sysclk = ~sysclk;
       
 endmodule
-
