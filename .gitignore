@@ -1,0 +1,3 @@
+*.pyc
+/Assembler/parser.out
+/Assembler/parsetab.py
