@@ -1,4 +1,4 @@
-## A Simple MIPS Assembler (still under construction...)
+## A Simple MIPS Assembler
 
 This program turns MIPS assembly language into bitcode. It is implemented with ply (python lex and yacc) under python.
 
@@ -9,33 +9,33 @@ This program turns MIPS assembly language into bitcode. It is implemented with p
 
 * Addresses `0x0080****` are for system code. I'm figuring them out.
 
-* The `branch` and `jump` instructions are tricky. I'm writting a documentation for them so that you will get it right.
+* The `branch` and `jump` instructions are tricky. Please read the documentation below so that you will get it right.
 
 ### Branches:
 
 This CPU implements 5 types of branching instructions: `beq`, `bne`, `blez`, `bgtz`, and `bltz`.
 
-For branches, the addresses are calculated on an `offset` basis. The [15:0] of the instruction is the offset of `the instruction we are branching to` from `the next instruction`. For example, consider this sequence of instructions:
+For branches, the addresses are calculated on an **offset** basis. The [15:0] of the instruction is the offset of **the instruction we are branching to** from **the next instruction**. For example, consider this sequence of instructions:
 
-            li $s2 10         # line 0
-            li $s0 1          # line 1
-    loop:   add $s1 $s1 $s0   # line 2
-            addi $s0 $s0 1    # line 3
-            bne $s0 $s2 loop  # line 4
-            add $v0 $s1 $0    # line 5
-            jr $ra            # line 6
+            li $s2 10         # line 1
+            li $s0 1          # line 2
+    loop:   add $s1 $s1 $s0   # line 3
+            addi $s0 $s0 1    # line 4
+            bne $s0 $s2 loop  # line 5
+            add $v0 $s1 $0    # line 6
+            jr $ra            # line 7
             
-Notice the `bne` in line 4. It directs to the `loop` tag in line 2. The offset is `2 - (4 + 1) = -3`.
+Notice the `bne` in line 4. It directs to the `loop` tag in line 2. The `offset` is `2 - (4 + 1) = -3`.
 
-How do we store the offset in the instruction? We store it as a 16-bit **signed** integer. In our case here, `-3` is just `0xFFFD` (or `2^16 - 3`).
+How do we store the offset in the instruction? We store it as a 16-bit **signed** integer. In our case here, `-3` is just `0xFFFD` (think of it as `2^16 - 3`).
 
-The CPU would load this 16-bit integer, multiply it by 4, and extend it to a 32-bit integer. Take a look at how to make it right.
+The CPU would load this 16-bit integer, multiply it by 4, and extend it to a 32-bit integer. Take a look at how to make it right:
 
-* If the offset is positive (namely `offset[15] = 0`), it is fairly straight-foward. You shift the integer left by 2 bits, adding 2 zero's on the right side, and then add 14 zero's to the left to extend it.
+* If the offset is positive (the sign bit `offset[15] = 0`), it is fairly straight-foward. You shift the integer left by 2 bits, adding 2 zero's on the right side, and then add 14 zero's to the left of the 18-bit integer to extend it.
 
-* If the offset is negative (namely `offset[15] = 1`). Then the 16-bit integer stored is `2^16 + offset`, something like `1xxx,xxxx,xxxx,xxxx`. Shifting the integer left by 2 bits results in a 18-bit integer `2^18 + offset * 4`, something like `1x,xxxx,xxxx,xxxx,xx00`. We want to extend the integer so that the 32-bit would be `2^32 + offset * 4`. It turns out that the result is just `1111,1111,1111,111x,xxxx,xxxx,xxxx,xx00`. So we just need to add 14 one's to the left.
+* If the offset is negative (the sign bit `offset[15] = 1`). Then the 16-bit integer stored is `2^16 + offset`, something like `1xxx,xxxx,xxxx,xxxx`. Shifting the integer left by 2 bits results in a 18-bit integer `2^18 + offset * 4`, something like `1x,xxxx,xxxx,xxxx,xx00`. We want to extend the integer so that the 32-bit would be `2^32 + offset * 4`. It turns out that the result is just `1111,1111,1111,111x,xxxx,xxxx,xxxx,xx00`. So we just need to add 14 one's to the left.
 
-Having considered the two cases, we now know what to do. First, we shift the 16-bit offset by 2 bits, adding 2 zero's on the right. Then, we extend the 18-bit integer to 32 bits, what to add on the left is the sign bit of the original integer.
+Having considered the two cases above, we now know what to do. We 1) shift the 16-bit offset by 2 bits, adding 2 zero's on the right. Then 2) extend the 18-bit integer to 32 bits. What to add on the left is the sign bit of the original integer.
 
 ### Jumps:
 
@@ -50,20 +50,23 @@ The jumping direction is stored in the [25:0] bits. You 1) take it out, shift it
 
 It turns out QtSpim isn't implementing a standard MIPS. If you look at the bit-code it generates, you will find that something is different.
 
-* The offset of branches in QtSpim is from the current instruction, not from the next instruction. So in the example above, the offset would be -2, not -3.
+* The offset of branches in QtSpim is from the current instruction, not from the next instruction. So in the example above, the offset would be `-2`, not `-3`. `-3` is the correct one, and we are doing this.
 
-* The `jalr` instruction is defined as `jalr rs rd` and `rs` and `rd` are stored in [25:21] and [20:16], but it seems that QtSpim stores them up side down. In QtSpim, `rs` is stored in [20:16] and `rd` is stored in [25:21].
+* In the MIPS standard, the `jalr` instruction is defined as `jalr rs rd` and `rs` and `rd` are stored in [25:21] and [20:16], but it seems that QtSpim stores them up side down. In QtSpim, `rs` is stored in [20:16] and `rd` is stored in [25:21]. We choose to follow the standard.
+
+Note that by standard I mean both the textbook and other online resources. It's QtSpim who doesn't follow the correct standard. I haven't find any other difference between my implementation and QtSpim. You should check the bitcode I generate with the one QtSpim generates in order to check for my errors, but the two cases above should be considered differently.
 
 ### Features:
 
-* comments are correctly ignored
-* register names are correctly recognized
+* comments are correctly ignored, feel free to write comments in your MIPS code.
+
+* register names are correctly recognized. You can either write `$s0` or `$16`.
 
 ### Tutorial:
 
 Now I'm going to show you how to use the assembler.
 
-There are 3 python code files in the Assembler directory: `lex.py`, `parser.py`, and `assembler.py`. You will be using the `assembler.py` file only. There are generally two ways of using the assembler.
+There are 3 python files in the Assembler directory: `lex.py`, `parser.py`, and `assembler.py`. You will be using the `assembler.py` file only. There are generally two ways of using the assembler.
 
 1) The first way to use the assembler is through command line. You go to the `Assembler` directory and type this command in the terminal:
 
@@ -71,7 +74,7 @@ There are 3 python code files in the Assembler directory: `lex.py`, `parser.py`,
     
 Note that `src.s` can be whatever file of your MIPS source code. 
 
-In our case, the source code is
+For example, the source code could be:
 
             li $s2 10         # line 1
             li $s0 1          # line 2
@@ -95,16 +98,20 @@ As soon as you press ENTER, the assembler gives you this output:
     [0x0040000C]  0x02201020  add $v0 $s1 $0
     [0x00400010]  0x03E00008  jr $ra
 
-Oops! It says that you have a parsing error at line 1. Let's have a look at line 1. The code is
+Oops! It says that you have a parsing error at line 1. It is important that you know that **you can't trust any following output if there is an error**.
+
+Now let's have a look at line 1. The code is
 
     li $2 10
 
-You should notice that our CPU does not support the `li` instruction. That's the problem. Now we have to change the first two lines of code into
+You should notice that our CPU does not support the `li` instruction. That's the problem. We have to change the first two lines of code into
 
     addi $s2 $zero 10
     addi $s0 $zero 1
 
-And run the assembler again. Now we are getting the correct answer. The style of the output is:
+And run the assembler again. Now we are getting the correct answer.
+
+The style of the output is:
 
     [address] bitcode instruction
 
@@ -124,7 +131,7 @@ This loads all the stuff in `assembler.py`. Then you write:
 
     insts = asbl_file('src.s')
 
-`asbl_file` is a function that takes in a file name, and assemble the MIPS code in it. It returns a list of instructions. You may want to check what it has returned, so just write:
+`asbl_file` is a function that takes in a file name, and assembles the MIPS code in it. It returns a list of instructions. You may want to check what it has returned, so just write:
 
     print insts
 
