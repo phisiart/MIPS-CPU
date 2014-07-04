@@ -1,11 +1,15 @@
 `timescale 1ns / 1ps
 
+// TESTBENCH for UART
+// Created by Zhengrong Wang
+// Created 03/07/2014
+// Last modified 04/07/2014
+
 module test_UART;
 
 	// Inputs
 	reg UART_RX;
 	wire [7:0] UART_TXD;
-	reg RX_READ;
 	reg sysclk;
 	reg reset;
 
@@ -14,6 +18,7 @@ module test_UART;
 	wire [7:0] UART_RXD;
 	wire RX_EFF;
 	wire TX_STATUS;
+	wire RX_READ;
 
 	// Instantiate the Unit Under Test (UUT)
 	UART uut (
@@ -70,7 +75,6 @@ module test_UART;
 	initial begin
 		// Initialize Inputs
 		UART_RX = 1;
-		RX_READ = 0;
 		sysclk = 0;
 		clk = 0;
 		reset = 1;
@@ -92,28 +96,49 @@ module test_UART;
 		addr = 32'h40000018;
 		write = 1'b1;
 		
-		#200000;
+		#200;
 		wdata = 32'h000000cc;
 		addr = 32'h00000000;
 		write = 1'b1;
 		
-		#200000;
+		#200;
 		addr = 32'h00000000;
 		write = 1'b0;
 		read = 1'b1;
 		
-		#200000;
+		#200;
 		wdata = 32'h1;
 		addr = 32'h40000020;
 		write = 1'b1;
+		read = 1'b0;
 		
-		#200000;
+		#200;
 		wdata = 32'h0;
 		addr = 32'h40000020;
 		write = 1'b1;
+		
+		#200;
+		write = 1'b0;
+		
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 1;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 1;
+		
+		#200;
+		addr = 32'h4000001c;
+		read = 1'b1;
+		
+		#200;
+		read = 1'b0;
 	end
 	
 	always #100 clk = ~clk;
 	always #5 sysclk = ~sysclk;
 endmodule
-
