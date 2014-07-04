@@ -19,9 +19,9 @@ For branches, the addresses are calculated on an `offset` basis. The [15:0] of t
 
             li $s2 10         # line 0
             li $s0 1          # line 1
-    loop:   add $s1 Ss1 Ss0   # line 2
+    loop:   add $s1 $s1 $s0   # line 2
             addi $s0 $s0 1    # line 3
-            bne $s0 Ss2 loop  # line 4
+            bne $s0 $s2 loop  # line 4
             add $v0 $s1 $0    # line 5
             jr $ra            # line 6
             
@@ -59,6 +59,26 @@ It turns out QtSpim isn't implementing a standard MIPS. If you look at the bit-c
 * comments are correctly ignored
 * register names are correctly recognized
 
-### Usage:
+### Tutorial:
 
-* to be done...
+Now I'm going to show you how to use the assembler.
+
+There are 3 python code files in the Assembler directory: `lex.py`, `parser.py`, and `assembler.py`. You will be using the `assembler.py` file only. There are generally two ways of using the assembler.
+
+1) You go to the `Assembler` directory and type this command in the terminal:
+
+    python assembler.py src.s
+    
+Note that `src.s` can be whatever file of your MIPS source code. 
+
+In our case, the source code is
+
+Now I'm goinging to show you how to use the assembler.
+
+                    li $s2 10         # line 0
+                    li $s0 1          # line 1
+            loop:   add $s1 $s1 $s0   # line 2
+                    addi $s0 $s0 1    # line 3
+                    bne $s0 $s2 loop  # line 4
+                    add $v0 $s1 $0    # line 5
+                    jr $ra            # line 6
