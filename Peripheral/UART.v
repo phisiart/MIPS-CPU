@@ -3,7 +3,7 @@
 // UART Peripheral
 // Created by Zhengrong Wang
 // Created 03/07/2014
-// Last Modified 03/07/2014
+// Last Modified 04/07/2014
 
 module UART(
     input UART_RX,
@@ -22,11 +22,23 @@ wire RX_STATUS;
 
 wire reset_UBRG;
 
+// negedge_detc module to detect the negedge of reset
+// it generates a negative impluse to reset the UART_Baud_Rate_Generator Module
+
 negedge_detc NEG_inst(
 	.clk(sysclk),
 	.signal(reset),
 	.z(reset_UBRG)
 	);
+
+//////////////////////////
+
+// RX_EFF:
+// 1'b1: THE UART_RXD hasn't been read
+// 1'b0: THE UART_RXD has been read, and no new data has been received
+// basically, RX_EFF is a flag to tell whether the data stored in UART_RXD is unused
+
+//////////////////////////
 
 always @(posedge sysclk or negedge reset) begin
 	if (!reset) begin
@@ -40,6 +52,7 @@ always @(posedge sysclk or negedge reset) begin
 	end
 end
 
+// Generate the baud rate
 UART_Baud_Rate_Generator UBRG_inst(
 		.sysclk(sysclk),
 		.reset(reset_UBRG),
@@ -68,6 +81,9 @@ UART_Sender UART_Sender_inst(
 	);
 endmodule
 
+// The negedge_detc module is used to detect the negedge of some signal
+// Designed by FSM
+
 module negedge_detc(
 		input clk,
 		input signal,
@@ -81,55 +97,4 @@ module negedge_detc(
 	always @(posedge clk) begin
 		status <= status_next;
 	end
-endmodule
-
-module divider_16(
-    input clkin,
-    input reset,
-    output clkout
-    );
-	reg [2:0] 	state;
-	reg			clkout_reg;
-	assign clkout = clkout_reg;
-	
-	always @(posedge clkin or negedge reset) begin
-		if (!reset) begin
-			state <= 3'h0;
-			clkout_reg <= 0;
-		end
-		else if (state == 3'h7) begin
-			state <= 3'h0;
-			clkout_reg <= ~clkout_reg;
-		end
-		else begin
-			state <= state + 3'h1;
-		end
-	end
-
-endmodule
-
-module UART_Baud_Rate_Generator(
-    input sysclk,
-	 input reset,
-    output brclk
-    );
-
-	reg [8:0] 	state;
-	reg			clkout_reg;
-	assign brclk = clkout_reg;
-	
-	always @(posedge sysclk or negedge reset) begin
-		if (!reset) begin
-			state <= 9'h000;
-			clkout_reg <= 0;
-		end
-		else if (state == 9'h145) begin
-			state <= 9'h000;
-			clkout_reg <= ~clkout_reg;
-		end
-		else begin
-			state <= state + 9'h001;
-		end
-	end
-
 endmodule
