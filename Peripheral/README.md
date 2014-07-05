@@ -18,9 +18,9 @@ This module serves as the memory, including all the data and peripherals. The ad
 * 0x40000010: SWITCH
 * 0x40000014: DIGITS
 * 0x40000018~0x40000020: UART<br />
-0x40000018: `TX_EN`<br />
-0x40000019: `RX_EFF`<br />
-0x4000001A: `TX_STATUS`
+0x40000018 <-> `UART_TXD`<br />
+0x4000001C <- `UART_RXD`<br />
+0x40000020 -> `TX_EN`
 
 All the implements are based on the requirement except the `UART_CON`, and here is the detail.
 
