@@ -9,18 +9,30 @@ Here are all the peripherals for the CPU:
 * Instruction ROM
 * I/O device, leds, switch, digits, UART
 
-####DamtaMem Module
+#### DamtaMem Module
 This module serves as the memory, including all the data and peripherals. The address are allocated as following:
 
-* 0x00000000~0x000003ff: Data Memory
-* 0x40000000~0x4000000b: Timer
-* 0x4000000c: LEDs
-* 0x40000010: SWITCH
-* 0x40000014: DIGITS
-* 0x40000018~0x40000020: UART<br />
-0x40000018 <-> `UART_TXD`<br />
-0x4000001C <- `UART_RXD`<br />
-0x40000020 -> `TX_EN`
+(0xXXXXXXXX <- sth. means read<br />
+ 0xXXXXXXXX -> sth. measn write)
+
+
+* [0x00000000, 0x00000400) <-> Data Memory
+
+* [0x40000000, 0x4000000C) <-> Timer <br />
+  0x40000000 <-> TH <br />
+  0x40000004 <-> TL <br />
+  0x40000008 <-> [2:0]TCON <br />
+
+* 0x4000000C <-> [7:0]LEDs
+
+* 0x40000010 <- [7:0]SWITCH
+
+* 0x40000014 <-> [11:0]DIGITS
+
+* [0x40000018, 0x40000024) <-> UART <br />
+  0x40000018 <-> [7:0]UART_TXD <br />
+  0x4000001C <- [7:0]UART_RXD <br />
+  0x40000020 <- [2:0]UART_CON; 0x40000020 -> TX_EN
 
 All the implements are based on the requirement except the `UART_CON`, and here is the detail.
 

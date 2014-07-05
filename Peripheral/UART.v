@@ -12,14 +12,14 @@
 // This module is for I/O.
 // input:
 //   UART_RX: read the input bit by bit
-//   RX_READ: ?
+//   RX_READ: a feedback impulse of 1 that tells the UART that what it read has been used by outer modules
 //   [7:0]UART_TXD: what the user want to send
 //   TX_EN: set it to 1 as a new sending order
 //   sysclk
 //   reset
 // output:
 //   [7:0]UART_RXD: the 8-bit data it has just read
-//   RX_EFF: ?
+//   RX_EFF: 
 //   UART_TX: send data out bit by bit
 //   TX_STATUS: a flag of whether the sender is free, see UART_Sender.v
 //   

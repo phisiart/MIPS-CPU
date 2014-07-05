@@ -9,9 +9,7 @@
 // 2. Add specification
 
 // Peripheral
-// This module implements
-// 1.
-// 2.
+// This module implements the mapping from memory to peripherals.
 
 module Peripheral(
     input clk,
