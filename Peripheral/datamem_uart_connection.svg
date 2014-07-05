@@ -1,0 +1,235 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="1000.0" height="410.428497677">
+  <desc>Created by CircuitLab https://www.circuitlab.com/</desc><g transform="matrix(0.516262261229,0,0,0.516262261229,-1117.70779556,-661.331956634)">
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L61.666666666666664,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2325,1275)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L58,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1625)"/>
+    <rect x="2375" y="1300" width="1475" height="775" r="0" rx="0" ry="0" fill="none" stroke="none" style="stroke-opacity: 0;"/>
+    <rect x="2375" y="1300" width="1475" height="775" r="0" rx="0" ry="0" fill="none" stroke="#000000" stroke-dasharray="16,6" stroke-width="2"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L61,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1475)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L37.66666666666667,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1425)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L40.33333333333333,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1575)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L39,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1525)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L140.66666666666666,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,3425,1725)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L69,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,3425,1775)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L72.33333333333334,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,3425,1675)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L63.333333333333336,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1375)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L76.66666666666667,36Z" stroke-width="2" stroke-linejoin="round" transform="translate(3900,1325)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L47.666666666666664,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2325,1575)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L43.66666666666667,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2675,1775)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L67.33333333333334,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2675,1725)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L43.33333333333333,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2325,1625)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L67,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2675,1675)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L62.666666666666664,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2325,1525)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L47.666666666666664,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2325,1475)"/>
+    <path style="stroke-linejoin: round;" fill="#000000" stroke="#000000" d="M0,50L12,36L46,36Z" stroke-width="2" stroke-linejoin="round" transform="matrix(-1,0,0,1,2325,1425)"/>
+    <rect x="2712.5" y="1337.5" width="300" height="525" r="0" rx="0" ry="0" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <text fill="#000000" x="2862.5" y="1576" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 16px; font-weight: bold;"/>
+    <text fill="#000000" x="2862.5" y="1600" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 16px; font-weight: bold;">DataMem</text>
+    <text fill="#000000" x="2862.5" y="1624" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 16px; font-weight: bold;"/>
+    <path fill="none" stroke="#000000" d="M2700,1375L2712.5,1375" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1379" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">clk</text>
+    <text fill="#000000" x="2705" y="1372" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1425L2712.5,1425" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1429" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">reset</text>
+    <text fill="#000000" x="2705" y="1422" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1475L2712.5,1475" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1479" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">read</text>
+    <text fill="#000000" x="2705" y="1472" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1525L2712.5,1525" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1529" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">write</text>
+    <text fill="#000000" x="2705" y="1522" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1575L2712.5,1575" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1579" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">[31:0]addr</text>
+    <text fill="#000000" x="2705" y="1572" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1625L2712.5,1625" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1629" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">[31:0]wdata</text>
+    <text fill="#000000" x="2705" y="1622" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1375L3012.5,1375" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1379" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">[31:0]rdata</text>
+    <text fill="#000000" x="3020" y="1372" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1675L2712.5,1675" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1679" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">[7:0]switch</text>
+    <text fill="#000000" x="2705" y="1672" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1425L3012.5,1425" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1429" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">[11:0]digits</text>
+    <text fill="#000000" x="3020" y="1422" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1725L3012.5,1725" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1729" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">[7:0]UART_TXD</text>
+    <text fill="#000000" x="3020" y="1722" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1725L2712.5,1725" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1729" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">[7:0]UART_RXD</text>
+    <text fill="#000000" x="2705" y="1722" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1775L2712.5,1775" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1779" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">TX_STATUS</text>
+    <text fill="#000000" x="2705" y="1772" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M2700,1825L2712.5,1825" stroke-width="2"/>
+    <text fill="#000000" x="2720" y="1829" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">RX_EFF</text>
+    <text fill="#000000" x="2705" y="1822" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1825L3012.5,1825" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1829" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">TX_EN</text>
+    <text fill="#000000" x="3020" y="1822" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1775L3012.5,1775" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1779" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">RX_READ</text>
+    <text fill="#000000" x="3020" y="1772" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1575L3012.5,1575" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1579" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">read_acc</text>
+    <text fill="#000000" x="3020" y="1572" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1625L3012.5,1625" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1629" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">write_acc</text>
+    <text fill="#000000" x="3020" y="1622" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1475L3012.5,1475" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1479" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">interrupt</text>
+    <text fill="#000000" x="3020" y="1472" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3025,1525L3012.5,1525" stroke-width="2"/>
+    <text fill="#000000" x="3005" y="1529" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">[7:0]led</text>
+    <text fill="#000000" x="3020" y="1522" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 12px;"/>
+    <rect x="7" y="7" width="102" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2325,1425)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2301,1425)">
+      <tspan dy="7.2">read enable</tspan>
+    </text>
+    <rect x="7" y="7" width="107" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2325,1475)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2301,1475)">
+      <tspan dy="7.2">write enable</tspan>
+    </text>
+    <rect x="7" y="7" width="152" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2325,1525)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2301,1525)">
+      <tspan dy="7.2">address to access</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2325 1525 L 2700 1525" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2325 1575 L 2700 1575" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2325 1475 L 2700 1475" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="7" y="7" width="165" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2675,1675)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2651,1675)">
+      <tspan dy="7.2">data UART receives</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2325 1625 L 2700 1625" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="7" y="7" width="94" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2325,1625)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2301,1625)">
+      <tspan dy="7.2">8 switches</tspan>
+    </text>
+    <rect x="7" y="7" width="166" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2675,1725)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2651,1725)">
+      <tspan dy="7.2">UART sender status</tspan>
+    </text>
+    <rect x="7" y="7" width="95" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2675,1775)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2651,1775)">
+      <tspan dy="7.2">READ_EFF</tspan>
+    </text>
+    <rect x="7" y="7" width="107" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2325,1575)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2301,1575)">
+      <tspan dy="7.2">data to write</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2325 1675 L 2700 1675" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2425 1725 L 2700 1725" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2450 1775 L 2700 1775" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2475 1825 L 2700 1825" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="7" y="7" width="194" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1325)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1325)">
+      <tspan dy="7.2">data read from memory</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1375 L 3418 1375 A 7 7 0 1 1 3432 1375 L 3900 1375" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="7" y="7" width="154" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1375)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1375)">
+      <tspan dy="7.2">to control 12 digits</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1425 L 3418 1425 A 7 7 0 1 1 3432 1425 L 3900 1425" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="7" y="7" width="181" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,3425,1675)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(3401,1675)">
+      <tspan dy="7.2">data for UART to send</tspan>
+    </text>
+    <rect x="7" y="7" width="171" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,3425,1775)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(3401,1775)">
+      <tspan dy="7.2">UART sender enable</tspan>
+    </text>
+    <rect x="7" y="7" width="386" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,3425,1725)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(3401,1725)">
+      <tspan dy="7.2">feedback impulse of having used the UART read</tspan>
+    </text>
+    <rect x="7" y="7" width="81" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1525)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1525)">
+      <tspan dy="7.2">read_acc</tspan>
+    </text>
+    <rect x="7" y="7" width="85" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1575)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1575)">
+      <tspan dy="7.2">write_acc</tspan>
+    </text>
+    <rect x="7" y="7" width="77" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1425)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1425)">
+      <tspan dy="7.2">interrupt</tspan>
+    </text>
+    <rect x="7" y="7" width="147" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1475)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1475)">
+      <tspan dy="7.2">to control 8 LED's</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1575 L 3418 1575 A 7 7 0 1 1 3432 1575 L 3900 1575" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1625 L 3418 1625 A 7 7 0 1 1 3432 1625 L 3900 1625" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="3462.5" y="1637.5" width="250" height="325" r="0" rx="0" ry="0" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+    <text fill="#000000" x="3587.5" y="1776" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 16px; font-weight: bold;"/>
+    <text fill="#000000" x="3587.5" y="1800" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 16px; font-weight: bold;">UART</text>
+    <text fill="#000000" x="3587.5" y="1824" text-anchor="middle" text-decoration="none" style="font-family: Arial; font-size: 16px; font-weight: bold;"/>
+    <path fill="none" stroke="#000000" d="M3450,1675L3462.5,1675" stroke-width="2"/>
+    <text fill="#000000" x="3470" y="1679" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">UART_RX</text>
+    <text fill="#000000" x="3455" y="1672" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3725,1675L3712.5,1675" stroke-width="2"/>
+    <text fill="#000000" x="3705" y="1679" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">UART_TX</text>
+    <text fill="#000000" x="3720" y="1672" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3725,1825L3712.5,1825" stroke-width="2"/>
+    <text fill="#000000" x="3705" y="1829" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">[7:0]UART_RXD</text>
+    <text fill="#000000" x="3720" y="1822" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3450,1725L3462.5,1725" stroke-width="2"/>
+    <text fill="#000000" x="3470" y="1729" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">[7:0]UART_TXD</text>
+    <text fill="#000000" x="3455" y="1722" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3725,1925L3712.5,1925" stroke-width="2"/>
+    <text fill="#000000" x="3705" y="1929" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">RX_EFF</text>
+    <text fill="#000000" x="3720" y="1922" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3450,1775L3462.5,1775" stroke-width="2"/>
+    <text fill="#000000" x="3470" y="1779" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">RX_READ</text>
+    <text fill="#000000" x="3455" y="1772" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3725,1875L3712.5,1875" stroke-width="2"/>
+    <text fill="#000000" x="3705" y="1879" text-anchor="end" text-decoration="none" style="font-family: Arial; font-size: 12px;">TX_STATUS</text>
+    <text fill="#000000" x="3720" y="1872" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3450,1825L3462.5,1825" stroke-width="2"/>
+    <text fill="#000000" x="3470" y="1829" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">TX_EN</text>
+    <text fill="#000000" x="3455" y="1822" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3450,1875L3462.5,1875" stroke-width="2"/>
+    <text fill="#000000" x="3470" y="1879" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">sysclk</text>
+    <text fill="#000000" x="3455" y="1872" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path fill="none" stroke="#000000" d="M3450,1925L3462.5,1925" stroke-width="2"/>
+    <text fill="#000000" x="3470" y="1929" text-anchor="start" text-decoration="none" style="font-family: Arial; font-size: 12px;">reset</text>
+    <text fill="#000000" x="3455" y="1922" text-anchor="middle" style="font-family: Arial; font-size: 12px;"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1725 L 3450 1725" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1775 L 3450 1775" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1825 L 3450 1825" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2475 1825 L 2475 2000" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2475 2000 L 3750 2000" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3750 1925 L 3750 2000" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3725 1925 L 3750 1925" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2450 1775 L 2450 2025" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2450 2025 L 3775 2025" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3775 1875 L 3775 2025" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3725 1875 L 3775 1875" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2425 1725 L 2425 2050" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2425 2050 L 3800 2050" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3800 1825 L 3800 2050" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3725 1825 L 3800 1825" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1475 L 3418 1475 A 7 7 0 1 1 3432 1475 L 3900 1475" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3025 1525 L 3418 1525 A 7 7 0 1 1 3432 1525 L 3900 1525" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3725 1675 L 3900 1675" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <rect x="7" y="7" width="138" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="translate(3900,1625)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: start;" x="12" y="22" text-anchor="start" stroke="none" fill="#000000" transform="translate(3900,1625)">
+      <tspan dy="7.2">UART sender bit</tspan>
+    </text>
+    <rect x="7" y="7" width="149" height="29" r="5" rx="5" ry="5" fill="#ffffff" stroke="#000000" stroke-width="2" transform="matrix(-1,0,0,1,2325,1275)"/>
+    <text style="font-family: Arial; font-size: 16px; font-weight: bold; text-anchor: end;" x="12" y="22" text-anchor="end" stroke="none" fill="#000000" transform="translate(2301,1275)">
+      <tspan dy="7.2">UART receiver bit</tspan>
+    </text>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 2325 1325 L 3425 1325" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3425 1325 L 3425 1675" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <path style="stroke-linecap: round;" fill="none" stroke="#000000" d="M 3425 1675 L 3450 1675" stroke-width="2" stroke-linecap="round" class="cl_wire"/>
+    <circle cx="2675" cy="1725" r="3" fill="#000000" stroke="#000000"/>
+    <circle cx="2675" cy="1775" r="3" fill="#000000" stroke="#000000"/>
+    <circle cx="2675" cy="1825" r="3" fill="#000000" stroke="#000000"/>
+    <circle cx="3425" cy="1725" r="3" fill="#000000" stroke="#000000"/>
+    <circle cx="3425" cy="1825" r="3" fill="#000000" stroke="#000000"/>
+    <circle cx="3425" cy="1775" r="3" fill="#000000" stroke="#000000"/>
+  </g>
+</svg>
