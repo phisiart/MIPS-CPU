@@ -21,7 +21,7 @@
 //   [7:0]UART_RXD: the 8-bit data it has just read
 //   RX_EFF: 
 //   UART_TX: send data out bit by bit
-//   TX_STATUS: a flag of whether the sender is free, see UART_Sender.v
+//   TX_STATUS: 1 if the sender is free, see UART_Sender.v
 //   
 module UART(
     input UART_RX,
