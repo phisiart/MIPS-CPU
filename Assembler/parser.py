@@ -5,6 +5,9 @@ import ply.yacc as yacc
 from lex import tokens
 
 addr = 0x00400000
+kernaladdr = 0x80000000
+textaddr = 0x00400000
+kernal = False
 
 addrTags = {}
 
@@ -19,6 +22,10 @@ addrTags = {}
 
 def putins(ins):
     global addr
+    global kernaladdr
+    global textaddr
+    global kernal
+
     # global addrTags
     # if (addrTags.has_key(ins[0])):
     #     print '[0x%08X]  0x%08X  %s:' % (ins[0], ins[1], addrTags[ins[0]])
@@ -33,6 +40,10 @@ def putins(ins):
     # else:
     #     print
     addr += 4
+    if kernal:
+        kernaladdr += 4
+    else:
+        textaddr += 4
 
 
 def p_program(p):
@@ -48,6 +59,22 @@ def p_program(p):
             p[0] = [p[1]]
         else:
             p[0] = []
+
+def p_kernal(p):
+    '''instruction : DOT KERNAL'''
+    global kernal
+    global addr
+    kernal = True
+    addr = kernaladdr
+    pass
+
+def p_text(p):
+    '''instruction : DOT TEXT'''
+    global kernal
+    global addr
+    kernal = False
+    addr = textaddr
+    pass
 
 def p_tag(p):
     '''instruction : IDENTIFIER COLON'''

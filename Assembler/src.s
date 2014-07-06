@@ -1,7 +1,26 @@
-        li $s2 10         # line 1
-        li $s0 1          # line 2
-loop:   add $s1 $s1 $s0   # line 3
-        addi $s0 $s0 1    # line 4
-        bne $s0 $s2 loop  # line 5
-        add $v0 $s1 $0    # line 6
-        jr $ra            # line 7
+.kernal                 # starting from 0x80000000
+    j reset
+    j interrupt
+    j exception
+reset:
+    addi $ra $0 1
+    sll $ra $ra 22      # $ra = 0x00400000
+    jr $ra
+interrupt:
+    addi $ra $0 1
+    sll $ra $ra 22      # $ra = 0x00400000
+    jr $ra
+exception:
+    addi $ra $0 1
+    sll $ra $ra 22      # $ra = 0x00400000
+    jr $ra
+
+.text                   # starting from 0x00400000
+main:
+    addi $s2 $0 10
+    addi $s0 $0 1
+loop:   add $s1 $s1 $s0
+    addi $s0 $s0 1
+    bne $s0 $s2 loop
+    add $v0 $s1 $0
+    jr $ra

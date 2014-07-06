@@ -47,6 +47,8 @@ reserved = {
     'SP'    : r'sp'         ,
     'FP'    : r'fp'         ,
     'RA'    : r'ra'         ,
+    'KERNAL': r'kernal'     ,
+    'TEXT'  : r'text'       ,
 }
 
 for key in reserved.keys():
@@ -60,7 +62,8 @@ tokens = [
     'RBRACKET',     # )
     'NUMBER',       # number
     'REGPREFIX',    # $
-    'COLON'         # :
+    'COLON',        # :
+    'DOT',          # .
 ] + list(reserved.keys())
 
 # Regular expression rules for simple tokens
@@ -69,6 +72,7 @@ t_LBRACKET = r'\('
 t_RBRACKET = r'\)'
 t_REGPREFIX = r'\$'
 t_COLON = r'\:'
+t_DOT = r'\.'
 
 # 有的 token 也可以被定义为函数，参数为识别出来的 token，返回值还是 token
 

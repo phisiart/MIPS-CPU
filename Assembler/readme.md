@@ -56,6 +56,16 @@ It turns out QtSpim isn't implementing a standard MIPS. If you look at the bit-c
 
 Note that by standard I mean both the textbook and other online resources. It's QtSpim who doesn't follow the correct standard. I haven't find any other difference between my implementation and QtSpim. You should check the bitcode I generate with the one QtSpim generates in order to check for my errors, but the two cases above should be considered differently.
 
+### The `.kernal` and `.text` tags
+
+The CPU needs some kernal code to deal with interruptions and exceptions. All kernal code starts from 0x80000000 (note that `PC[31] = 1`) and all user specified code starts from 0x00400000.
+
+Use `.kernal` to tell the assembler that the following instructions are kernal code; use `.text` for user specified code. It is okay that you use these tags for multiple times. For example, you use `.kernal`, and `.text`, and `.kernal` again, then the second block of kernal code will be put right after the first block in the rom.
+
+### Jump from kernal to text
+
+You should notice that the `j` instruction cannot change `PC[31:28]`, so you cannot jump from kernal code to text code with `j`. You should use `$ra` to store an address and then use the `jr` instruction.
+
 ### Features:
 
 * comments are correctly ignored, feel free to write comments in your MIPS code.
