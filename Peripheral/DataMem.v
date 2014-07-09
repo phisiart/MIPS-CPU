@@ -62,6 +62,10 @@ module DataMem(
     integer i;
     reg [31:0] RAM_DATA[RAM_SIZE-1:0];
 
+    // stack size
+    parameter STACK_SIZE = 256;
+    reg [31:0] STACK_DATA[10'h3ff:10'h3ff - STACK_SIZE + 1];
+
     wire [1:0] addr_lower;
     wire [11:2] addr_word_align;	// word align addr
     wire [31:12] addr_upper;
@@ -93,6 +97,14 @@ module DataMem(
                     end
                 end
 
+                // read the stack
+                20'b0011_1111_1111_1111_1111: begin
+                    if (addr_eff > 10'h3ff - STACK_SIZE) begin
+                        rdata = STACK_DATA[addr_eff];
+                        read_acc = 1'b1;
+                    end
+                end
+
                 // read the peripheral
                 20'b0100_0000_0000_0000_0000: begin
                     read_acc = peripheral_racc;
@@ -118,11 +130,16 @@ module DataMem(
         if (~reset) begin
 
             // initialize everything to zero
-            // need more update to initialize the RAM with some user-defined data 
+            // need more update to initialize the RAM with some user-defined data
 
-            for (i = 1; i < RAM_SIZE; i = i + 1) begin
+            for (i = 0; i < RAM_SIZE; i = i + 1) begin
                 RAM_DATA[i] <= 32'h0;
             end
+
+            for (i = 0; i < STACK_SIZE; i = i + 1) begin
+                STACK_DATA[10'h3ff - i] <= 32'h0;
+            end
+
             write_acc <= 1'b0;
 
         end else if (write == 1'b1) begin
@@ -136,6 +153,14 @@ module DataMem(
                 20'b0: begin
                     if (addr_eff < RAM_SIZE) begin
                         RAM_DATA[addr_eff] <= wdata;
+                        write_acc <= 1'b1;
+                    end
+                end
+
+                // write the stack
+                20'b0011_1111_1111_1111_1111: begin
+                    if (addr_eff > 10'h3ff - STACK_SIZE) begin
+                        STACK_DATA[addr_eff] <= wdata;
                         write_acc <= 1'b1;
                     end
                 end
