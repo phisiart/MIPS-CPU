@@ -70,7 +70,7 @@ The Timer is used to generates break. During the break the CPU will stop executi
 
 ####RegisterFile Module
 
-Nothing special. Just use the provided code.
+Initialize the `$sp` to 0x3ffffffc.
 
 ####Instruction ROM Module
 
