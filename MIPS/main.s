@@ -12,7 +12,7 @@ main:
 	# $s5: DECODE AN1
 	# $s6: DECODE AN2
 	# $s7: DECODE AN3
-	# $s8: INDEX OF AN TO SHOW
+	# $t7: INDEX OF AN TO SHOW
 	##########################################
 
 	lui  $t0, 16384 	# $t0 = 0x40000000
@@ -48,25 +48,33 @@ EXIT_READ_LOOP_2:
 	srl $a0, $a0, 28
 	jal DECODER
 	sll $s4, $v0, 5
+	addi $t0, $zero, 7
+	or $s4, $s4, $t0
 
 
 	sll $a0, $s1, 28
 	srl $a0, $a0, 28
 	jal DECODER
 	sll $s5, $v0, 5
+	addi $t0, $zero, 11
+	or $s5, $s5, $t0
 
 	sll $a0, $s2, 24
 	srl $a0, $a0, 28
 	jal DECODER
 	sll $s6, $v0, 5
+	addi $t0, $zero, 13
+	or $s6, $s6, $t0
 
 	sll $a0, $s2, 28
 	srl $a0, $a0, 28
 	jal DECODER
 	sll $s7, $v0, 5
+	addi $t0, $zero, 14
+	or $s7, $s7, $t0
 
-	# set $s8
-	addi $s8, $zero, 7
+	# set $t7 to 0
+	add $t7, $zero, $zero
 
 	# find the greatest common divisor
 	add $a0, $s1, $zero
@@ -260,8 +268,6 @@ DECODER_RETURN:
 	
 
 
-
-
 .kernal
 	# the return address is stored in $k0($26)
 	# check the cause, which is stored in $k1($27)
@@ -271,7 +277,31 @@ DECODER_RETURN:
 	bne $k1, $zero, EXCEPTION
 INTERRUPT:
 	# use the DIGITs to show the parameters
+	bne  $t7, $zero, INTERRUPT_NOT_0
+	sw 	 $s4, -12($s0)
+	addi $t7, $zero, 1
+	j KERNAL_RETURN
 
+INTERRUPT_NOT_0:
+	addi $t0, $zero, 1
+	bne  $t7, $t0, INTERRUPT_NOT_1
+	sw 	 $s5, -12($s0)
+	addi $t7, $zero, 2
+	j KERNAL_RETURN
+
+INTERRUPT_NOT_1:
+	addi $t0, $zero, 2
+	bne  $t7, $t0, INTERRUPT_NOT_2
+	sw 	 $s6, -12($s0)
+	addi $t7, $zero, 3
+	j KERNAL_RETURN
+
+INTERRUPT_NOT_2:
+	sw 	 $s7, -12($s0)
+	addi $t7, $zero, 0
+	j KERNAL_RETURN
 
 EXCEPTION:
 
+KERNAL_RETURN:
+	jr $k0

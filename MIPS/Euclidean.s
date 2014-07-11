@@ -1,11 +1,11 @@
 main:
-	li $a0, 8
-	li $a1, 5
+	addi $a0, $zero, 8
+	addi $a1, $zero, 5
 	jal Euclidean
-	move $a0, $v0
-	li $v0, 1
+	add $a0, $v0, $zero
+	addi $v0, $zero, 1
 	syscall
-	li $v0, 10
+	addi $v0, $zero, 10
 	syscall
 
 Euclidean:
