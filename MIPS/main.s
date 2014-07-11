@@ -69,11 +69,11 @@ EXIT_READ_LOOP_2:
 	addi $s8, $zero, 7
 
 	# find the greatest common divisor
-	addi $a0, $s1, $zero
-	addi $a1, $s2. $zero
+	add $a0, $s1, $zero
+	add $a1, $s2. $zero
 	jal Euclidean
-	addi $s3, $v0, $zero
-	
+	add $s3, $v0, $zero
+
 	# use the LEDs to show the result
 	sw  $s3, -20($s0)
 
@@ -270,7 +270,7 @@ DECODER_RETURN:
 
 	bne $k1, $zero, EXCEPTION
 INTERRUPT:
-	# decode the parameters and use the DIGITs to show them
+	# use the DIGITs to show the parameters
 
 
 EXCEPTION:
