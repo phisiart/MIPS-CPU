@@ -77,7 +77,7 @@ t_DOT = r'\.'
 # 有的 token 也可以被定义为函数，参数为识别出来的 token，返回值还是 token
 
 def t_NUMBER(t):
-    r'[0-9][0-9a-zA-Z]*'
+    r'(-)?[0-9][0-9a-zA-Z]*'
     t.value = int(t.value)
     return t
 
@@ -94,7 +94,7 @@ def t_IDENTIFIER(t):
             return t
     return t
 
-t_ignore = " \t"
+t_ignore = " \t,"
 
 def t_newline(t):
     r'\n+'
