@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys, os
-from parser import *
+from mipsyacc import *
 
 def print_inst(ins):
     global addrTags

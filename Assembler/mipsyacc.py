@@ -2,7 +2,7 @@
 
 import ply.yacc as yacc
 
-from lex import tokens
+from mipslex import tokens
 
 addr = 0x00400000
 kernaladdr = 0x80000000
