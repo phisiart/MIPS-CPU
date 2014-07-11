@@ -1,7 +1,9 @@
 .text
 
 main:
-	# initialize
+	# this is basically the same as main.s
+	# except all the code dealing with peripherals
+	# initialize $s1, $s2 directly for test
 
 	##########################################
 	# $s0: UART_CON ADDRESS 	0x40000020
@@ -20,28 +22,8 @@ main:
 	# set $s0 to the address of UART_CON
 	addi $s0, $t0, 32
 
-READ_LOOP_1:
-	# this loop is to read the first parameter from UART
-	lw  $t0, 0($s0)
-	sll $t0, $t0, 30
-	srl $t0, $t0, 31 	# $t0: 0 bit is RX_EFF
-	bne $t0, $zero, EXIT_READ_LOOP_1
-	j READ_LOOP_1
-
-EXIT_READ_LOOP_1:
-	# get the first parameter into $a0
-	lw  $s1, -4($s0)
-
-READ_LOOP_2:
-	# this loop is to read the second parameter from UART
-	lw  $t0, 0($s0)
-	sll $t0, $t0, 30
-	srl $t0, $t0, 31 	# $t0: 0 bit is RX_EFF
-	bne $t0, $zero, EXIT_READ_LOOP_2
-	j READ_LOOP_2
-
-EXIT_READ_LOOP_2:
-	lw 	$s2, -4($s0)
+	addi $s1, $zero, 54
+	addi $s2, $zero, 45
 
 	# decode the parameter
 	sll $a0, $s1, 24
@@ -82,26 +64,8 @@ EXIT_READ_LOOP_2:
 	jal Euclidean
 	add $s3, $v0, $zero
 
-	# use the LEDs to show the result
-	sw  $s3, -20($s0)
-
-	# save the result to UART_TXD
-	sw  $s3, -8($s0)
-SEND_LOOP:
-	# this loop is to send the result through UART
-	lw  $t0, 0($s0)
-	sll $t0, $t0, 29
-	srl $t0, $t0, 31 	# $t0: 0 bit is TX_STATUS
-	bne $t0, $zero, SEND
-	j SEND_LOOP 
-
-SEND:
-	# now the UART_Sender is available
-	# set TX_EN to send the result in UART_TXD
-	addi $t0, $zero, 1
-	sw   $t0, 0($s0)
-	sw 	 $zero, 0($s0)
-	j READ_LOOP_1
+	addi $v0, $zero, 10
+	syscall
 
 Euclidean:
 	# save $s0, $s1 to the stack
@@ -266,43 +230,3 @@ DECODER_NOT_E:
 DECODER_RETURN:
 	jr $ra
 	
-
-
-.kernal
-	# the return address is stored in $k0($26)
-	# check the cause, which is stored in $k1($27)
-	# $k1 == 1: Undefined Instruction Exception
-	# $k1 == 0: Interrupt from IO
-
-	bne $k1, $zero, EXCEPTION
-INTERRUPT:
-	# use the DIGITs to show the parameters
-	bne  $t7, $zero, INTERRUPT_NOT_0
-	sw 	 $s4, -12($s0)
-	addi $t7, $zero, 1
-	j KERNAL_RETURN
-
-INTERRUPT_NOT_0:
-	addi $t0, $zero, 1
-	bne  $t7, $t0, INTERRUPT_NOT_1
-	sw 	 $s5, -12($s0)
-	addi $t7, $zero, 2
-	j KERNAL_RETURN
-
-INTERRUPT_NOT_1:
-	addi $t0, $zero, 2
-	bne  $t7, $t0, INTERRUPT_NOT_2
-	sw 	 $s6, -12($s0)
-	addi $t7, $zero, 3
-	j KERNAL_RETURN
-
-INTERRUPT_NOT_2:
-	sw 	 $s7, -12($s0)
-	addi $t7, $zero, 0
-	j KERNAL_RETURN
-
-EXCEPTION:
-	j KERNAL_RETURN
-
-KERNAL_RETURN:
-	jr $k0
