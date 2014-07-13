@@ -1,0 +1,3 @@
+verilog work "../divider_16.v"
+verilog work "../UART_Receiver.v"
+verilog work "../test_UART_Receiver.v"

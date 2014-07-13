@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="NgdBuild" num="578" delta="new" >Design contains no instances.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;sysclk&apos; LOC = &apos;V10&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(3)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">sysclk</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;sysclk&apos; LOC = &apos;V10&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(3)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;reset&apos; LOC = &apos;T10&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(4)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">reset</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;reset&apos; LOC = &apos;T10&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(4)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[0]&apos; 			LOC = &apos;U16&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(6)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[0]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[0]&apos; 			LOC = &apos;U16&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(6)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[1]&apos; 			LOC = &apos;V16&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(7)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[1]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[1]&apos; 			LOC = &apos;V16&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(7)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[2]&apos; 			LOC = &apos;U15&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(8)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[2]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[2]&apos; 			LOC = &apos;U15&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(8)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[3]&apos; 			LOC = &apos;V15&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(9)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[3]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[3]&apos; 			LOC = &apos;V15&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(9)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[4]&apos; 			LOC = &apos;M11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(10)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[4]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[4]&apos; 			LOC = &apos;M11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(10)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[5]&apos; 			LOC = &apos;N11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(11)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[5]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[5]&apos; 			LOC = &apos;N11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(11)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[6]&apos; 			LOC = &apos;R11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(12)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[6]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[6]&apos; 			LOC = &apos;R11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(12)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;led[7]&apos; 			LOC = &apos;T11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(13)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">led[7]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;led[7]&apos; 			LOC = &apos;T11&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(13)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;UART_RX&apos; LOC = &apos;N17&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(15)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">UART_RX</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;UART_RX&apos; LOC = &apos;N17&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(15)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;UART_TX&apos; LOC = &apos;N18&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(16)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">UART_TX</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;UART_TX&apos; LOC = &apos;N18&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(16)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[1]&apos; 			LOC = &apos;T9&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(19)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[1]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[1]&apos; 			LOC = &apos;T9&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(19)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[2]&apos; 			LOC = &apos;V9&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(20)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[2]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[2]&apos; 			LOC = &apos;V9&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(20)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[3]&apos; 			LOC = &apos;M8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(21)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[3]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[3]&apos; 			LOC = &apos;M8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(21)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[4]&apos; 			LOC = &apos;N8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(22)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[4]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[4]&apos; 			LOC = &apos;N8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(22)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[5]&apos; 			LOC = &apos;U8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(23)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[5]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[5]&apos; 			LOC = &apos;U8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(23)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[6]&apos; 			LOC = &apos;V8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(24)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[6]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[6]&apos; 			LOC = &apos;V8&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(24)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="ConstraintSystem" num="59" delta="new" >Constraint <arg fmt="%s" index="1">&lt;NET &apos;switch[7]&apos; 			LOC = &apos;T5&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(25)]</arg>: <arg fmt="%s" index="2">NET</arg> &quot;<arg fmt="%s" index="3">switch[7]</arg>&quot; not found.  Please verify that:
+1. The specified design element actually exists in the original design.
+2. The specified object is spelled correctly in the constraint source file.
+</msg>
+
+<msg type="warning" file="ConstraintSystem" num="0" >A target design object for the Locate constraint &apos;&lt;NET &apos;switch[7]&apos; 			LOC = &apos;T5&apos;;&gt; [/home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf(25)]&apos; could not be found and so the Locate constraint will be removed.
+</msg>
+
+<msg type="error" file="NgdBuild" num="605" delta="new" ><arg fmt="%s" index="1">logical</arg> root block &apos;<arg fmt="%s" index="2">test_DataMem</arg>&apos; with type &apos;<arg fmt="%s" index="3">test_DataMem</arg>&apos; is unexpanded. Symbol &apos;<arg fmt="%s" index="4">test_DataMem</arg>&apos; is not supported in target &apos;<arg fmt="%s" index="5">spartan6</arg>&apos;.
+</msg>
+
+</messages>
+

@@ -12,7 +12,7 @@ if __name__ == '__main__':
 
 module ROM(
     input [31:0] addr,
-    output [31:0] data
+    output reg[31:0] data
 );
 
     always @(*) begin

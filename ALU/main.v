@@ -32,9 +32,9 @@ module main;
     reg Signed;
     reg[5:0] ALUFunc;
     wire[31:0] S;
-
+    reg pulse;
     ALU m_alu(A, B, Signed, ALUFunc, S);
-
+    ALUPrinter m_printer(A, B, Signed, ALUFunc, S, pulse);
     initial begin
 
         $display("-------------- Testbench for ALU --------------");
@@ -44,7 +44,10 @@ module main;
         B = -35;
         Signed = 1;
         ALUFunc = ALUFUNC_AND;
-        #20 $display("%b = A\n%b = B\n%b = A and B\n", A, B, S);
+        pulse = 0;
+        #20 pulse = 1;
+        $display("%b = A\n%b = B\n%b = A and B\n", A, B, S);
+        #1 pulse = 0;
 
         ALUFunc = ALUFUNC_OR;
         #20 $display("%b = A\n%b = B\n%b = A or B\n", A, B, S);

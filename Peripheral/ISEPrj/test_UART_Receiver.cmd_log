@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/johnson/GitHub/CPU/Peripheral/ISEPrj/test_UART_Receiver.xst" -ofn "/home/johnson/GitHub/CPU/Peripheral/ISEPrj/test_UART_Receiver.syr" 

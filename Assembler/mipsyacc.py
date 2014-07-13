@@ -206,7 +206,7 @@ def p_andi(p):
     '''instruction : ANDI register register NUMBER'''
     p[0] = [
         addr,
-        (0b000110 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
+        (0b001100 << 26) | (p[3][0] << 21) | (p[2][0] << 16) | (p[4] % (1 << 16)),
         'andi ' + p[2][1] + ' ' + p[3][1] + ' ' + str(p[4])
     ]
     putins(p[0])
@@ -410,7 +410,10 @@ def p_register(p):
     p[0] = [p[2], '$' + str(p[2])]
 
 def p_error(p):
-    print('\033[93mParser error\033[0m at or near \033[93m%s\033[0m of line %d' % (p.value, p.lexer.lineno))
+    if (p == None):
+        print('error')
+    else:
+        print('\033[93mParser error\033[0m at or near \033[93m%s\033[0m of line %d' % (p.value, p.lexer.lineno))
 
 params = {}
 

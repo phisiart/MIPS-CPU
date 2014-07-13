@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import ply.lex as lex
 import re
+import sys
 
 # Reserved keywords.
 # 保留关键字
@@ -161,6 +162,13 @@ loop:   add $s1 $s1 $s0   # line 2
         add $v0 $s1 $0    # line 5
         jr $ra            # line 6
     '''
+
+    if len(sys.argv) >= 2:
+        source_file_name = sys.argv[1]
+        source_file_handle = open(source_file_name, 'r')
+        source_code = source_file_handle.read()
+        source_file_handle.close()
+        data = source_code
 
     lexer.input(data)
     

@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/johnson/GitHub/CPU/Peripheral/ISEPrj/DataMem.xst" -ofn "/home/johnson/GitHub/CPU/Peripheral/ISEPrj/DataMem.syr" 

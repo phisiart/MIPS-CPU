@@ -1,0 +1,2 @@
+verilog work "../Peripheral.v"
+verilog work "../DataMem.v"
