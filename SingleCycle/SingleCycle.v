@@ -1,0 +1,4 @@
+module SingleCycle(
+);
+
+endmodule
