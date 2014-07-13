@@ -58,19 +58,21 @@ module Control(
     // RegWr
     // -----
     // Whether to write reg.
+    parameter REGWR_ENABLE  = 1'b1;
+    parameter REGWR_DISABLE = 1'b0;
     assign RegWr = ;
 
     // ALUSrc1
     // -------
     // Whether to use shamt or databus A (Rs).
-    parameter ALUSRC1_Rs    = 1'b0;
+    parameter ALUSRC1_RS    = 1'b0;
     parameter ALUSRC1_SHAMT = 1'b1;
     assign ALUSrc1 = ;
 
     // ALUSrc2
     // -------
     // Whether to use databus B (Rt) or not.
-    parameter ALUSRC2_Rt   = 1'b0;
+    parameter ALUSRC2_RT   = 1'b0;
     parameter ALUSRC2_ELSE = 1'b1;
     assign ALUSrc2 = ;
 
@@ -99,17 +101,105 @@ module Control(
 
     always @(*) begin
         case (Format)
-        FORMAT_LW: begin
-            ALUSrc1 = ALUSRC1_Rs;
-            ALUSrc2 = ALUSrc2_ELSE; // Take the Imm16
-            ALUFun  = ALUFUNC_ADD;
+        FORMAT_LW: begin // lw $rt imm($rs)
+            PCSrc    = PCSRC_NORMAL;
+            ALUSrc1  = ALUSRC1_RS;
+            ALUSrc2  = ALUSRC2_ELSE; // Take the imm
+            ALUFun   = ALUFUNC_ADD;  // $RS + imm
+            Sign     = SIGN_SIGNED;  // signed
+            MemRd    = MEMRD_ENABLE; // Read memory
+            MemWr    = MEMWR_DISABLE;
+            MemToReg = MEMTOREG_LOAD;
+            RegWr    = REGWR_ENABLE;
+            RegDst   = REGDST_RT;
+            EXTOp    = EXTOP_SIGNED;
+            LUOp     = LUOP_DISABLE;
         end
-        FORMAT_SW:    $display("sw");
-        FORMAT_LUI:   $display("lui");
-        FORMAT_ADDI:  $display("addi");
-        FORMAT_ADDIU: $display("addiu");
-        FORMAT_ANDI:  $display("andi");
-        FORMAT_SLTI:  $display("slti");
+        FORMAT_SW: begin // sw $rt imm($rs)
+            PCSrc    = PCSRC_NORMAL;
+            ALUSrc1  = ALUSRC1_RS;
+            ALUSrc2  = ALUSRC2_ELSE; // Take imm
+            ALUFun   = ALUFUNC_ADD;
+            Sign     = SIGN_SIGNED;
+            MemRd    = MEMRD_DISABLE;
+            MemWr    = MEMWR_ENABLE;
+            MemToReg = 0;
+            RegWr    = REGWR_DISABLE;
+            RegDst   = 0;
+            EXTOp    = EXTOP_SIGNED;
+            LUOp     = LUOP_DISABLE;
+        end
+        FORMAT_LUI: begin // lui $rt imm (my assembler set $rs = $zero)
+            PCSrc    = PCSRC_NORMAL;
+            ALUSrc1  = ALUSRC1_RS;
+            ALUSrc2  = ALUSRC2_ELSE;
+            ALUFun   = ALUFUNC_ADD;
+            Sign     = SIGN_SIGNED;
+            MemRd    = MEMRD_DISABLE;
+            MemWr    = MEMWR_DISABLE;
+            MemToReg = MEMTOREG_ALU;
+            RegWr    = REGWR_ENABLE;
+            RegDst   = REGDST_RT;
+            EXTOp    = 0;
+            LUOp     = LUOP_ENABLE;
+        end
+        FORMAT_ADDI: begin
+            PCSrc    = PCSRC_NORMAL;
+            ALUSrc1  = ALUSRC1_RS;
+            ALUSrc2  = ALUSRC2_ELSE;
+            ALUFun   = ALUFUNC_ADD;
+            Sign     = SIGN_SIGNED;
+            MemRd    = MEMRD_DISABLE;
+            MemWr    = MEMWR_DISABLE;
+            MemToReg = MEMTOREG_ALU;
+            RegWr    = REGWR_ENABLE;
+            RegDst   = 
+            EXTOp    = 
+            LUOp     = 
+        end
+
+        FORMAT_ADDIU: begin
+            PCSrc    = 
+            ALUSrc1  = 
+            ALUSrc2  = 
+            ALUFun   = 
+            Sign     = 
+            MemRd    = 
+            MemWr    = 
+            MemToReg = 
+            RegWr    = 
+            RegDst   = 
+            EXTOp    = 
+            LUOp     = 
+        end
+        FORMAT_ANDI: begin
+            PCSrc    = 
+            ALUSrc1  = 
+            ALUSrc2  = 
+            ALUFun   = 
+            Sign     = 
+            MemRd    = 
+            MemWr    = 
+            MemToReg = 
+            RegWr    = 
+            RegDst   = 
+            EXTOp    = 
+            LUOp     = 
+        end
+        FORMAT_SLTI: begin
+            PCSrc    = 
+            ALUSrc1  = 
+            ALUSrc2  = 
+            ALUFun   = 
+            Sign     = 
+            MemRd    = 
+            MemWr    = 
+            MemToReg = 
+            RegWr    = 
+            RegDst   = 
+            EXTOp    = 
+            LUOp     = 
+        end
         FORMAT_SLTIU: $display("sltiu");
         FORMAT_BEQ:   $display("beq");
         FORMAT_BNE:   $display("bne");
@@ -151,11 +241,15 @@ module Control(
     // MemWr
     // -----
     // Whether to write memory.
+    parameter MEMWR_ENABLE  = 1'b1;
+    parameter MEMWR_DISABLE = 1'b0;
     assign MemWr = ;
 
     // MemRd
     // -----
     // Whether to read memory.
+    parameter MEMRD_ENABLE  = 1'b1;
+    parameter MEMRD_DISABLE = 1'b0;
     assign MemRd = ;
 
     // MemToReg
@@ -174,7 +268,9 @@ module Control(
     
     // LUOp
     // ----
-    // Whether to get imm16
+    // Whether to get imm16 to MSB
+    parameter LUOP_ENABLE  = 1'b1;
+    parameter LUOP_DISABLE = 1'b0;
     assign LUOp = ;
     
 endmodule
