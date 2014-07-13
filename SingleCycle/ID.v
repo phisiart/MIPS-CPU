@@ -1,12 +1,14 @@
 module ID(
+    input wire reset,
+    input wire clk,
     input wire[2:0] PCSrc,
     input wire[31:0] ConBA,
     input wire ALUOut0,
     input wire[31:0] DataBusA,
-    output reg[31:0] PC
+    output reg[31:0] PC,
+    output reg[31:0] NewPC
 );
 
-    reg[31:0] NewPC;
     parameter PCSRC_NORMAL = 3'b000; // PC + 4
     parameter PCSRC_BRANCH = 3'b001; // for branches, could be ConBA or PC + 4
     parameter PCSRC_JUMP   = 3'b010; // jump

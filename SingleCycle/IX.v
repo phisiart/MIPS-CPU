@@ -7,6 +7,7 @@ module IX(
     input wire[31:0] WriteData,
 
     output wire[31:0] DataBusA,
+    output wire[31:0] DataBusB,
     output wire[31:0] ConBA,
 
     output reg[31:0] ALUIn1,
@@ -65,8 +66,6 @@ module IX(
         .EXTOp(EXTOp),
         .LUOp(LUOp)
     );
-
-    wire[31:0] DataBusB;
 
     parameter REGDST_RD = 2'b00; // R-type instruction
     parameter REGDST_RT = 2'b01; // I-type instruction
