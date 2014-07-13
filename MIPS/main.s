@@ -270,11 +270,12 @@ DECODER_RETURN:
 
 .kernal
 	# the return address is stored in $k0($26)
-	# check the cause, which is stored in $k1($27)
-	# $k1 == 1: Undefined Instruction Exception
-	# $k1 == 0: Interrupt from IO
+	# vectored exception handler
+	# 0x80000000: Undefined Instruction Exception
+	# 0x80000004: Interrupt from IO
 
-	bne $k1, $zero, EXCEPTION
+	j EXCEPTION
+	j INTERRUPT
 INTERRUPT:
 	# use the DIGITs to show the parameters
 	bne  $t7, $zero, INTERRUPT_NOT_0
