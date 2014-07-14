@@ -28,4 +28,12 @@ module ID(
         endcase
     end
 
+    always @(posedge clk or negedge reset) begin
+        if (~reset) begin
+            PC = 32'h00400000;
+        end else begin
+            PC = NewPC;
+        end
+    end
+
 endmodule

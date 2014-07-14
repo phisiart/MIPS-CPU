@@ -6,9 +6,11 @@ module IX(
     input wire[31:0] NewPC,
     input wire[31:0] WriteData,
 
+    output wire[31:0] instruction,
     output wire[31:0] DataBusA,
     output wire[31:0] DataBusB,
     output wire[31:0] ConBA,
+    output reg[4:0] addr3,
 
     output reg[31:0] ALUIn1,
     output reg[31:0] ALUIn2,
@@ -36,7 +38,6 @@ module IX(
     output wire LUOp
 );
 
-    wire[31:0] instruction;
     ROM rom(
         .addr(PC),
         .data(instruction)
@@ -73,7 +74,7 @@ module IX(
     parameter REGDST_XP = 2'b11; // exception
     parameter Ra        = 5'b11111; // 31
     parameter Xp        = 5'b11010; // 26
-    reg[4:0] addr3;
+    
     always @(*) begin
         case (RegDst)
         REGDST_RD: addr3 = Rd;
@@ -135,7 +136,6 @@ module IX(
         end
         endcase
     end
-
 
 
 endmodule

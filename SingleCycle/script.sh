@@ -1,4 +1,4 @@
-iverilog -Wall \
+iverilog  \
          ../Peripheral/regfile.v \
          ../Peripheral/UART.v \
          ../Peripheral/DataMem.v \
@@ -12,6 +12,9 @@ iverilog -Wall \
          Control.v \
          rom.v \
          MEM.v \
+         ../Peripheral/RegPrint.v \
+         ../Peripheral/DataMemPrint.v \
+         InstPrint.v \
          SingleCycle.v \
          ../ALU/ADD.v \
          ../ALU/ALU.v \

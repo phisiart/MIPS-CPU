@@ -12,11 +12,11 @@
 //     S[31:0]       The upper 5 are connected to an ALU
 //     pulse         The posedge triggers a print
 module ALUPrinter(
-    input wire[31:0] A,
-    input wire[31:0] B,
+    input wire signed[31:0] A,
+    input wire signed[31:0] B,
     input wire Signed,
     input wire[5:0] ALUFunc,
-    input wire[31:0] S,
+    input wire signed[31:0] S,
     input wire pulse
 );
     parameter ALU_ARITH = 2'b00;
@@ -44,32 +44,36 @@ module ALUPrinter(
     parameter ALUFUNC_GTZ = 6'b111111;
 
     always @(posedge pulse) begin
-        $display("ALUFunc = %6b (%d)", ALUFunc, ALUFunc);
+        $display("  ---");
+        $display("  ALU");
+        $display("  ---");
+        $display("    ALUFunc = %6b (%d)", ALUFunc, ALUFunc);
         case (ALUFunc)
-        ALUFUNC_ADD: $display("ADD");
-        ALUFUNC_SUB: $display("SUB");
-        ALUFUNC_AND: $display("AND");
-        ALUFUNC_OR:  $display("OR");
-        ALUFUNC_XOR: $display("XOR");
-        ALUFUNC_NOR: $display("NOR");
-        ALUFUNC_A:   $display("A");
-        ALUFUNC_SLL: $display("SLL");
-        ALUFUNC_SRL: $display("SRL");
-        ALUFUNC_SRA: $display("SRA");
-        ALUFUNC_EQ:  $display("EQ");
-        ALUFUNC_NEQ: $display("NEQ");
-        ALUFUNC_LT:  $display("LT");
-        ALUFUNC_LEZ: $display("LEZ");
-        ALUFUNC_GEZ: $display("GEZ");
-        ALUFUNC_GTZ: $display("GTZ");
+        ALUFUNC_ADD: $display("    ADD");
+        ALUFUNC_SUB: $display("    SUB");
+        ALUFUNC_AND: $display("    AND");
+        ALUFUNC_OR:  $display("    OR");
+        ALUFUNC_XOR: $display("    XOR");
+        ALUFUNC_NOR: $display("    NOR");
+        ALUFUNC_A:   $display("    A");
+        ALUFUNC_SLL: $display("    SLL");
+        ALUFUNC_SRL: $display("    SRL");
+        ALUFUNC_SRA: $display("    SRA");
+        ALUFUNC_EQ:  $display("    EQ");
+        ALUFUNC_NEQ: $display("    NEQ");
+        ALUFUNC_LT:  $display("    LT");
+        ALUFUNC_LEZ: $display("    LEZ");
+        ALUFUNC_GEZ: $display("    GEZ");
+        ALUFUNC_GTZ: $display("    GTZ");
         endcase
         if (Signed) begin
-            $display("Signed");
+            $display("    Signed");
         end else begin
-            $display("Unsigned");
+            $display("    Unsigned");
         end
-        $display("A = %32b (%d)", A, A);
-        $display("B = %32b (%d)", B, B);
-        $display("S = %32b (%d)", S, S);
+        $display("    A = 32'b%32b, 8'h%08H, int(%d)", A, A, A);
+        $display("    B = 32'b%32b, 8'h%08H, int(%d)", B, B, B);
+        $display("    S = 32'b%32b, 8'h%08H, int(%d)", S, S, S);
+        $display("");
     end
 endmodule

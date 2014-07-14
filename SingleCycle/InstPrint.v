@@ -1,8 +1,17 @@
 module InstPrint(
+    input wire[31:0] PC,
     input wire[31:0] instruction,
     input wire pulse
 );
-    
+    wire[5:0] Format;
+    wire[5:0] Funct;
+    wire[25:0] JT;
+    wire signed[15:0] Imm16;
+    wire[4:0] Shamt;
+    wire[4:0] Rd;
+    wire[4:0] Rt;
+    wire[4:0] Rs;
+
     assign Format = instruction[31:26];
     assign JT = instruction[25:0];
     assign Imm16 = instruction[15:0];
@@ -46,53 +55,54 @@ module InstPrint(
     parameter FUNCT_JALR = 6'b001001;
 
     always @(posedge pulse) begin
+        $display("-----------");
         $display("Instruction");
         $display("-----------");
-
+        $display("  PC = %08x", PC);
         case (Format)
-        FORMAT_LW:    $display("lw");
-        FORMAT_SW:    $display("sw");
-        FORMAT_LUI:   $display("lui");
-        FORMAT_ADDI:  $display("addi");
-        FORMAT_ADDIU: $display("addiu");
-        FORMAT_ANDI:  $display("andi");
-        FORMAT_SLTI:  $display("slti");
-        FORMAT_SLTIU: $display("sltiu");
-        FORMAT_BEQ:   $display("beq");
-        FORMAT_BNE:   $display("bne");
-        FORMAT_BLEZ:  $display("blez");
-        FORMAT_BGTZ:  $display("bgtz");
-        FORMAT_BLTZ:  $display("bltz");
-        FORMAT_J:     $display("j");
-        FORMAT_JAL:   $display("jal");
+        FORMAT_LW:    $display("  lw");
+        FORMAT_SW:    $display("  sw");
+        FORMAT_LUI:   $display("  lui");
+        FORMAT_ADDI:  $display("  addi");
+        FORMAT_ADDIU: $display("  addiu");
+        FORMAT_ANDI:  $display("  andi");
+        FORMAT_SLTI:  $display("  slti");
+        FORMAT_SLTIU: $display("  sltiu");
+        FORMAT_BEQ:   $display("  beq");
+        FORMAT_BNE:   $display("  bne");
+        FORMAT_BLEZ:  $display("  blez");
+        FORMAT_BGTZ:  $display("  bgtz");
+        FORMAT_BLTZ:  $display("  bltz");
+        FORMAT_J:     $display("  j");
+        FORMAT_JAL:   $display("  jal");
         endcase
 
         if (Format == FORMAT_R) begin
             case (Funct)
-                FUNCT_ADD:  $display("add");
-                FUNCT_ADDU: $display("addu");
-                FUNCT_SUB:  $display("sub");
-                FUNCT_SUBU: $display("subu");
-                FUNCT_AND:  $display("and");
-                FUNCT_OR:   $display("or");
-                FUNCT_XOR:  $display("xor");
-                FUNCT_NOR:  $display("nor");
-                FUNCT_SLL:  $display("sll");
-                FUNCT_SRL:  $display("srl");
-                FUNCT_SRA:  $display("sra");
-                FUNCT_SLT:  $display("slt");
-                FUNCT_JR:   $display("jr");
-                FUNCT_JALR: $display("jalr");
+                FUNCT_ADD:  $display("  add");
+                FUNCT_ADDU: $display("  addu");
+                FUNCT_SUB:  $display("  sub");
+                FUNCT_SUBU: $display("  subu");
+                FUNCT_AND:  $display("  and");
+                FUNCT_OR:   $display("  or");
+                FUNCT_XOR:  $display("  xor");
+                FUNCT_NOR:  $display("  nor");
+                FUNCT_SLL:  $display("  sll");
+                FUNCT_SRL:  $display("  srl");
+                FUNCT_SRA:  $display("  sra");
+                FUNCT_SLT:  $display("  slt");
+                FUNCT_JR:   $display("  jr");
+                FUNCT_JALR: $display("  jalr");
             endcase
         end
 
-        $display("format = %06b (%d)", Format, Format);
-        $display("JT = %026b (%d)", JT, JT);
-        $display("Imm16 = %016b (%d)", Imm16, Imm16);
-        $display("Shamt = %05b (%d)", Shamt, Shamt);
-        $display("Rd = %05b (%d)", Rd, Rd);
-        $display("Rt = %05b (%d)", Rt, Rt);
-        $display("Rs = %05b (%d)", Rs, Rs);
+        $display("  format = %06b (%d)", Format, Format);
+        $display("  JT = %026b (%d)", JT, JT);
+        $display("  Imm16 = %016b (%d)", Imm16, Imm16);
+        $display("  Shamt = %05b (%d)", Shamt, Shamt);
+        $display("  Rd = %05b (%d)", Rd, Rd);
+        $display("  Rt = %05b (%d)", Rt, Rt);
+        $display("  Rs = %05b (%d)", Rs, Rs);
         $display("");
 
     end
