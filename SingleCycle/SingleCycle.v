@@ -157,7 +157,7 @@ module SingleCycle(
         .data1(DataBusA),
         .data2(DataBusB),
         .data3(WriteData),
-        .write(MemWr),
+        .write(RegWr),
         .pulse(pulse_reg)
     );
 
@@ -173,26 +173,30 @@ module SingleCycle(
         clk = 0;
         reset = 0;
         #10 reset = 1;
-        for (i = 0; i < 10000; i = i + 1) begin
-            if (i % 50 == 0) begin
+        for (i = 0; i < 100000; i = i + 1) begin
+            if (i % 500 == 0) begin
                 clk = ~clk;
             end
-            if ((i + 10) % 100 == 0) begin
+            if ((i + 10) % 1000 == 0) begin
                 pulse_inst = 1;
             end else begin
                 pulse_inst = 0;
             end
-            if ((i + 9) % 100 == 0) begin
+            if ((i + 9) % 1000 == 0) begin
                 pulse_alu = 1;
             end else begin
                 pulse_alu = 0;
             end
-            if ((i + 8) % 100 == 0) begin
+            if ((i + 8) % 1000 == 0) begin
                 pulse_mem = 1;
             end else begin
                 pulse_mem = 0;
             end
-            if ((i + 7) % 100 == 0)
+            if ((i + 7) % 1000 == 0) begin
+                pulse_reg = 1;
+            end else begin
+                pulse_reg = 0;
+            end
             #1;
         end
     end

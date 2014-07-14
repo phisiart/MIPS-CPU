@@ -13,12 +13,12 @@ module RegPrint(
         $display("  -------");
         $display("  RegFile");
         $display("  -------");
-        $display("    addr1 = 0x%08H", addr1);
+        $display("    addr1 = %d", addr1);
         $display("      data1 = 0x%08H, int(%d)", data1, data1);
-        $display("    addr2 = 0x%08H", addr2);
+        $display("    addr2 = %d", addr2);
         $display("      data2 = 0x%08H, int(%d)", data2, data2);
         if (write) begin
-            $display("    write addr = 0x%08H", addr3);
+            $display("    write addr = %d", addr3);
             $display("          data = 0x%08H, int(%d)", data3, data3);
         end
         $display("");
