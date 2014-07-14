@@ -3,6 +3,7 @@
 module IF_ID_REG(
     input clk,
     input reset,
+    input flush,
     input IF_ID_Write,
     input [31:0] iNextPC,
     input [31:0] iInstruction,
@@ -28,7 +29,7 @@ assign Rs = oInstruction[20:16];
 assign Rt = oInstruction[25:21];
 
 always @(posedge clk or negedge reset) begin
-    if (~reset) begin
+    if ((~reset) || (~flush)) begin
         oNextPC <= 32'h80000000;
         oInstruction <= 32'h00000000;
     end

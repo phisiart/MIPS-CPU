@@ -80,6 +80,7 @@ ROM ROM_INST(
 IF_ID_REG IF_ID_REG_INST(
 	.clk(clk),
 	.reset(reset),
+	.flush(IF_ID_Flush_OR),
 	.IF_ID_Write(IF_ID_Write),
 	.iNextPC(IF_NEXT_PC),
 	.iInstruction(IF_INSTRUCTION),
@@ -106,6 +107,10 @@ wire [2:0] ID_PCSrc;
 wire ID_ALUSrc1, ID_ALUSrc2, ID_MemRd, ID_MemWr, ID_RegWr, ID_Sign, ID_EXTOp, ID_LUOp;
 wire ID_ALUSrc1_MUX, ID_ALUSrc2_MUX, ID_MemRd_MUX, ID_MemWr_MUX, ID_RegWr_MUX, ID_Sign_MUX, ID_EXTOp_MUX, ID_LUOp_MUX;
 wire [2:0] PCWrite, IF_ID_Write, IF_ID_Flush, ID_EX_Flush;
+
+wire IF_ID_Flush_OR, ID_EX_Flush_OR;
+assign IF_ID_Flush_OR = IF_ID_Flush[0] && IF_ID_Flush[1] && IF_ID_Flush[2];
+assign ID_EX_Flush_OR = ID_EX_Flush[0] && ID_EX_Flush[1] && ID_EX_Flush[2];
 
 // signals between ID/EX
 wire [5:0] ID_EX_ALUFUNCT;
@@ -158,34 +163,6 @@ Control_Unit Ctrl_Inst(
 	.LUOp(ID_LUOp)
 	);
 
-Control_Mux2 Control_Mux2_INST(
-	.iCtrl(Ctrl_MUX),
-	.PCSrc(ID_PCSrc),
-	.RegDst(ID_RegDst),
-	.RegWr(ID_RegWr),
-	.ALUSrc1(ID_ALUSrc1),
-	.ALUSrc2(ID_ALUSrc2),
-	.ALUFun(ID_ALUFUNCT),
-	.Sign(ID_Sign),
-	.MemWr(ID_MemWr),
-	.MemRd(ID_MemRd),
-	.MemToReg(ID_MemToReg),
-	.EXTop(ID_EXTOp),
-	.LUOp(ID_LUOp),
-	.oPCSrc(ID_PCSrc_MUX),
-	.oRegDst(ID_RegDst_MUX),
-	.oRegWr(ID_RegWr_MUX),
-	.oALUSrc1(ID_ALUSrc1_MUX),
-	.oALUSrc2(ID_ALUSrc2_MUX),
-	.oALUFun(ID_ALUFUNCT_MUX),
-	.oSign(ID_Sign_MUX),
-	.oMemWr(ID_MemWr_MUX),
-	.oMemRd(ID_MemRd_MUX),
-	.oMemToReg(ID_MemToReg_MUX),
-	.oEXTop(ID_EXTOp_MUX),
-	.oLUOp(ID_LUOp_MUX)
-	);
-
 Extend Extend_INST(
 	.imm16(IF_ID_Imm16),
 	.ExtendOp(ID_EXTOp_MUX),
@@ -202,6 +179,7 @@ MUX2 LU_MUX_INST(
 ID_EX_REG ID_EX_REG_INST(
 	.clk(clk),
 	.reset(reset),
+	.flush(ID_EX_Flush_OR),
 	.PCSrc(ID_PCSrc_MUX),
 	.RegDst(ID_RegDst_MUX),
 	.RegWr(ID_RegWr_MUX),

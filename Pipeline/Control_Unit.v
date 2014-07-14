@@ -178,8 +178,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_IMM;
                 ALUFun      = ALUFUNC_ADD;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_EN;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_EN;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_MEM;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_DIS;
@@ -192,8 +192,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_IMM;
                 ALUFun      = ALUFUNC_ADD;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_DIS;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_DIS;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_ALU;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_EN;
@@ -206,8 +206,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_REG;
                 ALUFun      = ALUFUNC_EQ;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_DIS;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_DIS;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_MEM;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_DIS;
@@ -220,8 +220,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_REG;
                 ALUFun      = ALUFUNC_NEQ;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_DIS;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_DIS;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_MEM;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_DIS;
@@ -234,8 +234,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_REG;
                 ALUFun      = ALUFUNC_LEZ;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_DIS;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_DIS;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_MEM;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_DIS;
@@ -248,8 +248,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_REG;
                 ALUFun      = ALUFUNC_GTZ;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_DIS;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_DIS;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_MEM;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_DIS;
@@ -262,8 +262,8 @@ always @(*) begin
                 ALUSrc2     = ALUSrc2_REG;
                 ALUFun      = ALUFUNC_LT;
                 Sign        = Sign_EN;
-                MemWr       = MemRd_DIS;
-                MemRd       = MemRd_DIS
+                MemWr       = MemWr_DIS;
+                MemRd       = MemRd_DIS;
                 MemToReg    = MemToReg_MEM;
                 EXTOp       = EXTOp_SIGNED;
                 LUOp        = LUOp_DIS;

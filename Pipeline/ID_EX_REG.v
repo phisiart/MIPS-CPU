@@ -3,6 +3,7 @@
 module ID_EX_REG(
 	input clk,
 	input reset,
+	input flush,
 	input [2:0] PCSrc,
     input [1:0] RegDst,
     input RegWr,
@@ -44,7 +45,7 @@ module ID_EX_REG(
     );
 
 always @(posedge clk or negedge reset) begin
-	if (~reset) begin
+	if ((~reset) || (~flush)) begin
 		oPCSrc <= 3'b000;
 	    oRegDst <= 2'b00;
 	    oRegWr <= 1'b0;
