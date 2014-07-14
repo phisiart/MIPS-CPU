@@ -34,7 +34,7 @@ module UART_Sender(
     reg TX_STATUS_REG;
     assign TX_STATUS = TX_STATUS_REG;
 
-    always @(posedge baudclk or posedge TX_EN) begin
+    always @(posedge baudclk or posedge TX_EN or negedge reset) begin
         if (!reset) begin
             TX_DATA_REG <= 8'h00;
             UART_TX_REG <= 1'b1;

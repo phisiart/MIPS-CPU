@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // Zhixun TAN
 // Created: 2014/7/12
 // Last modified: 2014/7/13
@@ -369,7 +370,7 @@ module Control(
             Sign     = 0;
             MemRd    = MEMRD_DISABLE;
             MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
+            MemToReg = MEMTOREG_PC;
             RegWr    = REGWR_DISABLE;
             RegDst   = 0;
             EXTOp    = 0;
@@ -383,7 +384,7 @@ module Control(
             Sign     = 0;
             MemRd    = MEMRD_DISABLE;
             MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
+            MemToReg = MEMTOREG_PC;
             RegWr    = REGWR_ENABLE;
             RegDst   = REGDST_RA;
             EXTOp    = 0;

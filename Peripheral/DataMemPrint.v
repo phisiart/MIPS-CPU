@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module DataMemPrint(
     input wire [31:0]addr,
     input wire signed [31:0]wdata,

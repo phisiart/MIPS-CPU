@@ -14,6 +14,10 @@
     xor $s0 $s1 $s2
     nor $s0 $s1 $s2
     andi $s0 $s1 10
+    # j LOC
+    jal LOC
+LOC3:
+    jalr $ra $ra
     sll $s0 $s1 5
     srl $s0 $s1 5
     sra $s0 $s1 5
@@ -21,12 +25,16 @@
     slti $s0 $s1 5
 LOC:
     sltiu $s0 $s1 5
-    beq $s0 $s0 LOC
     bne $s0 $s0 LOC
-    blez $s0 LOC
-    bgtz $s0 LOC
-    bltz $s0 LOC
-    j LOC
-    jal LOC
+    # beq $s0 $s0 LOC
+    blez $s0 LOC1
+    nop
+    nop
+LOC1:
+    bgtz $s0 LOC2
+    nop
+    nop
+LOC2:
+    bltz $s0 LOC3
     jr $ra
-    jalr $ra $ra
+

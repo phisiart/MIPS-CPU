@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module IX(
     input wire reset,
     input wire clk,
@@ -118,7 +119,8 @@ module IX(
     end
 
     // ConBA
-    assign ConBA = { Imm32[31:2], 2'b00 } + NewPC;
+    assign ConBA = { Imm32[29:0], 2'b00 } + NewPC;
+    // assign ConBA = (Imm32 << 2) + NewPC;
 
     // Control the second input of ALU
     parameter ALUSRC2_RT   = 1'b0;

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // Zhixun TAN
 // Created: 2014/7/12
 // Last modified: 2014/7/12

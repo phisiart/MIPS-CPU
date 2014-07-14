@@ -65,6 +65,7 @@
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
     <transform xil_pn:end_ts="1405186922" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1405186922">
       <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
     </transform>
     <transform xil_pn:end_ts="1405187759" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="-4149634723737467058" xil_pn:start_ts="1405187759">
       <status xil_pn:value="SuccessfullyRun"/>
@@ -94,17 +95,10 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="DataMem.lso"/>
-      <outfile xil_pn:name="DataMem.ngc"/>
-      <outfile xil_pn:name="DataMem.ngr"/>
-      <outfile xil_pn:name="DataMem.prj"/>
-      <outfile xil_pn:name="DataMem.stx"/>
-      <outfile xil_pn:name="DataMem.syr"/>
-      <outfile xil_pn:name="DataMem.xst"/>
-      <outfile xil_pn:name="DataMem_xst.xrpt"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1405186935" xil_pn:in_ck="-8215495339124413548" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-7087188346849318054" xil_pn:start_ts="1405186935">
       <status xil_pn:value="SuccessfullyRun"/>

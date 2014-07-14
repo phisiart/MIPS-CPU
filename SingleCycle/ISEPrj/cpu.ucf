@@ -1,0 +1,15 @@
+
+NET "reset" LOC = "U16";
+NET "sysclk" LOC = "V10";
+NET "UART_RX" LOC = "N17";
+// [7:0] switch,
+// NET "pulse_inst" LOC = ;
+// NET "pulse_alu" LOC = ;
+// NET "pulse_mem" LOC = ;
+// NET "pulse_reg" LOC = ;
+NET "UART_TX" LOC = "N18";
+//[7:0] LED,
+//[11:0] digits,
+//interrupt,
+//read_acc,
+//write_acc

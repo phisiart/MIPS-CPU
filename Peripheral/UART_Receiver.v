@@ -88,6 +88,7 @@ module UART_Receiver(
         if (!reset) begin
             RX_DATA_TEMP <= 8'h00;
         end else begin
+            $display("sample = %d", UART_RX);
             RX_DATA_TEMP <= RX_DATA_TEMP >> 1;
             RX_DATA_TEMP[7] <= UART_RX;
         end
