@@ -5,10 +5,15 @@ module Forward_Unit(
 	input [4:0] EX_MEM_RegDst,
 	input [4:0] ID_EX_Rt,
 	input [4:0] ID_EX_Rs,
+	input [2:0] ID_PCSrc,
+	input [4:0] IF_ID_Rd,
+	input [4:0] ID_EX_Rd,
+	input ID_EX_RegWr,
 	input MEM_WB_RegWr,
 	input [4:0] MEM_WB_RegDst,
 	output reg [1:0] ForwardA,
-	output reg [1:0] ForwardB
+	output reg [1:0] ForwardB,
+	output reg [1:0] ForwardJr
     );
 
 always @(*) begin
@@ -39,6 +44,27 @@ always @(*) begin
 	end
 	else begin
 		ForwardB = 2'b00;
+	end
+	if (ID_PCSrc == 3'b011 && IF_ID_Rd == ID_EX_Rd && ID_EX_Rd != 0 && ID_EX_RegWr) begin
+		ForwardJr = 2'b01;
+	end
+	else if (ID_PCSrc == 3'b011 && 
+			IF_ID_Rd != ID_EX_Rd && 
+			IF_ID_Rd == EX_MEM_RegDst && 
+			EX_MEM_RegWr && 
+			EX_MEM_RegDst != 0) begin
+		ForwardJr = 2'b10;
+	end
+	else if (ID_PCSrc == 3'b011 && 
+			IF_ID_Rd != ID_EX_Rd &&
+			IF_ID_Rd != EX_MEM_RegDst && 
+			IF_ID_Rd == MEM_WB_RegDst && 
+			MEM_WB_RegDst != 0 &&
+			MEM_WB_RegWr) begin
+		ForwardJr = 2'b11;
+	end
+	else begin
+		ForwardJr = 2'b00;
 	end
 end
 

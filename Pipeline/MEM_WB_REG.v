@@ -17,7 +17,7 @@ module MEM_WB_REG(
 	output reg [31:0] oNextPC
     );
 
-always @(posedge clk and negedge reset) begin
+always @(posedge clk or negedge reset) begin
 	if (~reset) begin
 		oRegWr <= 1'b0;
 		oALUResult <= 32'h0;

@@ -11,7 +11,7 @@ module Pipeline_Core(
     input TX_STATUS,
     input RX_EFF,
     output TX_EN,
-    output RX_READ,
+    output RX_READ
     );
 
 /////////////////////////////////////
@@ -31,6 +31,30 @@ wire [5:0] 	IF_ID_FORMAT, IF_ID_FUNCT;
 wire [25:0] IF_ID_JT;
 wire [15:0] IF_ID_Imm16;
 wire [4:0] 	IF_ID_Shamt, IF_ID_Rd, IF_ID_Rt, IF_ID_Rs;
+wire [2:0] PCSrc;
+
+assign PCSrc = (ID_EX_PCSrc == 3'b001 && EX_ALUResult0) ? 3'b001 : (ID_PCSrc == 3'b001 ? 3'b000 : ID_PCSrc);
+
+MUX4 ForwardJr_MUX(
+	.iData0(ID_READ_DATA1),
+	.iData1(EX_ALUResult),
+	.iData2(MEM_ReadData),
+	.iData3(WB_RegWriteData),
+	.iControl(EX_ForwardJr),
+	.oData(EX_ForwardJrData)
+	);
+
+MUX8 PC_MUX_INST(
+	.iData0(IF_NEXT_PC),
+	.iData1(EX_ConBA_Mux),
+	.iData2({IF_NEXT_PC[31:28], IF_ID_JT, 2'b00}),
+	.iData3(EX_ForwardJrData),
+	.idata4(32'h80000000),
+	.idata5(32'h80000004),
+	.idata6(32'h0),
+	.idata7(32'h0),
+	.iCtrl(PCSrc)
+	);
 
 
 PC_REG PC_INST(
@@ -81,7 +105,7 @@ wire [1:0] ID_RegDst, ID_MemToReg;
 wire [2:0] ID_PCSrc;
 wire ID_ALUSrc1, ID_ALUSrc2, ID_MemRd, ID_MemWr, ID_RegWr, ID_Sign, ID_EXTOp, ID_LUOp;
 wire ID_ALUSrc1_MUX, ID_ALUSrc2_MUX, ID_MemRd_MUX, ID_MemWr_MUX, ID_RegWr_MUX, ID_Sign_MUX, ID_EXTOp_MUX, ID_LUOp_MUX;
-wire PCWrite, IF_ID_Write, Ctrl_MUX;
+wire [2:0] PCWrite, IF_ID_Write, IF_ID_Flush, ID_EX_Flush;
 
 // signals between ID/EX
 wire [5:0] ID_EX_ALUFUNCT;
@@ -96,9 +120,13 @@ Hazard_Detection_Unit Hazard_Detection_Unit_INST(
 	.ID_EX_Rt(ID_EX_Rt),
 	.IF_ID_Rs(IF_ID_Rs),
 	.IF_ID_Rt(IF_ID_Rt),
+	.ID_PCSrc(ID_PCSrc),
+	.ID_EX_PCSrc(ID_EX_PCSrc),
+	.EX_ALUResult0(EX_ALUResult[0]),
 	.PCWrite(PCWrite),
 	.IF_ID_Write(IF_ID_Write),
-	.Ctrl_MUX(Ctrl_MUX)
+	.IF_ID_Flush(IF_ID_Flush),
+	.ID_EX_Flush(ID_EX_Flush)
 	);
 
 RegFile RegFile_INST(
@@ -156,7 +184,7 @@ Control_Mux2 Control_Mux2_INST(
 	.oMemToReg(ID_MemToReg_MUX),
 	.oEXTop(ID_EXTOp_MUX),
 	.oLUOp(ID_LUOp_MUX)
-	)
+	);
 
 Extend Extend_INST(
 	.imm16(IF_ID_Imm16),
@@ -218,7 +246,7 @@ ID_EX_REG ID_EX_REG_INST(
 ///////////////////////////////////////////
 
 wire [31:0] EX_ALUSrc1, EX_ALUSrc2, EX_ALUResult, EX_ConBA, EX_RegDst, EX_ForwardAData, EX_ForwardBData;
-wire [1:0] EX_ForwardA, EX_ForwardB;
+wire [1:0] EX_ForwardA, EX_ForwardB, EX_ForwardJr;
 
 // signals between EX/MEM
 wire [31:0] EX_MEM_ConBA, EX_MEM_ALUResult, EX_MEM_ReadData2, EX_MEM_RegDst, EX_MEM_NextPC;
@@ -249,10 +277,13 @@ Forward_Unit Forward_Unit_INST(
 	.EX_MEM_RegDst(EX_MEM_RegDst[4:0]),
 	.ID_EX_Rt(ID_EX_Rt),
 	.ID_EX_Rs(ID_EX_Rs),
+	.ID_PCSrc(ID_PCSrc),
+	.ID_EX_RegWr(ID_EX_RegWr),
 	.MEM_WB_RegWr(MEM_WB_RegWr),
 	.MEM_WB_RegDst(MEM_WB_RegDst[4:0]),
 	.ForwardA(EX_ForwardA),
-	.ForwardB(EX_ForwardB)
+	.ForwardB(EX_ForwardB),
+	.ForwardJr(EX_ForwardJr)
 	);
 
 MUX2 ALUSrc1_MUX_INST(
@@ -316,7 +347,7 @@ EX_MEM_REG EX_MEM_REG_INST(
 	.oALUResult(EX_MEM_ALUResult),
 	.oReadData2(EX_MEM_ReadData2),
 	.oRegDst(EX_MEM_RegDst)
-	)
+	);
 
 ////////////////////////////////////////////////
 // MEM STAGE

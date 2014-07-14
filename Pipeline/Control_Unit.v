@@ -139,17 +139,20 @@ module Control_Unit (
 always @(*) begin
     // has an external interrupt
     if (Interrupt == 1'b1 && FORMAT[5] == 1'b0) begin
-        PCSrc       =
-        RegDst      =
-        ALUSrc1     =
-        ALUSrc2     =
-        ALUFun      =
-        Sign        =
-        MemWr       =
-        MemRd       =
-        MemToReg    =
-        EXTOp       =
-        LUOp        =
+        PCSrc       = PCSrc_XADR;
+        RegDst      = RegDst_Xp;
+        RegWr       = RegWr_EN;
+        MemWr       = MemWr_DIS;
+        MemRd       = MemRd_DIS;
+        MemToReg    = MemToReg_PC;
+    end
+    else if (Interrupt == 1'b1) begin
+        PCSrc       = PCSrc_ADD4;
+        RegDst      = RegDst_Rd;
+        RegWr       = RegWr_EN;
+        ALUSrc1     = ALUSrc1_SHA;
+        ALUFun      = ALUFUNC_SLL;
+        MemToReg    = MemToReg_ALU;
     end
     else begin
         case(FORMAT)
@@ -458,7 +461,43 @@ always @(*) begin
                             ALUFun  = ALUFUNC_LT;
                             Sign    = Sign_EN;
                         end
+                        default: begin
+                            if (!FORMAT[5]) begin
+                                PCSrc    = PCSrc_ILLOP;
+                                RegDst   = RegDst_Xp;
+                                RegWr    = RegWr_EN;
+                                MemWr    = MemWr_DIS;
+                                MemRd    = MemRd_DIS;
+                                MemToReg = MemToReg_PC;
+                            end
+                            else begin
+                                PCSrc       = PCSrc_ADD4;
+                                RegDst      = RegDst_Rd;
+                                RegWr       = RegWr_EN;
+                                ALUSrc1     = ALUSrc1_SHA;
+                                ALUFun      = ALUFUNC_SLL;
+                                MemToReg    = MemToReg_ALU;
+                            end
+                        end
                     endcase
+                end
+            end
+            default: begin
+                if (!FORMAT[5]) begin
+                    PCSrc    = PCSrc_ILLOP;
+                    RegDst   = RegDst_Xp;
+                    RegWr    = RegWr_EN;
+                    MemWr    = MemWr_DIS;
+                    MemRd    = MemRd_DIS;
+                    MemToReg = MemToReg_PC;
+                end
+                else begin
+                    PCSrc       = PCSrc_ADD4;
+                    RegDst      = RegDst_Rd;
+                    RegWr       = RegWr_EN;
+                    ALUSrc1     = ALUSrc1_SHA;
+                    ALUFun      = ALUFUNC_SLL;
+                    MemToReg    = MemToReg_ALU;
                 end
             end
         endcase
