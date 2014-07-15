@@ -9,6 +9,7 @@ module EX_MEM_REG(
     input [2:0] PCSrc,
     input RegWr,
     input [1:0] MemToReg,
+    input [31:0] ConBA,
     input [31:0] ALUResult,
     input [31:0] ReadData2,
     input [31:0] RegDst,
@@ -18,6 +19,7 @@ module EX_MEM_REG(
     output reg oMemWr,
     output reg oMemRd,
     output reg [1:0] oMemToReg,
+    output reg [31:0] oConBA,
     output reg [31:0] oALUResult,
     output reg [31:0] oReadData2,
     output reg [31:0] oRegDst
@@ -30,6 +32,7 @@ always @(posedge clk or negedge reset) begin
 		oMemWr <= 1'b0;
 		oMemRd <= 1'b0;
 		oMemToReg <= 2'b00;
+		oConBA <= 32'h80000000;
 		oALUResult <= 32'h0;
 		oReadData2 <= 32'h0;
 		oRegDst <= 32'h0;
@@ -41,6 +44,7 @@ always @(posedge clk or negedge reset) begin
 		oMemWr <= MemWr;
 		oMemRd <= MemRd;
 		oMemToReg <= MemToReg;
+		oConBA <= ConBA;
 		oALUResult <= ALUResult;
 		oReadData2 <= ReadData2;
 		oRegDst <= RegDst;

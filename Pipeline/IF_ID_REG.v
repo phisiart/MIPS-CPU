@@ -25,8 +25,8 @@ assign JT = oInstruction[25:0];
 assign Imm16 = oInstruction[15:0];
 assign Shamt = oInstruction[10:6];
 assign Rd = oInstruction[15:11];
-assign Rs = oInstruction[25:21];
-assign Rt = oInstruction[20:16];
+assign Rs = oInstruction[20:16];
+assign Rt = oInstruction[25:21];
 
 always @(posedge clk or negedge reset) begin
     if ((~reset) || (~flush)) begin

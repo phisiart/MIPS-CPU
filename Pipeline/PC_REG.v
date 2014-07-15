@@ -17,7 +17,7 @@ always @(posedge clk or negedge reset) begin
         oPC <= 32'h00400000;
     end
     else begin
-        if (PCWrite == 1'b1) begin
+        if (PC_Write == 1'b1) begin
             oPC <= iPC;
         end
     end

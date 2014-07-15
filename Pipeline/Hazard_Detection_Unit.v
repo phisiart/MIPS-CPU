@@ -55,16 +55,16 @@ end
 always @(*) begin
 	if (ID_EX_PCSrc == 3'b001 && 
 		EX_ALUResult0 == 1'b1) begin
-		PCWrite[2] = 1'b1;
-		IF_ID_WRITE[2] = 1'b1;
-		ID_EX_Flush[2] = 1'b0;
-		IF_ID_Flush[2] = 1'b0;
+		PCWrite[1] = 1'b1;
+		IF_ID_WRITE[1] = 1'b1;
+		ID_EX_Flush[1] = 1'b0;
+		IF_ID_Flush[1] = 1'b0;
 	end
 	else begin
-		PCWrite[2] = 1'b1;
-		IF_ID_WRITE[2] = 1'b1;
-		ID_EX_Flush[2] = 1'b1;
-		IF_ID_Flush[2] = 1'b1;
+		PCWrite[1] = 1'b1;
+		IF_ID_WRITE[1] = 1'b1;
+		ID_EX_Flush[1] = 1'b1;
+		IF_ID_Flush[1] = 1'b1;
 	end
 end
 

@@ -149,7 +149,7 @@ always @(*) begin
     else if (Interrupt == 1'b1) begin
         PCSrc       = PCSrc_ADD4;
         RegDst      = RegDst_Rd;
-        RegWr       = RegWr_DIS;
+        RegWr       = RegWr_EN;
         ALUSrc1     = ALUSrc1_SHA;
         ALUFun      = ALUFUNC_SLL;
         MemToReg    = MemToReg_ALU;
@@ -403,7 +403,6 @@ always @(*) begin
                     ALUSrc2 = ALUSrc2_REG;
                     MemWr   = MemWr_DIS;
                     MemRd   = MemRd_DIS;
-                    MemToReg = MemToReg_ALU;
                     EXTOp   = EXTOp_UNSIGNED;
                     LUOp    = LUOp_DIS;
                     case(FUNCT)
@@ -430,11 +429,6 @@ always @(*) begin
                         FUNCT_AND: begin
                             ALUSrc1 = ALUSrc1_REG;
                             ALUFun  = ALUFUNC_AND;
-                            Sign    = Sign_DIS;
-                        end
-                        FUNCT_OR: begin
-                            ALUSrc1 = ALUSrc1_REG;
-                            ALUFun  = ALUFUNC_OR;
                             Sign    = Sign_DIS;
                         end
                         FUNCT_XOR: begin
@@ -479,7 +473,7 @@ always @(*) begin
                             else begin
                                 PCSrc       = PCSrc_ADD4;
                                 RegDst      = RegDst_Rd;
-                                RegWr       = RegWr_DIS;
+                                RegWr       = RegWr_EN;
                                 ALUSrc1     = ALUSrc1_SHA;
                                 ALUFun      = ALUFUNC_SLL;
                                 MemToReg    = MemToReg_ALU;
@@ -500,7 +494,7 @@ always @(*) begin
                 else begin
                     PCSrc       = PCSrc_ADD4;
                     RegDst      = RegDst_Rd;
-                    RegWr       = RegWr_DIS;
+                    RegWr       = RegWr_EN;
                     ALUSrc1     = ALUSrc1_SHA;
                     ALUFun      = ALUFUNC_SLL;
                     MemToReg    = MemToReg_ALU;
