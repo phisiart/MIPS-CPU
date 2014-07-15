@@ -8,6 +8,7 @@ module ID(
     input wire ALUOut0,
     input wire[31:0] DataBusA,
     input wire[25:0] JT,
+    input wire interrupt,
     output reg[31:0] PC,
     output reg[31:0] NewPC
 );
@@ -29,15 +30,19 @@ module ID(
         if (~reset) begin
             PC = 32'h00400000;
         end else begin
-            case (PCSrc)
-            PCSRC_NORMAL: PC = NewPC;
-            PCSRC_BRANCH: PC = (ALUOut0 ? ConBA : NewPC);
-            PCSRC_JUMP:   PC = { NewPC[31:28], JT, 2'b00 };
-            PCSRC_A:      PC = DataBusA;
-            PCSRC_ILLOP:  PC = ILLOP;
-            PCSRC_XADR:   PC = XADR;
-            // default:      PC = NewPC;
-            endcase
+            if (interrupt & ~NewPC[31]) begin
+                PC = ILLOP;
+            end else begin
+                case (PCSrc)
+                PCSRC_NORMAL: PC = NewPC;
+                PCSRC_BRANCH: PC = (ALUOut0 ? ConBA : NewPC);
+                PCSRC_JUMP:   PC = { NewPC[31:28], JT, 2'b00 };
+                PCSRC_A:      PC = DataBusA;
+                PCSRC_ILLOP:  PC = ILLOP;
+                PCSRC_XADR:   PC = XADR;
+                // default:      PC = NewPC;
+                endcase
+            end
         end
     end
 

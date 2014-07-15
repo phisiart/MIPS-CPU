@@ -19,19 +19,20 @@ module SingleCycle(
 
     reg clk;
     integer clkcount;
+    
     initial begin
-        clk = 0;
-        clkcount = 0;
+        clk <= 0;
+        clkcount <= 0;
     end
     always @(posedge sysclk or negedge reset) begin
         if (~reset) begin
-            clkcount = 0;
-            clk = 0;
-        end else if (clkcount == 49) begin
-            clkcount = 0;
-            clk = ~clk;
+            clkcount <= 0;
+            clk <= 0;
+        end else if (clkcount == 99) begin
+            clkcount <= 0;
+            clk <= ~clk;
         end else begin
-            clkcount = clkcount + 1;
+            clkcount <= clkcount + 1;
         end
     end
     // reg reset;
@@ -77,6 +78,7 @@ module SingleCycle(
         .ALUOut0(ALUOut[0]),
         .DataBusA(DataBusA),
         .JT(JT),
+        .interrupt(interrupt),
         .PC(PC),
         .NewPC(NewPC)
     );
@@ -101,6 +103,7 @@ module SingleCycle(
         .reset(reset),
         .clk(clk),
         .PC(PC),
+        .interrupt(interrupt),
         .NewPC(NewPC),
         .instruction(instruction),
         .WriteData(WriteData),
@@ -311,9 +314,9 @@ module UARTTest(
     initial begin
         UART_RX = 1;
         #20833 UART_RX = 0;
+        #20833 UART_RX = 0;
         #20833 UART_RX = 1;
-        #20833 UART_RX = 1;
-        #20833 UART_RX = 1;
+        #20833 UART_RX = 0;
         #20833 UART_RX = 0;
         #20833 UART_RX = 0;
         #20833 UART_RX = 0;
@@ -324,7 +327,7 @@ module UARTTest(
 
         #20833 UART_RX = 0;
         #20833 UART_RX = 1;
-        #20833 UART_RX = 0;
+        #20833 UART_RX = 1;
         #20833 UART_RX = 0;
         #20833 UART_RX = 0;
         #20833 UART_RX = 0;

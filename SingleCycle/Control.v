@@ -10,6 +10,8 @@
 // The control signals follow the specifications in the requirement doc.
 module Control(
     input wire[31:0] instruction,
+    input wire interrupt,
+    input wire[31:0] PC,
     output reg[2:0] PCSrc,
     output reg[1:0] RegDst,
     output reg RegWr,
@@ -68,19 +70,19 @@ module Control(
      * -----------------------
      * For R-type instructions.
      */
-    parameter FUNCT_ADD = 6'b100000;
+    parameter FUNCT_ADD  = 6'b100000;
     parameter FUNCT_ADDU = 6'b100001;
-    parameter FUNCT_SUB = 6'b100010;
+    parameter FUNCT_SUB  = 6'b100010;
     parameter FUNCT_SUBU = 6'b100011;
-    parameter FUNCT_AND = 6'b100100;
-    parameter FUNCT_OR = 6'b100101;
-    parameter FUNCT_XOR = 6'b100110;
-    parameter FUNCT_NOR = 6'b100111;
-    parameter FUNCT_SLL = 6'b000000;
-    parameter FUNCT_SRL = 6'b000010;
-    parameter FUNCT_SRA = 6'b000011;
-    parameter FUNCT_SLT = 6'b101010;
-    parameter FUNCT_JR = 6'b001000;
+    parameter FUNCT_AND  = 6'b100100;
+    parameter FUNCT_OR   = 6'b100101;
+    parameter FUNCT_XOR  = 6'b100110;
+    parameter FUNCT_NOR  = 6'b100111;
+    parameter FUNCT_SLL  = 6'b000000;
+    parameter FUNCT_SRL  = 6'b000010;
+    parameter FUNCT_SRA  = 6'b000011;
+    parameter FUNCT_SLT  = 6'b101010;
+    parameter FUNCT_JR   = 6'b001000;
     parameter FUNCT_JALR = 6'b001001;
 
     // PCSrc
@@ -179,325 +181,354 @@ module Control(
     parameter LUOP_DISABLE = 1'b0;
 
     always @(*) begin
-        case (Format)
-        FORMAT_LW: begin // lw $rt imm($rs)
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE; // Take the imm
-            ALUFun   = ALUFUNC_ADD;  // $RS + imm
-            Sign     = SIGN_SIGNED;  // signed
-            MemRd    = MEMRD_ENABLE; // Read memory
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_LOAD;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_SW: begin // sw $rt imm($rs)
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE; // Take imm
-            ALUFun   = ALUFUNC_ADD;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_ENABLE;
-            MemToReg = 0;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_LUI: begin // lui $rt imm (my assembler set $rs = $zero)
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE;
-            ALUFun   = ALUFUNC_ADD;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_ALU;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = 0;
-            LUOp     = LUOP_ENABLE;
-        end
-        FORMAT_ADDI: begin
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE;
-            ALUFun   = ALUFUNC_ADD;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_ALU;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_ADDIU: begin
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE;
-            ALUFun   = ALUFUNC_ADD;
-            Sign     = SIGN_UNSIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_ALU;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = EXTOP_UNSIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_ANDI: begin
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE;
-            ALUFun   = ALUFUNC_AND;
-            Sign     = SIGN_UNSIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_ALU;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = EXTOP_UNSIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_SLTI: begin // slti $rt $rs imm
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE;
-            ALUFun   = ALUFUNC_LT;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_ALU;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_SLTIU: begin // sltiu $rt $rs imm
-            PCSrc    = PCSRC_NORMAL;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_ELSE;
-            ALUFun   = ALUFUNC_LT;
-            Sign     = SIGN_UNSIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_ALU;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RT;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_BEQ: begin // beq $rs $rt imm
-            PCSrc    = PCSRC_BRANCH;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_RT;
-            ALUFun   = ALUFUNC_EQ;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_BNE: begin // bne $rs $rt imm
-            PCSrc    = PCSRC_BRANCH;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_RT;
-            ALUFun   = ALUFUNC_NEQ;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_BLEZ: begin // blez $rs ($rt=$zero) imm
-            PCSrc    = PCSRC_BRANCH;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_RT;
-            ALUFun   = ALUFUNC_LEZ;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_BGTZ: begin // bgtz $rs ($rt=$zero) imm
-            PCSrc    = PCSRC_BRANCH;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_RT;
-            ALUFun   = ALUFUNC_GTZ;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_BLTZ: begin // bltz $rs ($rt=$zero) imm
-            PCSrc    = PCSRC_BRANCH;
-            ALUSrc1  = ALUSRC1_RS;
-            ALUSrc2  = ALUSRC2_RT;
-            ALUFun   = ALUFUNC_LT;
-            Sign     = SIGN_SIGNED;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = 0;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = EXTOP_SIGNED;
-            LUOp     = LUOP_DISABLE;
-        end
-        FORMAT_J: begin // j target[25:0]
-            PCSrc    = PCSRC_JUMP;
-            ALUSrc1  = 0;
-            ALUSrc2  = 0;
-            ALUFun   = 0;
-            Sign     = 0;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_PC;
-            RegWr    = REGWR_DISABLE;
-            RegDst   = 0;
-            EXTOp    = 0;
-            LUOp     = 0;
-        end
-        FORMAT_JAL: begin // jal target[25:0]
-            PCSrc    = PCSRC_JUMP;
-            ALUSrc1  = 0;
-            ALUSrc2  = 0;
-            ALUFun   = 0;
-            Sign     = 0;
-            MemRd    = MEMRD_DISABLE;
-            MemWr    = MEMWR_DISABLE;
-            MemToReg = MEMTOREG_PC;
-            RegWr    = REGWR_ENABLE;
-            RegDst   = REGDST_RA;
-            EXTOp    = 0;
-            LUOp     = 0;
-        end
-        FORMAT_R: begin
-            if (Funct != FUNCT_JR && Funct != FUNCT_JALR) begin
-                PCSrc    = PCSRC_NORMAL;
-                ALUSrc2  = ALUSRC2_RT;
-                MemRd    = MEMRD_DISABLE;
-                MemWr    = MEMWR_DISABLE;
-                MemToReg = MEMTOREG_ALU;
-                RegWr    = REGWR_ENABLE;
-                RegDst   = REGDST_RD;
-                EXTOp    = 0;
-                LUOp     = 0;
-                case (Funct)
-                    FUNCT_ADD: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_ADD;
-                        Sign     = SIGN_SIGNED;
-                    end
-                    FUNCT_ADDU: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_ADD;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_SUB: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_SUB;
-                        Sign     = SIGN_SIGNED;
-                    end
-                    FUNCT_SUBU: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_SUB;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_AND: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_AND;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_OR: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_OR;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_XOR: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_XOR;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_NOR: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_NOR;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_SLL: begin
-                        ALUSrc1  = ALUSRC1_SHAMT;
-                        ALUFun   = ALUFUNC_SLL;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_SRL: begin
-                        ALUSrc1  = ALUSRC1_SHAMT;
-                        ALUFun   = ALUFUNC_SRL;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_SRA: begin
-                        ALUSrc1  = ALUSRC1_SHAMT;
-                        ALUFun   = ALUFUNC_SRA;
-                        Sign     = SIGN_UNSIGNED;
-                    end
-                    FUNCT_SLT: begin
-                        ALUSrc1  = ALUSRC1_RS;
-                        ALUFun   = ALUFUNC_LT;
-                        Sign     = SIGN_SIGNED;
-                    end
-                endcase // case (Funct)
-            end else begin // Funct = jr or jalr
-                case (Funct)
-                FUNCT_JR: begin // jr $rs ($rt = 0)
-                    PCSrc    = PCSRC_A;
-                    ALUSrc1  = 0;
-                    ALUSrc2  = 0;
-                    ALUFun   = 0;
-                    Sign     = 0;
-                    MemRd    = MEMRD_DISABLE;
-                    MemWr    = MEMWR_DISABLE;
-                    MemToReg = 0;
-                    RegWr    = REGWR_DISABLE;
-                    RegDst   = 0;
-                    EXTOp    = 0;
-                    LUOp     = 0;
-                end
-                FUNCT_JALR: begin // jalr $rs(to jump to) ($rt = 0) $rd(to save to)
-                    PCSrc    = PCSRC_A;
-                    ALUSrc1  = 0;
-                    ALUSrc2  = 0;
-                    ALUFun   = 0;
-                    Sign     = 0;
-                    MemRd    = MEMRD_DISABLE;
-                    MemWr    = MEMWR_DISABLE;
-                    MemToReg = MEMTOREG_PC;
-                    RegWr    = REGWR_ENABLE;
-                    RegDst   = REGDST_RD;
-                    EXTOp    = 0;
-                    LUOp     = 0;
-                end
-                endcase // case (Funct)
+        if (interrupt & ~PC[31]) begin
+            PCSrc    <= PCSRC_ILLOP;
+            ALUSrc1  <= 0;
+            ALUSrc2  <= 0;
+            ALUFun   <= 0;
+            Sign     <= 0;
+            MemRd    <= MEMRD_DISABLE;
+            MemWr    <= MEMWR_DISABLE;
+            MemToReg <= MEMTOREG_PC;
+            RegWr    <= REGWR_ENABLE;
+            RegDst   <= REGDST_XP;
+            EXTOp    <= EXTOP_SIGNED;
+            LUOp     <= LUOP_DISABLE;
+        end else begin
+            case (Format)
+            FORMAT_LW: begin // lw $rt imm($rs)
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE; // Take the imm
+                ALUFun   <= ALUFUNC_ADD;  // $RS + imm
+                Sign     <= SIGN_SIGNED;  // signed
+                MemRd    <= MEMRD_ENABLE; // Read memory
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_LOAD;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
             end
-            
+            FORMAT_SW: begin // sw $rt imm($rs)
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE; // Take imm
+                ALUFun   <= ALUFUNC_ADD;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_ENABLE;
+                MemToReg <= 0;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_LUI: begin // lui $rt imm (my assembler set $rs <= $zero)
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE;
+                ALUFun   <= ALUFUNC_ADD;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_ALU;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= 0;
+                LUOp     <= LUOP_ENABLE;
+            end
+            FORMAT_ADDI: begin
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE;
+                ALUFun   <= ALUFUNC_ADD;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_ALU;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_ADDIU: begin
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE;
+                ALUFun   <= ALUFUNC_ADD;
+                Sign     <= SIGN_UNSIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_ALU;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_UNSIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_ANDI: begin
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE;
+                ALUFun   <= ALUFUNC_AND;
+                Sign     <= SIGN_UNSIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_ALU;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_UNSIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_SLTI: begin // slti $rt $rs imm
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE;
+                ALUFun   <= ALUFUNC_LT;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_ALU;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_SLTIU: begin // sltiu $rt $rs imm
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE;
+                ALUFun   <= ALUFUNC_LT;
+                Sign     <= SIGN_UNSIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_ALU;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_BEQ: begin // beq $rs $rt imm
+                PCSrc    <= PCSRC_BRANCH;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_RT;
+                ALUFun   <= ALUFUNC_EQ;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= 0;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_BNE: begin // bne $rs $rt imm
+                PCSrc    <= PCSRC_BRANCH;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_RT;
+                ALUFun   <= ALUFUNC_NEQ;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= 0;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_BLEZ: begin // blez $rs ($rt=$zero) imm
+                PCSrc    <= PCSRC_BRANCH;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_RT;
+                ALUFun   <= ALUFUNC_LEZ;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= 0;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_BGTZ: begin // bgtz $rs ($rt=$zero) imm
+                PCSrc    <= PCSRC_BRANCH;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_RT;
+                ALUFun   <= ALUFUNC_GTZ;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= 0;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_BLTZ: begin // bltz $rs ($rt=$zero) imm
+                PCSrc    <= PCSRC_BRANCH;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_RT;
+                ALUFun   <= ALUFUNC_LT;
+                Sign     <= SIGN_SIGNED;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= 0;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            FORMAT_J: begin // j target[25:0]
+                PCSrc    <= PCSRC_JUMP;
+                ALUSrc1  <= 0;
+                ALUSrc2  <= 0;
+                ALUFun   <= 0;
+                Sign     <= 0;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_PC;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= 0;
+                EXTOp    <= 0;
+                LUOp     <= 0;
+            end
+            FORMAT_JAL: begin // jal target[25:0]
+                PCSrc    <= PCSRC_JUMP;
+                ALUSrc1  <= 0;
+                ALUSrc2  <= 0;
+                ALUFun   <= 0;
+                Sign     <= 0;
+                MemRd    <= MEMRD_DISABLE;
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_PC;
+                RegWr    <= REGWR_ENABLE;
+                RegDst   <= REGDST_RA;
+                EXTOp    <= 0;
+                LUOp     <= 0;
+            end
+            FORMAT_R: begin
+                if (Funct != FUNCT_JR && Funct != FUNCT_JALR) begin
+                    PCSrc    <= PCSRC_NORMAL;
+                    ALUSrc2  <= ALUSRC2_RT;
+                    MemRd    <= MEMRD_DISABLE;
+                    MemWr    <= MEMWR_DISABLE;
+                    MemToReg <= MEMTOREG_ALU;
+                    RegWr    <= REGWR_ENABLE;
+                    RegDst   <= REGDST_RD;
+                    EXTOp    <= 0;
+                    LUOp     <= 0;
+                    case (Funct)
+                        FUNCT_ADD: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_ADD;
+                            Sign     <= SIGN_SIGNED;
+                        end
+                        FUNCT_ADDU: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_ADD;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_SUB: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_SUB;
+                            Sign     <= SIGN_SIGNED;
+                        end
+                        FUNCT_SUBU: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_SUB;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_AND: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_AND;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_OR: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_OR;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_XOR: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_XOR;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_NOR: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_NOR;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_SLL: begin
+                            ALUSrc1  <= ALUSRC1_SHAMT;
+                            ALUFun   <= ALUFUNC_SLL;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_SRL: begin
+                            ALUSrc1  <= ALUSRC1_SHAMT;
+                            ALUFun   <= ALUFUNC_SRL;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_SRA: begin
+                            ALUSrc1  <= ALUSRC1_SHAMT;
+                            ALUFun   <= ALUFUNC_SRA;
+                            Sign     <= SIGN_UNSIGNED;
+                        end
+                        FUNCT_SLT: begin
+                            ALUSrc1  <= ALUSRC1_RS;
+                            ALUFun   <= ALUFUNC_LT;
+                            Sign     <= SIGN_SIGNED;
+                        end
+                    endcase // case (Funct)
+                end else begin // Funct <= jr or jalr
+                    case (Funct)
+                    FUNCT_JR: begin // jr $rs ($rt <= 0)
+                        PCSrc    <= PCSRC_A;
+                        ALUSrc1  <= 0;
+                        ALUSrc2  <= 0;
+                        ALUFun   <= 0;
+                        Sign     <= 0;
+                        MemRd    <= MEMRD_DISABLE;
+                        MemWr    <= MEMWR_DISABLE;
+                        MemToReg <= 0;
+                        RegWr    <= REGWR_DISABLE;
+                        RegDst   <= 0;
+                        EXTOp    <= 0;
+                        LUOp     <= 0;
+                    end
+                    FUNCT_JALR: begin // jalr $rs(to jump to) ($rt <= 0) $rd(to save to)
+                        PCSrc    <= PCSRC_A;
+                        ALUSrc1  <= 0;
+                        ALUSrc2  <= 0;
+                        ALUFun   <= 0;
+                        Sign     <= 0;
+                        MemRd    <= MEMRD_DISABLE;
+                        MemWr    <= MEMWR_DISABLE;
+                        MemToReg <= MEMTOREG_PC;
+                        RegWr    <= REGWR_ENABLE;
+                        RegDst   <= REGDST_RD;
+                        EXTOp    <= 0;
+                        LUOp     <= 0;
+                    end
+                    endcase // case (Funct)
+                end
+                
+            end
+            default: begin
+                PCSrc    <= PCSRC_NORMAL;
+                ALUSrc1  <= ALUSRC1_RS;
+                ALUSrc2  <= ALUSRC2_ELSE; // Take the imm
+                ALUFun   <= ALUFUNC_ADD;  // $RS + imm
+                Sign     <= SIGN_SIGNED;  // signed
+                MemRd    <= MEMRD_ENABLE; // Read memory
+                MemWr    <= MEMWR_DISABLE;
+                MemToReg <= MEMTOREG_LOAD;
+                RegWr    <= REGWR_DISABLE;
+                RegDst   <= REGDST_RT;
+                EXTOp    <= EXTOP_SIGNED;
+                LUOp     <= LUOP_DISABLE;
+            end
+            endcase // case (FORMAT)
         end
-        endcase // case (FORMAT)
     end
 
 endmodule

@@ -24,7 +24,7 @@ module ROM(
         # out += (' ' * 8 + "32'h" + ("%08X" % inst[0]) + ": data = " + '\n')
     
     out += '''
-        default: data <= 32'hCCCCCCCC;
+        default: data <= 32'h00000000;
         endcase
     end
 

@@ -4,6 +4,7 @@ module IX(
     input wire clk,
 
     input wire[31:0] PC,
+    input wire interrupt,
     input wire[31:0] NewPC,
     input wire[31:0] WriteData,
 
@@ -55,6 +56,8 @@ module IX(
 
     Control control(
         .instruction(instruction), // from rom
+        .interrupt(interrupt),
+        .PC(PC),
         .PCSrc(PCSrc),
         .RegDst(RegDst),
         .RegWr(RegWr),

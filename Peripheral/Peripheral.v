@@ -72,8 +72,8 @@ module Peripheral(
 
     always @(posedge clk or negedge reset) begin
         if (~reset) begin
-            TH <= 32'h0;
-            TL <= 32'hffffffff;
+            TH <= 32'hffffff00;
+            TL <= 32'hffffff00;
             TCON <= 3'h0;
             led <= 8'h0;
             digits <= 12'h0;

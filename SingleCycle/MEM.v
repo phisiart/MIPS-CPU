@@ -73,9 +73,10 @@ module MEM(
     parameter MEMTOREG_PC   = 2'b10;
     always @(*) begin
         case (MemToReg)
-        MEMTOREG_ALU:  WriteData = ALUOut;
-        MEMTOREG_LOAD: WriteData = ReadData;
-        MEMTOREG_PC:   WriteData = NewPC;
+        MEMTOREG_ALU:  WriteData <= ALUOut;
+        MEMTOREG_LOAD: WriteData <= ReadData;
+        MEMTOREG_PC:   WriteData <= NewPC;
+        default:       WriteData <= ALUOut;
         endcase
     end
 

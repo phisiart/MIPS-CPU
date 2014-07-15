@@ -1,8 +1,0 @@
-verilog work "../../Peripheral/divider_16.v"
-verilog work "../../Peripheral/UART_Sender.v"
-verilog work "../../Peripheral/UART_Receiver.v"
-verilog work "../../Peripheral/UART_Baud_Rate_Generator.v"
-verilog work "../../Peripheral/Peripheral.v"
-verilog work "../../Peripheral/UART.v"
-verilog work "../../Peripheral/DataMem.v"
-verilog work "../MEM.v"
