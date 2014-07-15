@@ -1,0 +1,37 @@
+NET 'sysclk' LOC = 'V10';
+NET 'reset' LOC = 'T10';
+
+NET "digits[3]" LOC = "P17";
+NET "digits[2]" LOC = "P18";
+NET "digits[1]" LOC = "N15";
+NET "digits[0]" LOC = "N16";
+
+NET "digits[11]" LOC = "T17";
+NET "digits[10]" LOC = "T18";
+NET "digits[9]" LOC = "U17";
+NET "digits[8]" LOC = "U18";
+NET "digits[7]" LOC = "M14";
+NET "digits[6]" LOC = "N14";
+NET "digits[5]" LOC = "L14";
+NET "digits[4]" LOC = "M13";
+
+NET "leds[0]" LOC = "U16";
+NET "leds[1]" LOC = "V16";
+NET "leds[2]" LOC = "U15";
+NET "leds[3]" LOC = "V15";
+NET "leds[4]" LOC = "M11";
+NET "leds[5]" LOC = "N11";
+NET "leds[6]" LOC = "R11";
+NET "leds[7]" LOC = "T11";
+
+NET 'UART_RX' LOC = 'N17';
+NET 'UART_TX' LOC = 'N18';
+
+#NET 'switch[0]' 			LOC = 'T10';
+NET 'switch[1]' 			LOC = 'T9';
+NET 'switch[2]' 			LOC = 'V9';
+NET 'switch[3]' 			LOC = 'M8';
+NET 'switch[4]' 			LOC = 'N8';
+NET 'switch[5]' 			LOC = 'U8';
+NET 'switch[6]' 			LOC = 'V8';
+NET 'switch[7]' 			LOC = 'T5';

@@ -17,6 +17,9 @@ main:
 	# $t7: INDEX OF AN TO SHOW
 	##########################################
 
+	nop
+	nop
+
 	lui  $t0, 16384 	# $t0 = 0x40000000
 
 	# set $s0 to the address of UART_CON
@@ -24,7 +27,8 @@ main:
 
 	addi $s1, $zero, 54
 	addi $s2, $zero, 45
-
+	sw $s2, -20($s0)
+START:
 	# decode the parameter
 	sll $a0, $s1, 24
 	srl $a0, $a0, 28
@@ -63,9 +67,8 @@ main:
 	add $a1, $s2, $zero
 	jal Euclidean
 	add $s3, $v0, $zero
-
-	addi $v0, $zero, 10
-	syscall
+	sw  $s3, -20($s0)
+	j START
 
 Euclidean:
 	# save $s0, $s1 to the stack

@@ -1,0 +1,85 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -lib secureip -o /home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga_isim_beh.exe -prj /home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga_beh.prj work.test_Pipeline_fpga work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/ADD.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/SUB.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../MUX2.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../MUX.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/Peripheral.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/divider_16.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/SHIFT.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/LOGIC.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/CMP.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/ARITH.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../rom.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Regfile.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../PC_REG.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../MUX8.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../MEM_WB_REG.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../IF_ID_REG.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../ID_EX_REG.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Hazard_Detection_Unit.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Forward_Unit.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../EX_MEM_REG.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Extend.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Control_Unit.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/UART_Sender.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/UART_Receiver.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/UART_Baud_Rate_Generator.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/DataMem.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../ALU/ALU.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../../Peripheral/UART.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_fpga.v" into library work
+Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 109: Port Zero is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 276: Port IF_ID_Rd is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 312: Port Zero is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 357: Port read_acc is not connected to this instance
+Completed static elaboration
+Fuse Memory Usage: 95320 KB
+Fuse CPU Usage: 1150 ms
+Compiling module negedge_detc
+Compiling module UART_Baud_Rate_Generator
+Compiling module divider_16
+Compiling module UART_Receiver
+Compiling module UART_Sender
+Compiling module UART
+Compiling module MUX4
+Compiling module MUX2
+Compiling module MUX8
+Compiling module PC_REG
+Compiling module ADD
+Compiling module ROM
+Compiling module IF_ID_REG
+Compiling module Hazard_Detection_Unit
+Compiling module RegFile
+Compiling module Control_Unit
+Compiling module Extend
+Compiling module ID_EX_REG
+Compiling module Forward_Unit
+Compiling module SUB
+Compiling module Arith
+Compiling module Compare
+Compiling module Logic
+Compiling module Shift
+Compiling module ALU
+Compiling module EX_MEM_REG
+Compiling module Peripheral
+Compiling module DataMem
+Compiling module MEM_WB_REG
+Compiling module Pipeline_Core
+Compiling module Pipeline_fpga
+Compiling module test_Pipeline_fpga
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 16 sub-compilation(s) to finish...
+Compiled 33 Verilog Units
+Built simulation executable /home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga_isim_beh.exe
+Fuse Memory Usage: 655976 KB
+Fuse CPU Usage: 1320 ms
+GCC CPU Usage: 3270 ms

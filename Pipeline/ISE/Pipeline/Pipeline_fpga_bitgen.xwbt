@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/Pipeline_fpga.ncd
+OUTFILE=/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/Pipeline_fpga.bit
+FAMILY=Spartan6
+PART=xc6slx16-3csg324
+WORKINGDIR=/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline
+LICENSE=WebPack
+USER_INFO=__0_0_0

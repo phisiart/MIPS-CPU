@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga_isim_beh.exe" -prj "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga_beh.prj" "work.test_Pipeline_fpga" "work.glbl" 
