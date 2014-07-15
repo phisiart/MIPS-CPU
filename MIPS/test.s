@@ -28,32 +28,45 @@ main:
 	# decode the parameter
 	sll $a0, $s1, 24
 	srl $a0, $a0, 28
+
 	jal DECODER
+	sw $v0, -20($s0)
+
 	sll $s4, $v0, 5
 	addi $t0, $zero, 7
 	or $s4, $s4, $t0
+	sw $s4, -12($s0)
 
 
 	sll $a0, $s1, 28
 	srl $a0, $a0, 28
 	jal DECODER
+	sw $v0, -20($s0)
 	sll $s5, $v0, 5
 	addi $t0, $zero, 11
 	or $s5, $s5, $t0
 
+	sw $s5, -12($s0)
+
 	sll $a0, $s2, 24
 	srl $a0, $a0, 28
 	jal DECODER
+	sw $v0, -20($s0)
 	sll $s6, $v0, 5
 	addi $t0, $zero, 13
 	or $s6, $s6, $t0
 
+	sw $s6, -12($s0)
+
 	sll $a0, $s2, 28
 	srl $a0, $a0, 28
 	jal DECODER
+	sw $v0, -20($s0)
 	sll $s7, $v0, 5
 	addi $t0, $zero, 14
 	or $s7, $s7, $t0
+
+	sw $s7, -12($s0)
 
 	# set $t7 to 0
 	add $t7, $zero, $zero
@@ -63,41 +76,28 @@ main:
 	add $a1, $s2, $zero
 	jal Euclidean
 	add $s3, $v0, $zero
-
-	addi $v0, $zero, 10
-	syscall
+	sw  $s3, -20($s0)
+	j main
 
 Euclidean:
-	# save $s0, $s1 to the stack
-	addi $sp, $sp, -8
-	sw $s0, 0($sp)
-	sw $s1, 4($sp)
-
-	# load $a0, $a1 into $s0, $s1
-	add $s0, $a0, $zero
-	add $s1, $a1, $zero
-LOOP:
-	slt $t0, $s0, $s1
+	slt $t0, $a0, $a1
 	beq $t0, $zero, NOT_SWITCH
 
-	# switch $s0 and $s1 to make sure $s0 > $s1
-	add $t0, $s0, $zero
-	add $s0, $s1, $zero
-	add $s1, $t0, $zero
+	# switch $a0 and $a1 to make sure $a0 > $a1
+	add $t0, $a0, $zero
+	add $a0, $a1, $zero
+	add $a1, $t0, $zero
 
 NOT_SWITCH:
-	sub $t0, $s0, $s1
+	sub $t0, $a0, $a1
 
 	# if $t0 == 0, then we have found the greatest common divisor
 	beq $t0, $zero, Euclidean_RETURN
-	add $s0, $t0, $zero
-	j LOOP
+	add $a0, $t0, $zero
+	j Euclidean
 
 Euclidean_RETURN:
-	add $v0, $s0, $zero
-	lw $s1, 4($sp)
-	lw $s0, 0($sp)
-	addi $sp, $sp, 8
+	add $v0, $a0, $zero
 	jr $ra
 
 DECODER:
