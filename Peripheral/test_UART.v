@@ -73,6 +73,9 @@ module test_UART;
 	);
 
 	initial begin
+		$dumpfile("testuart.vcd");
+		$dumpvars(0, uut, uu);
+
 		// Initialize Inputs
 		UART_RX = 1;
 		sysclk = 0;
@@ -85,60 +88,64 @@ module test_UART;
 		wdata = 0;
 		switch = 0;
 
-		#100000;
+		#1;
       reset = 0;
 		// Add stimulus here
 		
-		#100000;
+		#1;
       reset = 1;
-		#200000;
-		wdata = 32'h00000055;
-		addr = 32'h40000018;
-		write = 1'b1;
+		#15000;
+		// wdata = 32'h00000055;
+		// addr = 32'h40000018;
+		// write = 1'b1;
 		
-		#200;
-		wdata = 32'h000000cc;
-		addr = 32'h00000000;
-		write = 1'b1;
+		// #40;
+		// wdata = 32'h000000cc;
+		// addr = 32'h00000000;
+		// write = 1'b1;
 		
-		#200;
-		addr = 32'h00000000;
-		write = 1'b0;
-		read = 1'b1;
+		// #40;
+		// addr = 32'h00000000;
+		// write = 1'b0;
+		// read = 1'b1;
 		
-		#200;
-		wdata = 32'h1;
-		addr = 32'h40000020;
-		write = 1'b1;
-		read = 1'b0;
+		// #40;
+		// wdata = 32'h1;
+		// addr = 32'h40000020;
+		// write = 1'b1;
+		// read = 1'b0;
 		
-		#200;
-		wdata = 32'h0;
-		addr = 32'h40000020;
-		write = 1'b1;
+		// #40;
+		// wdata = 32'h0;
+		// addr = 32'h40000020;
+		// write = 1'b1;
 		
-		#200;
-		write = 1'b0;
+		// #40;
+		// write = 1'b0;
 		
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 1;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 0;
-		#104166 UART_RX = 1;
-		
-		#200;
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 1;
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 0;
+		$display("RX_EFF = ", RX_EFF);
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 0;
+		#20833 UART_RX = 1;
+		$display("RX_EFF = ", RX_EFF);
+		#40;
+		$display("RX_EFF = ", RX_EFF);
 		addr = 32'h4000001c;
 		read = 1'b1;
 		
-		#200;
+		#40;
 		read = 1'b0;
 	end
 	
-	always #100 clk = ~clk;
-	always #5 sysclk = ~sysclk;
+	// always #100 clk = ~clk;
+	// always #5 sysclk = ~sysclk;
+	always #20 clk = ~clk;
+	always #1 sysclk = ~sysclk;
 endmodule

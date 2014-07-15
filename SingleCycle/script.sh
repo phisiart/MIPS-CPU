@@ -1,4 +1,4 @@
-iverilog  \
+iverilog -Wall \
          ../Peripheral/regfile.v \
          ../Peripheral/UART.v \
          ../Peripheral/DataMem.v \

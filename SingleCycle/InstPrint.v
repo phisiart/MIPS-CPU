@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module InstPrint(
     input wire[31:0] PC,
     input wire[31:0] instruction,

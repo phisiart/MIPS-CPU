@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module RegPrint(
     input wire[4:0] addr1,
     input wire[4:0] addr2,

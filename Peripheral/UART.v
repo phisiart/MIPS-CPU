@@ -84,6 +84,7 @@ module UART(
         .RX_DATA(UART_RXD)
     );
 
+    wire baudclk;
     divider_16 di(brclk, reset_UBRG, baudclk);
 
     UART_Sender UART_Sender_inst(

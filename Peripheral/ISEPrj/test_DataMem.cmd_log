@@ -1,2 +1,0 @@
-xst -intstyle ise -ifn "/home/johnson/GitHub/CPU/Peripheral/ISEPrj/test_DataMem.xst" -ofn "/home/johnson/GitHub/CPU/Peripheral/ISEPrj/test_DataMem.syr" 
-ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc /home/johnson/GitHub/CPU/Peripheral/testbench_fpga.ucf -p xc6slx16-csg324-3 test_DataMem.ngc test_DataMem.ngd  

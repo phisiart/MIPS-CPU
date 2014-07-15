@@ -58,18 +58,18 @@ module DataMem(
     );
 
     // gloabal size
-    parameter RAM_SIZE = 256;
+    parameter RAM_SIZE = 16;
     integer i;
     reg [31:0] RAM_DATA[RAM_SIZE-1:0];
 
     // stack size
-    parameter STACK_SIZE = 256;
+    parameter STACK_SIZE = 16;
     reg [31:0] STACK_DATA[10'h3ff:10'h3ff - STACK_SIZE + 1];
 
     wire [1:0] addr_lower;
     wire [11:2] addr_word_align;	// word align addr
     wire [31:12] addr_upper;
-
+    wire [9:0] addr_eff;
     // split the address into three parts
     // addr_lower to check if the address is word aligned, normally it should be 2'b00
     // addr_eff is 10 bits, this is the effect word address, and it can be extended
