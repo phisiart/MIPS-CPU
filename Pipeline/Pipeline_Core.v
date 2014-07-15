@@ -14,51 +14,19 @@ module Pipeline_Core(
     output RX_READ
     );
 
-/////////////////////////////////////
-// IF STAGE
-////////////////////////////////////
+
+////////////////////////////////
+//---------------------------
+// signals within IF stage
+
 
 wire [31:0] IF_iPC;
 wire [31:0] IF_oPC;
 wire [31:0] IF_NEXT_PC;
 wire [31:0] IF_INSTRUCTION;
-wire [31:0] EX_ForwardJrData;
 
-wire [31:0] ID_READ_DATA1, ID_READ_DATA2, ID_EXTEND, ID_ALUSrc2_ELSE;
-wire [5:0] ID_ALUFUNCT;
-wire [1:0] ID_RegDst, ID_MemToReg;
-wire [2:0] ID_PCSrc;
-wire ID_ALUSrc1, ID_ALUSrc2, ID_MemRd, ID_MemWr, ID_RegWr, ID_Sign, ID_EXTOp, ID_LUOp;
-wire [2:0] PCWrite, IF_ID_Write, IF_ID_Flush, ID_EX_Flush;
-
-wire MEM_Interrupt;
-
-wire [31:0] WB_RegWriteData;
-
-wire [1:0] EX_ForwardA, EX_ForwardB, EX_ForwardJr;
-
-wire [31:0] EX_ALUSrc1, EX_ALUSrc2, EX_ALUResult, EX_ConBA, EX_RegDst, EX_ForwardAData, EX_ForwardBData;
-
-wire [31:0] MEM_ReadData;
-
-wire IF_ID_Flush_OR, ID_EX_Flush_OR;
-assign IF_ID_Flush_OR = IF_ID_Flush[0] && IF_ID_Flush[1] && IF_ID_Flush[2];
-assign ID_EX_Flush_OR = ID_EX_Flush[0] && ID_EX_Flush[1] && ID_EX_Flush[2];
-
-// signals between ID/EX
-wire [5:0] ID_EX_ALUFUNCT;
-wire [4:0] ID_EX_Rs, ID_EX_Rt, ID_EX_Rd, ID_EX_Shamt;
-wire [1:0] ID_EX_RegDst, ID_EX_MemToReg;
-wire [2:0] ID_EX_PCSrc;
-wire ID_EX_ALUSrc1, ID_EX_ALUSrc2, ID_EX_MemRd, ID_EX_MemWr, ID_EX_RegWr, ID_EX_Sign;
-wire [31:0] ID_EX_Extend, ID_EX_ALUSrc2_ELSE, ID_EX_ReadData1, ID_EX_ReadData2, ID_EX_NextPC;
-
-
-// signals between MEM/WB
-wire MEM_WB_RegWr;
-wire [31:0] MEM_WB_ALUResult, MEM_WB_ReadData, MEM_WB_RegDst, MEM_WB_NextPC;
-wire [1:0] MEM_WB_MemToReg;
-
+////////////////////////////////
+//---------------------------
 // signals between IF/ID
 
 wire [31:0] IF_ID_NEXT_PC;
@@ -71,9 +39,83 @@ wire [2:0] PCSrc;
 
 assign PCSrc = (ID_EX_PCSrc == 3'b001 && EX_ALUResult[0]) ? 3'b001 : (ID_PCSrc == 3'b001 ? 3'b000 : ID_PCSrc);
 
+////////////////////////////////
+//---------------------------
+// signals within ID stage
+
+wire [31:0] ID_READ_DATA1, ID_READ_DATA2, ID_EXTEND, ID_ALUSrc2_ELSE;
+wire [5:0] ID_ALUFUNCT;
+wire [1:0] ID_RegDst, ID_MemToReg;
+wire [2:0] ID_PCSrc;
+wire ID_ALUSrc1, ID_ALUSrc2, ID_MemRd, ID_MemWr, ID_RegWr, ID_Sign, ID_EXTOp, ID_LUOp;
+
+////////////////////////////////
+//---------------------------
+// signals between ID/EX
+
+wire [5:0] ID_EX_ALUFUNCT;
+wire [4:0] ID_EX_Rs, ID_EX_Rt, ID_EX_Rd, ID_EX_Shamt;
+wire [1:0] ID_EX_RegDst, ID_EX_MemToReg;
+wire [2:0] ID_EX_PCSrc;
+wire ID_EX_ALUSrc1, ID_EX_ALUSrc2, ID_EX_MemRd, ID_EX_MemWr, ID_EX_RegWr, ID_EX_Sign;
+wire [31:0] ID_EX_Extend, ID_EX_ALUSrc2_ELSE, ID_EX_ReadData1, ID_EX_ReadData2, ID_EX_NextPC;
+
+////////////////////////////////
+//---------------------------
+// signals with EX stage
+
+wire [31:0] EX_ALUSrc1, EX_ALUSrc2, EX_ALUResult, EX_ConBA, EX_RegDst, EX_ForwardAData, EX_ForwardBData, EX_ForwardJrData;
+
+////////////////////////////////
+//---------------------------
+// signals within MEM stage
+
+wire [31:0] MEM_ReadData;
+
+////////////////////////////////
+//---------------------------
+// signals between MEM/WB
+
+wire MEM_WB_RegWr;
+wire [31:0] MEM_WB_ALUResult, MEM_WB_ReadData, MEM_WB_RegDst, MEM_WB_NextPC;
+wire [1:0] MEM_WB_MemToReg;
+
+////////////////////////////////
+//---------------------------
+// signals within WB stage
+
+wire [31:0] WB_RegWriteData;
+
+////////////////////////////////
+//---------------------------
+// signal of interrupt
+
+wire MEM_Interrupt;
+
+////////////////////////////////
+//---------------------------
+// Forward singals
+
+wire [1:0] EX_ForwardA, EX_ForwardB, EX_ForwardJr;
+
+////////////////////////////////
+//---------------------------
+// Harzard detection signals
+
+wire [2:0] PCWrite, IF_ID_Write, IF_ID_Flush, ID_EX_Flush;
+
+wire IF_ID_Flush_OR, ID_EX_Flush_OR;
+assign IF_ID_Flush_OR = IF_ID_Flush[0] && IF_ID_Flush[1] && IF_ID_Flush[2];
+assign ID_EX_Flush_OR = ID_EX_Flush[0] && ID_EX_Flush[1] && ID_EX_Flush[2];
+
 wire PCWrtieOR, IF_ID_WriteOR;
 assign PCWriteOR = PCWrite[0] && PCWrite[1] && PCWrite[2];
 assign IF_ID_WriteOR = IF_ID_Write[0] && IF_ID_Write[1] && IF_ID_Write[2];
+
+/////////////////////////////////////
+//----------------------------------
+// IF STAGE
+////////////////////////////////////
 
 MUX4 ForwardJr_MUX(
 	.iData0(ID_READ_DATA1),
@@ -138,6 +180,7 @@ IF_ID_REG IF_ID_REG_INST(
     );
 
 //////////////////////////////////////////
+//----------------------------------
 // ID STAGE
 //////////////////////////////////////////
 
@@ -243,6 +286,7 @@ ID_EX_REG ID_EX_REG_INST(
 	);
 
 ////////////////////////////////////////////
+//----------------------------------
 // EX STAGE
 ///////////////////////////////////////////
 
@@ -349,6 +393,7 @@ EX_MEM_REG EX_MEM_REG_INST(
 	);
 
 ////////////////////////////////////////////////
+//----------------------------------
 // MEM STAGE
 ////////////////////////////////////////////////
 
@@ -392,6 +437,7 @@ MEM_WB_REG MEM_WB_REG_INST(
 	);
 
 ///////////////////////////////////////
+//----------------------------------
 // WB STAGE
 //////////////////////////////////////
 
