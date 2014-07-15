@@ -96,7 +96,6 @@ EXIT_READ_LOOP_2:
 
 	# use the LEDs to show the result
 	sw  $s3, -20($s0)
-	nop
 	# save the result to UART_TXD
 	sw  $s3, -8($s0)
 SEND_LOOP:

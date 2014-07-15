@@ -18,21 +18,12 @@ main:
 	##########################################
 
 	lui  $t0, 16384 	# $t0 = 0x40000000
-
-	# set $s0 to the address of UART_CON
 	addi $s0, $t0, 32
 
-READ_LOOP_1:
-	# this loop is to read the first parameter from UART
-	lw  $t0, 0($s0)
-	sll $t0, $t0, 30
-	srl $t0, $t0, 31 	# $t0: 0 bit is RX_EFF
-	bne $t0, $zero, EXIT_READ_LOOP_1
-	j READ_LOOP_1
+	add  $s3, $t0, $zero
 
-EXIT_READ_LOOP_1:
-	# get the first parameter into $a0
-	lw  $s1, -4($s0)
-	sw 	$s1, -20($s0)
-	j READ_LOOP_1
+	# use the LEDs to show the result
+	sw  $s3, -20($s0)
+	# save the result to UART_TXD
+	sw  $s3, -8($s0)
 	

@@ -24,7 +24,6 @@ always @(*) begin
 	end
 	else if (MEM_WB_RegWr == 1'b1 &&
 			MEM_WB_RegDst != 5'h00 &&
-			EX_MEM_RegDst != ID_EX_Rs && 
 			MEM_WB_RegDst == ID_EX_Rs) begin
 		ForwardA = 2'b01;
 	end
@@ -38,7 +37,6 @@ always @(*) begin
 	end
 	else if (MEM_WB_RegWr == 1'b1 &&
 			MEM_WB_RegDst != 5'h00 &&
-			EX_MEM_RegDst != ID_EX_Rt && 
 			MEM_WB_RegDst == ID_EX_Rt) begin
 		ForwardB = 2'b01;
 	end
