@@ -6,7 +6,7 @@ Loading device for application Rf_Device from file '6slx16.nph' in environment
 speed -3
 Opened constraints file Pipeline_fpga.pcf.
 
-Tue Jul 15 20:25:43 2014
+Wed Jul 16 13:12:34 2014
 
 /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/bitgen -intstyle ise -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g Reset_on_err:No -g ConfigRate:2 -g ProgPin:PullUp -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp -g TmsPin:PullUp -g UnusedPin:PullDown -g UserID:0xFFFFFFFF -g ExtMasterCclk_en:No -g SPI_buswidth:1 -g TIMER_CFG:0xFFFF -g multipin_wakeup:No -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g LCK_cycle:NoWait -g Security:None -g DonePipe:Yes -g DriveDone:No -g en_sw_gsr:No -g drive_awake:No -g sw_clk:Startupclk -g sw_gwe_cycle:5 -g sw_gts_cycle:4 Pipeline_fpga.ncd 
 
@@ -130,17 +130,17 @@ There were 0 CONFIG constraint(s) processed from Pipeline_fpga.pcf.
 
 Running DRC.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_345_o is sourced by a
+   Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_322_o is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   Pipeline_Core_INST/Ctrl_Inst/Interrupt_Instruction[31]_AND_281_o is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    UART_inst/UART_Receiver_inst/di/clkout_reg is sourced by a combinatorial pin.
    This is not good design practice. Use the CE pin to control the loading of
    data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   Pipeline_Core_INST/Ctrl_Inst/Interrupt_FORMAT[5]_AND_302_o is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    UART_inst/UART_Sender_inst/TX_EN1 is sourced by a combinatorial pin. This is
    not good design practice. Use the CE pin to control the loading of data into
@@ -155,10 +155,6 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    UART_inst/UART_Sender_inst/TX_EN_TX_DATA[4]_AND_24_o is sourced by a
-   combinatorial pin. This is not good design practice. Use the CE pin to
-   control the loading of data into the flip-flop.
-WARNING:PhysDesignRules:372 - Gated clock. Clock net
-   Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_343_o is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
@@ -179,6 +175,10 @@ WARNING:PhysDesignRules:372 - Gated clock. Clock net
    control the loading of data into the flip-flop.
 WARNING:PhysDesignRules:372 - Gated clock. Clock net
    UART_inst/UART_Sender_inst/TX_EN_TX_DATA[7]_AND_18_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_324_o is sourced by a
    combinatorial pin. This is not good design practice. Use the CE pin to
    control the loading of data into the flip-flop.
 DRC detected 0 errors and 13 warnings.  Please see the previously displayed

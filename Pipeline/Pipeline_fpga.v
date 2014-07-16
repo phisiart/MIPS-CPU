@@ -49,7 +49,7 @@ always @(posedge sysclk or negedge reset) begin
 		count <= 8'h00;
 		clk <= 0;
 	end
-	else if (count == 8'hff) begin
+	else if (count == 8'h0f) begin
 		count <= 8'h00;
 		clk <= ~clk;
 	end

@@ -2,27 +2,27 @@ Command line:
    test_Pipeline_fpga_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  50444
+     -socket  35254
 
-Tue Jul 15 20:21:10 2014
+Wed Jul 16 13:07:27 2014
 
 
- Elaboration Time: 0.07 sec
+ Elaboration Time: 0.05 sec
 
- Current Memory Usage: 206.008 Meg
+ Current Memory Usage: 206.262 Meg
 
- Total Signals          : 453
- Total Nets             : 2411
- Total Signal Drivers   : 177
- Total Blocks           : 46
- Total Primitive Blocks : 36
- Total Processes        : 208
- Total Traceable Variables  : 242
- Total Scalar Nets and Variables : 6190
+ Total Signals          : 471
+ Total Nets             : 2482
+ Total Signal Drivers   : 186
+ Total Blocks           : 48
+ Total Primitive Blocks : 37
+ Total Processes        : 217
+ Total Traceable Variables  : 243
+ Total Scalar Nets and Variables : 6263
 
- Total Simulation Time: 1.49 sec
+ Total Simulation Time: 8.09 sec
 
- Current Memory Usage: 281.51 Meg
+ Current Memory Usage: 281.764 Meg
 
-Tue Jul 15 20:21:39 2014
+Wed Jul 16 13:07:40 2014
 

@@ -84,6 +84,7 @@ wire [1:0] MEM_WB_MemToReg;
 //---------------------------
 // signals within WB stage
 
+wire [31:0] WB_CurrentPC;
 wire [31:0] WB_RegWriteData;
 
 ////////////////////////////////
@@ -441,13 +442,18 @@ MEM_WB_REG MEM_WB_REG_INST(
 // WB STAGE
 //////////////////////////////////////
 
-
+SUB CurrentPC(
+	.A(MEM_WB_NextPC),
+	.B(32'h4),
+	.Signed(1'b0),
+	.S(WB_CurrentPC)
+	);
 
 MUX4 MemToReg_MUX(
 	.iData0(MEM_WB_ALUResult),
 	.iData1(MEM_WB_ReadData),
 	.iData2(MEM_WB_NextPC),
-	.iData3(32'h0),
+	.iData3(WB_CurrentPC),
 	.iControl(MEM_WB_MemToReg),
 	.oData(WB_RegWriteData)
 	);

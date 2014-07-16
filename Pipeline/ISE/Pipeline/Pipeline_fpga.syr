@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.06 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: Pipeline_fpga.prj
@@ -188,10 +188,11 @@ Elaborating module <divider_16>.
 
 Elaborating module <UART_Sender>.
 WARNING:HDLCompiler:462 - "/home/sean/Dropbox/CPU/CPU/Peripheral/UART_Sender.v" Line 38: if-condition does not match any sensitivity list edge
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 109: Port Zero is not connected to this instance
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 276: Port IF_ID_Rd is not connected to this instance
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 312: Port Zero is not connected to this instance
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 357: Port read_acc is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 152: Port Zero is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 321: Port IF_ID_Rd is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 357: Port Zero is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 403: Port read_acc is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 445: Port Zero is not connected to this instance
 
 Elaborating module <Pipeline_Core>.
 
@@ -208,8 +209,8 @@ Elaborating module <ADD>.
 Elaborating module <ROM>.
 
 Elaborating module <IF_ID_REG>.
-WARNING:HDLCompiler:1127 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 130: Assignment to IF_ID_FORMAT ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 137: Assignment to IF_ID_FUNCT ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 173: Assignment to IF_ID_FORMAT ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 180: Assignment to IF_ID_FUNCT ignored, since the identifier is never used
 
 Elaborating module <Hazard_Detection_Unit>.
 
@@ -237,14 +238,14 @@ Elaborating module <Logic>.
 Elaborating module <Shift>.
 
 Elaborating module <EX_MEM_REG>.
-WARNING:HDLCompiler:1127 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 341: Assignment to EX_MEM_PCSrc ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 386: Assignment to EX_MEM_PCSrc ignored, since the identifier is never used
 
 Elaborating module <DataMem>.
 
 Elaborating module <Peripheral>.
 
 Elaborating module <MEM_WB_REG>.
-WARNING:HDLCompiler:552 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 276: Input port IF_ID_Rd[4] is not connected on this instance
+WARNING:HDLCompiler:552 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" Line 321: Input port IF_ID_Rd[4] is not connected on this instance
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -337,17 +338,20 @@ Synthesizing Unit <Pipeline_Core>.
     Related source file is "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v".
 WARNING:Xst:2898 - Port 'IF_ID_Rd', unconnected in block instance 'Forward_Unit_INST', is tied to GND.
 WARNING:Xst:2898 - Port 'ID_EX_Rd', unconnected in block instance 'Forward_Unit_INST', is tied to GND.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 109: Output port <Zero> of the instance <PC_ADDER> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 109: Output port <Overflow> of the instance <PC_ADDER> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 109: Output port <Negative> of the instance <PC_ADDER> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 121: Output port <FORMAT> of the instance <IF_ID_REG_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 121: Output port <FUNCT> of the instance <IF_ID_REG_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 312: Output port <Zero> of the instance <ConBA_ADD_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 312: Output port <Overflow> of the instance <ConBA_ADD_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 312: Output port <Negative> of the instance <ConBA_ADD_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 328: Output port <oPCSrc> of the instance <EX_MEM_REG_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 357: Output port <read_acc> of the instance <DataMem_INST> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 357: Output port <write_acc> of the instance <DataMem_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 152: Output port <Zero> of the instance <PC_ADDER> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 152: Output port <Overflow> of the instance <PC_ADDER> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 152: Output port <Negative> of the instance <PC_ADDER> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 164: Output port <FORMAT> of the instance <IF_ID_REG_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 164: Output port <FUNCT> of the instance <IF_ID_REG_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 357: Output port <Zero> of the instance <ConBA_ADD_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 357: Output port <Overflow> of the instance <ConBA_ADD_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 357: Output port <Negative> of the instance <ConBA_ADD_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 373: Output port <oPCSrc> of the instance <EX_MEM_REG_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 403: Output port <read_acc> of the instance <DataMem_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 403: Output port <write_acc> of the instance <DataMem_INST> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 445: Output port <Zero> of the instance <CurrentPC> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 445: Output port <Overflow> of the instance <CurrentPC> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_Core.v" line 445: Output port <Negative> of the instance <CurrentPC> is unconnected or connected to loadless signal.
     Summary:
 	inferred   2 Multiplexer(s).
 Unit <Pipeline_Core> synthesized.
@@ -497,11 +501,11 @@ Synthesizing Unit <Control_Unit>.
         MemToReg_ALU = 2'b00
         MemToReg_MEM = 2'b01
         MemToReg_PC = 2'b10
+        MemToReg_CurPC = 2'b11
         EXTOp_SIGNED = 1'b1
         EXTOp_UNSIGNED = 1'b0
         LUOp_EN = 1'b1
         LUOp_DIS = 1'b0
-WARNING:Xst:647 - Input <Instruction<25:6>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:737 - Found 1-bit latch for signal <MemRd>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 WARNING:Xst:737 - Found 1-bit latch for signal <ALUSrc1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 WARNING:Xst:737 - Found 1-bit latch for signal <ALUFun<5>>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
@@ -555,9 +559,9 @@ Unit <ID_EX_REG> synthesized.
 Synthesizing Unit <Forward_Unit>.
     Related source file is "/home/sean/Dropbox/CPU/CPU/Pipeline/Forward_Unit.v".
     Found 5-bit comparator equal for signal <EX_MEM_RegDst[4]_ID_EX_Rs[4]_equal_3_o> created at line 22
-    Found 5-bit comparator equal for signal <MEM_WB_RegDst[4]_ID_EX_Rs[4]_equal_7_o> created at line 28
-    Found 5-bit comparator equal for signal <EX_MEM_RegDst[4]_ID_EX_Rt[4]_equal_12_o> created at line 36
-    Found 5-bit comparator equal for signal <MEM_WB_RegDst[4]_ID_EX_Rt[4]_equal_16_o> created at line 42
+    Found 5-bit comparator equal for signal <MEM_WB_RegDst[4]_ID_EX_Rs[4]_equal_6_o> created at line 27
+    Found 5-bit comparator equal for signal <EX_MEM_RegDst[4]_ID_EX_Rt[4]_equal_11_o> created at line 35
+    Found 5-bit comparator equal for signal <MEM_WB_RegDst[4]_ID_EX_Rt[4]_equal_14_o> created at line 40
     Summary:
 	inferred   4 Comparator(s).
 	inferred   2 Multiplexer(s).
@@ -752,9 +756,9 @@ Unit <MEM_WB_REG> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 12
+# Adders/Subtractors                                   : 14
  3-bit adder                                           : 2
- 32-bit adder                                          : 6
+ 32-bit adder                                          : 8
  4-bit adder                                           : 1
  8-bit adder                                           : 2
  9-bit adder                                           : 1
@@ -773,13 +777,13 @@ Macro Statistics
  992-bit register                                      : 1
 # Latches                                              : 45
  1-bit latch                                           : 45
-# Comparators                                          : 10
- 1-bit comparator equal                                : 1
+# Comparators                                          : 11
+ 1-bit comparator equal                                : 2
  10-bit comparator greater                             : 2
  10-bit comparator lessequal                           : 1
  5-bit comparator equal                                : 6
-# Multiplexers                                         : 225
- 1-bit 2-to-1 multiplexer                              : 70
+# Multiplexers                                         : 230
+ 1-bit 2-to-1 multiplexer                              : 75
  1-bit 8-to-1 multiplexer                              : 1
  2-bit 2-to-1 multiplexer                              : 14
  3-bit 2-to-1 multiplexer                              : 11
@@ -791,8 +795,8 @@ Macro Statistics
  6-bit 2-to-1 multiplexer                              : 1
  8-bit 2-to-1 multiplexer                              : 4
  9-bit 2-to-1 multiplexer                              : 1
-# Xors                                                 : 6
- 1-bit xor2                                            : 5
+# Xors                                                 : 8
+ 1-bit xor2                                            : 7
  32-bit xor2                                           : 1
 
 =========================================================================
@@ -874,8 +878,8 @@ Unit <divider_16> synthesized (advanced).
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 8
- 32-bit adder                                          : 6
+# Adders/Subtractors                                   : 10
+ 32-bit adder                                          : 8
  4-bit adder                                           : 1
  8-bit adder                                           : 1
 # Counters                                             : 4
@@ -884,14 +888,14 @@ Macro Statistics
  9-bit up counter                                      : 1
 # Registers                                            : 2724
  Flip-Flops                                            : 2724
-# Comparators                                          : 10
- 1-bit comparator equal                                : 1
+# Comparators                                          : 11
+ 1-bit comparator equal                                : 2
  10-bit comparator greater                             : 2
  10-bit comparator lessequal                           : 1
  5-bit comparator equal                                : 6
-# Multiplexers                                         : 1299
+# Multiplexers                                         : 1302
  1-bit 16-to-1 multiplexer                             : 64
- 1-bit 2-to-1 multiplexer                              : 1119
+ 1-bit 2-to-1 multiplexer                              : 1122
  1-bit 8-to-1 multiplexer                              : 1
  2-bit 2-to-1 multiplexer                              : 14
  3-bit 2-to-1 multiplexer                              : 9
@@ -901,8 +905,8 @@ Macro Statistics
  5-bit 2-to-1 multiplexer                              : 4
  6-bit 2-to-1 multiplexer                              : 1
  8-bit 2-to-1 multiplexer                              : 3
-# Xors                                                 : 3
- 1-bit xor2                                            : 2
+# Xors                                                 : 4
+ 1-bit xor2                                            : 3
  32-bit xor2                                           : 1
 
 =========================================================================
@@ -967,8 +971,6 @@ Optimizing unit <MEM_WB_REG> ...
 
 Optimizing unit <Control_Unit> ...
 
-Optimizing unit <ROM> ...
-
 Optimizing unit <Arith> ...
 
 Optimizing unit <SUB> ...
@@ -980,6 +982,7 @@ Optimizing unit <UART> ...
 Optimizing unit <UART_Sender> ...
 
 Optimizing unit <UART_Receiver> ...
+WARNING:Xst:1710 - FF/Latch <Pipeline_Core_INST/IF_ID_REG_INST/oInstruction_30> (without init value) has a constant value of 0 in block <Pipeline_fpga>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:2677 - Node <Pipeline_Core_INST/DataMem_INST/write_acc> of sequential type is unconnected in block <Pipeline_fpga>.
 WARNING:Xst:2677 - Node <Pipeline_Core_INST/DataMem_INST/peripheral_inst/write_acc> of sequential type is unconnected in block <Pipeline_fpga>.
 WARNING:Xst:2677 - Node <Pipeline_Core_INST/EX_MEM_REG_INST/oRegDst_31> of sequential type is unconnected in block <Pipeline_fpga>.
@@ -1042,27 +1045,27 @@ WARNING:Xst:2677 - Node <Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_5> of sequen
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_0> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_6> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_1> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_7> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_2> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_8> 
-INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_3> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_9> 
-INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_4> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_10> 
+INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_3> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_4> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_11> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oRd_0> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_12> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oRd_1> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_13> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oRd_2> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_14> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oRd_3> 
 INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_15> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oRd_4> 
+INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oALUSrc2_ELSE_9> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oALUSrc2_ELSE_10> 
+INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oALUSrc2_ELSE_25> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oALUSrc2_ELSE_26> 
+INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/IF_ID_REG_INST/oInstruction_10> in Unit <Pipeline_fpga> is equivalent to the following FF/Latch, which will be removed : <Pipeline_Core_INST/IF_ID_REG_INST/oInstruction_9> 
 
 Mapping all equations...
 Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <Pipeline_Core_INST/ID_EX_REG_INST/oShamt_3> in Unit <Pipeline_fpga> is equivalent to the following 2 FFs/Latches, which will be removed : <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_10> <Pipeline_Core_INST/ID_EX_REG_INST/oExtend_9> 
 Found area constraint ratio of 100 (+ 5) on block Pipeline_fpga, actual ratio is 73.
-FlipFlop Pipeline_Core_INST/EX_MEM_REG_INST/oALUResult_2 has been replicated 1 time(s)
-FlipFlop Pipeline_Core_INST/EX_MEM_REG_INST/oALUResult_3 has been replicated 1 time(s)
-FlipFlop Pipeline_Core_INST/EX_MEM_REG_INST/oALUResult_4 has been replicated 1 time(s)
-FlipFlop Pipeline_Core_INST/EX_MEM_REG_INST/oALUResult_5 has been replicated 1 time(s)
-FlipFlop Pipeline_Core_INST/EX_MEM_REG_INST/oRegWr has been replicated 1 time(s)
-FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_0 has been replicated 2 time(s)
+FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oMemToReg_0 has been replicated 2 time(s)
+FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oMemToReg_1 has been replicated 2 time(s)
+FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_0 has been replicated 1 time(s)
 FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_1 has been replicated 2 time(s)
 FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_2 has been replicated 2 time(s)
 FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_3 has been replicated 1 time(s)
-FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_4 has been replicated 1 time(s)
+FlipFlop Pipeline_Core_INST/MEM_WB_REG_INST/oRegDst_4 has been replicated 2 time(s)
 
 Final Macro Processing ...
 
@@ -1070,8 +1073,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 2685
- Flip-Flops                                            : 2685
+# Registers                                            : 2679
+ Flip-Flops                                            : 2679
 
 =========================================================================
 
@@ -1094,24 +1097,24 @@ Top Level Output File Name         : Pipeline_fpga.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 5656
+# BELS                             : 5690
 #      GND                         : 1
 #      INV                         : 7
-#      LUT1                        : 60
-#      LUT2                        : 122
-#      LUT3                        : 2289
-#      LUT4                        : 274
-#      LUT5                        : 460
-#      LUT6                        : 1860
-#      MUXCY                       : 166
-#      MUXF7                       : 179
+#      LUT1                        : 62
+#      LUT2                        : 119
+#      LUT3                        : 2244
+#      LUT4                        : 186
+#      LUT5                        : 469
+#      LUT6                        : 1892
+#      MUXCY                       : 197
+#      MUXF7                       : 243
 #      MUXF8                       : 64
 #      VCC                         : 1
-#      XORCY                       : 173
-# FlipFlops/Latches                : 2739
+#      XORCY                       : 205
+# FlipFlops/Latches                : 2733
 #      FD                          : 2
-#      FDC                         : 493
-#      FDCE                        : 1153
+#      FDC                         : 490
+#      FDCE                        : 1150
 #      FDCE_1                      : 964
 #      FDP                         : 10
 #      FDPE                        : 35
@@ -1134,15 +1137,15 @@ Selected Device : 6slx16csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            2739  out of  18224    15%  
- Number of Slice LUTs:                 5072  out of   9112    55%  
-    Number used as Logic:              5072  out of   9112    55%  
+ Number of Slice Registers:            2733  out of  18224    14%  
+ Number of Slice LUTs:                 4979  out of   9112    54%  
+    Number used as Logic:              4979  out of   9112    54%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   5251
-   Number with an unused Flip Flop:    2512  out of   5251    47%  
-   Number with an unused LUT:           179  out of   5251     3%  
-   Number of fully used LUT-FF pairs:  2560  out of   5251    48%  
+ Number of LUT Flip Flop pairs used:   5144
+   Number with an unused Flip Flop:    2411  out of   5144    46%  
+   Number with an unused LUT:           165  out of   5144     3%  
+   Number of fully used LUT-FF pairs:  2568  out of   5144    49%  
    Number of unique control sets:        54
 
 IO Utilization: 
@@ -1170,29 +1173,29 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
--------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+-------+
-Clock Signal                                                                                                             | Clock buffer(FF name)                                | Load  |
--------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+-------+
-sysclk                                                                                                                   | BUFGP                                                | 32    |
-clk                                                                                                                      | BUFG                                                 | 2605  |
-Pipeline_Core_INST/EX_MEM_REG_INST/oMemRd                                                                                | BUFG                                                 | 32    |
-Pipeline_Core_INST/Ctrl_Inst/Interrupt_FORMAT[5]_AND_302_o(Pipeline_Core_INST/Ctrl_Inst/Interrupt_FORMAT[5]_AND_302_o1:O)| NONE(*)(Pipeline_Core_INST/Ctrl_Inst/ALUFun_0)       | 7     |
-Pipeline_Core_INST/DataMem_INST/peripheral_inst/TCON_2                                                                   | NONE(Pipeline_Core_INST/Ctrl_Inst/MemWr)             | 2     |
-Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_345_o(Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_345_o3:O)| NONE(*)(Pipeline_Core_INST/Ctrl_Inst/Sign)           | 1     |
-Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_343_o(Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_343_o1:O)| NONE(*)(Pipeline_Core_INST/Ctrl_Inst/EXTOp)          | 3     |
-UART_inst/UBRG_inst/clkout_reg                                                                                           | NONE(UART_inst/di/state_2)                           | 17    |
-UART_inst/di/clkout_reg                                                                                                  | BUFG                                                 | 23    |
-UART_inst/UART_Receiver_inst/di/clkout_reg                                                                               | NONE(UART_inst/UART_Receiver_inst/RX_DATA_TEMP_7)    | 8     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[7]_AND_18_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[7]_AND_18_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_7_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[1]_AND_30_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[1]_AND_30_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_1_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[2]_AND_28_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[2]_AND_28_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_2_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[0]_AND_32_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[0]_AND_32_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_0_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[4]_AND_24_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[4]_AND_24_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_4_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[5]_AND_22_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[5]_AND_22_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_5_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[3]_AND_26_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[3]_AND_26_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_3_LDC)| 1     |
-UART_inst/UART_Sender_inst/TX_EN1(UART_inst/UART_Sender_inst/TX_EN1:O)                                                   | NONE(*)(UART_inst/UART_Sender_inst/count_0_LDC)      | 1     |
-UART_inst/UART_Sender_inst/TX_EN_TX_DATA[6]_AND_20_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[6]_AND_20_o1:O)            | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_6_LDC)| 1     |
--------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+-------+
+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+-------+
+Clock Signal                                                                                                                         | Clock buffer(FF name)                                | Load  |
+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+-------+
+sysclk                                                                                                                               | BUFGP                                                | 32    |
+clk                                                                                                                                  | BUFG                                                 | 2599  |
+Pipeline_Core_INST/EX_MEM_REG_INST/oMemRd                                                                                            | BUFG                                                 | 32    |
+Pipeline_Core_INST/Ctrl_Inst/Interrupt_Instruction[31]_AND_281_o(Pipeline_Core_INST/Ctrl_Inst/Interrupt_Instruction[31]_AND_281_o7:O)| NONE(*)(Pipeline_Core_INST/Ctrl_Inst/ALUFun_0)       | 7     |
+Pipeline_Core_INST/DataMem_INST/peripheral_inst/TCON_2                                                                               | NONE(Pipeline_Core_INST/Ctrl_Inst/MemWr)             | 2     |
+Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_324_o(Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_324_o1:O)            | NONE(*)(Pipeline_Core_INST/Ctrl_Inst/Sign)           | 1     |
+Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_322_o(Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_322_o1:O)            | NONE(*)(Pipeline_Core_INST/Ctrl_Inst/EXTOp)          | 3     |
+UART_inst/UBRG_inst/clkout_reg                                                                                                       | NONE(UART_inst/di/state_2)                           | 17    |
+UART_inst/di/clkout_reg                                                                                                              | BUFG                                                 | 23    |
+UART_inst/UART_Receiver_inst/di/clkout_reg                                                                                           | NONE(UART_inst/UART_Receiver_inst/RX_DATA_TEMP_7)    | 8     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[7]_AND_18_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[7]_AND_18_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_7_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[1]_AND_30_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[1]_AND_30_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_1_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[2]_AND_28_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[2]_AND_28_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_2_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[0]_AND_32_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[0]_AND_32_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_0_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[4]_AND_24_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[4]_AND_24_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_4_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[5]_AND_22_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[5]_AND_22_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_5_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[3]_AND_26_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[3]_AND_26_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_3_LDC)| 1     |
+UART_inst/UART_Sender_inst/TX_EN1(UART_inst/UART_Sender_inst/TX_EN1:O)                                                               | NONE(*)(UART_inst/UART_Sender_inst/count_0_LDC)      | 1     |
+UART_inst/UART_Sender_inst/TX_EN_TX_DATA[6]_AND_20_o(UART_inst/UART_Sender_inst/TX_EN_TX_DATA[6]_AND_20_o1:O)                        | NONE(*)(UART_inst/UART_Sender_inst/TX_DATA_REG_6_LDC)| 1     |
+-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------+-------+
 (*) These 12 clock signal(s) are generated by combinatorial logic,
 and XST is not able to identify which are the primary clock signals.
 Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
@@ -1206,8 +1209,8 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 12.401ns (Maximum Frequency: 80.636MHz)
-   Minimum input arrival time before clock: 5.593ns
+   Minimum period: 13.161ns (Maximum Frequency: 75.984MHz)
+   Minimum input arrival time before clock: 5.591ns
    Maximum output required time after clock: 3.634ns
    Maximum combinational path delay: No path found
 
@@ -1217,10 +1220,10 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'sysclk'
-  Clock period: 4.322ns (frequency: 231.361MHz)
-  Total number of paths / destination ports: 955 / 33
+  Clock period: 4.315ns (frequency: 231.726MHz)
+  Total number of paths / destination ports: 898 / 33
 -------------------------------------------------------------------------
-Delay:               4.322ns (Levels of Logic = 12)
+Delay:               4.315ns (Levels of Logic = 12)
   Source:            UART_inst/UBRG_inst/state_4 (FF)
   Destination:       UART_inst/UBRG_inst/state_8 (FF)
   Source Clock:      sysclk rising
@@ -1231,8 +1234,8 @@ Delay:               4.322ns (Levels of Logic = 12)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDC:C->Q              2   0.447   0.864  UART_inst/UBRG_inst/state_4 (UART_inst/UBRG_inst/state_4)
-     LUT4:I0->O            3   0.203   0.755  UART_inst/UBRG_inst/state[8]_PWR_4_o_equal_1_o_inv_SW0 (N163)
-     LUT6:I4->O            9   0.203   1.058  UART_inst/UBRG_inst/state[8]_PWR_4_o_equal_1_o<8> (UART_inst/UBRG_inst/state[8]_PWR_4_o_equal_1_o)
+     LUT4:I0->O            2   0.203   0.721  UART_inst/UBRG_inst/state[8]_PWR_4_o_equal_1_o_inv_SW0 (N144)
+     LUT6:I4->O           10   0.203   1.085  UART_inst/UBRG_inst/state[8]_PWR_4_o_equal_1_o<8> (UART_inst/UBRG_inst/state[8]_PWR_4_o_equal_1_o)
      LUT3:I0->O            1   0.205   0.000  UART_inst/UBRG_inst/Mcount_state_lut<0> (UART_inst/UBRG_inst/Mcount_state_lut<0>)
      MUXCY:S->O            1   0.172   0.000  UART_inst/UBRG_inst/Mcount_state_cy<0> (UART_inst/UBRG_inst/Mcount_state_cy<0>)
      MUXCY:CI->O           1   0.019   0.000  UART_inst/UBRG_inst/Mcount_state_cy<1> (UART_inst/UBRG_inst/Mcount_state_cy<1>)
@@ -1245,55 +1248,44 @@ Delay:               4.322ns (Levels of Logic = 12)
      XORCY:CI->O           1   0.180   0.000  UART_inst/UBRG_inst/Mcount_state_xor<8> (UART_inst/UBRG_inst/Mcount_state8)
      FDC:D                     0.102          UART_inst/UBRG_inst/state_8
     ----------------------------------------
-    Total                      4.322ns (1.645ns logic, 2.677ns route)
+    Total                      4.315ns (1.645ns logic, 2.670ns route)
                                        (38.1% logic, 61.9% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 12.401ns (frequency: 80.636MHz)
-  Total number of paths / destination ports: 86874398 / 4766
+  Clock period: 13.161ns (frequency: 75.984MHz)
+  Total number of paths / destination ports: 165272394 / 4757
 -------------------------------------------------------------------------
-Delay:               12.401ns (Levels of Logic = 26)
-  Source:            Pipeline_Core_INST/EX_MEM_REG_INST/oRegDst_0 (FF)
-  Destination:       Pipeline_Core_INST/IF_ID_REG_INST/oInstruction_31 (FF)
+Delay:               13.161ns (Levels of Logic = 15)
+  Source:            Pipeline_Core_INST/MEM_WB_REG_INST/oNextPC_0 (FF)
+  Destination:       Pipeline_Core_INST/PC_INST/oPC_21 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: Pipeline_Core_INST/EX_MEM_REG_INST/oRegDst_0 to Pipeline_Core_INST/IF_ID_REG_INST/oInstruction_31
+  Data Path: Pipeline_Core_INST/MEM_WB_REG_INST/oNextPC_0 to Pipeline_Core_INST/PC_INST/oPC_21
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDC:C->Q              8   0.447   1.147  Pipeline_Core_INST/EX_MEM_REG_INST/oRegDst_0 (Pipeline_Core_INST/EX_MEM_REG_INST/oRegDst_0)
-     LUT6:I1->O            2   0.203   0.617  Pipeline_Core_INST/Forward_Unit_INST/EX_MEM_RegDst[4]_ID_EX_Rt[4]_equal_12_o5_SW0 (N4)
-     LUT5:I4->O           14   0.205   1.062  Pipeline_Core_INST/Forward_Unit_INST/EX_MEM_RegDst[4]_ID_EX_Rt[4]_equal_12_o5_1 (Pipeline_Core_INST/Forward_Unit_INST/EX_MEM_RegDst[4]_ID_EX_Rt[4]_equal_12_o5)
-     LUT6:I4->O            7   0.203   0.774  Pipeline_Core_INST/ForwardB_MUX/Mmux_oData121 (Pipeline_Core_INST/EX_ForwardBData<1>)
-     LUT3:I2->O            2   0.205   0.721  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/n0025<1>1 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/n0025<1>)
-     LUT2:I0->O            1   0.203   0.580  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S1 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S1)
+     FDC:C->Q              2   0.447   0.617  Pipeline_Core_INST/MEM_WB_REG_INST/oNextPC_0 (Pipeline_Core_INST/MEM_WB_REG_INST/oNextPC_0)
+     LUT1:I0->O            1   0.205   0.000  Pipeline_Core_INST/CurrentPC/m_add/Madd_S_cy<0>_rt (Pipeline_Core_INST/CurrentPC/m_add/Madd_S_cy<0>_rt)
+     MUXCY:S->O            1   0.172   0.000  Pipeline_Core_INST/CurrentPC/m_add/Madd_S_cy<0> (Pipeline_Core_INST/CurrentPC/m_add/Madd_S_cy<0>)
+     XORCY:CI->O           3   0.180   0.879  Pipeline_Core_INST/CurrentPC/m_add/Madd_S_xor<0>_0 (Pipeline_Core_INST/WB_CurrentPC<1>)
+     LUT6:I3->O            1   0.205   0.684  Pipeline_Core_INST/ALUSrc1_MUX_INST/Mmux_oData121_SW2_F (N822)
+     LUT3:I1->O            1   0.203   0.808  Pipeline_Core_INST/ALUSrc1_MUX_INST/Mmux_oData121_SW21 (N479)
+     LUT5:I2->O           88   0.205   1.799  Pipeline_Core_INST/ALUSrc1_MUX_INST/Mmux_oData122 (Pipeline_Core_INST/EX_ALUSrc1<1>)
+     LUT2:I1->O            1   0.205   0.580  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S1 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S1)
      LUT3:I2->O            1   0.205   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_lut<0>2 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_lut<0>2)
      MUXCY:S->O            1   0.172   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_1 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>2)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_2 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>3)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_3 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>4)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_4 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>5)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_5 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>6)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_6 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>7)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_7 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>8)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_8 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>9)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_9 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>10)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_10 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>11)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_11 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>12)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_12 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>13)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_13 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>14)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_14 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>15)
-     MUXCY:CI->O           1   0.019   0.000  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>_15 (Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_cy<0>16)
-     XORCY:CI->O           2   0.180   0.864  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_xor<0>_16 (Pipeline_Core_INST/ALU_INST/m_arith/S_SUB<17>)
-     LUT4:I0->O            1   0.203   0.580  Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero14 (Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero13)
-     LUT6:I5->O            2   0.205   0.617  Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero15 (Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero14)
-     LUT6:I5->O           10   0.205   0.857  Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero117_1 (Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero117)
-     LUT6:I5->O           23   0.205   1.153  Pipeline_Core_INST/IF_ID_REG_INST/_n0037_inv1 (Pipeline_Core_INST/IF_ID_REG_INST/_n0037_inv)
-     FDCE:CE                   0.322          Pipeline_Core_INST/IF_ID_REG_INST/oInstruction_0
+     XORCY:CI->O           2   0.180   0.617  Pipeline_Core_INST/ALU_INST/m_arith/m_sub/m_add/Madd_S_xor<0>_2 (Pipeline_Core_INST/ALU_INST/m_arith/S_SUB<3>)
+     LUT5:I4->O            1   0.205   0.580  Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero112 (Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero111)
+     LUT6:I5->O            2   0.205   0.981  Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero113 (Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero112)
+     LUT6:I0->O           16   0.203   1.005  Pipeline_Core_INST/ALU_INST/m_arith/Mmux_Zero117 (Pipeline_Core_INST/ALU_INST/Zero)
+     LUT6:I5->O           16   0.205   1.109  Pipeline_Core_INST/Mmux_PCSrc1 (Pipeline_Core_INST/PCSrc<0>)
+     LUT6:I4->O            1   0.203   0.000  Pipeline_Core_INST/PC_MUX_INST/Mux2/Mmux_oData24 (Pipeline_Core_INST/IF_iPC<10>)
+     FDCE:D                    0.102          Pipeline_Core_INST/PC_INST/oPC_10
     ----------------------------------------
-    Total                     12.401ns (3.429ns logic, 8.972ns route)
-                                       (27.7% logic, 72.3% route)
+    Total                     13.161ns (3.502ns logic, 9.659ns route)
+                                       (26.6% logic, 73.4% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'UART_inst/UBRG_inst/clkout_reg'
@@ -1311,7 +1303,7 @@ Delay:               3.716ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDCE:C->Q            11   0.447   1.130  UART_inst/UART_Receiver_inst/count_1 (UART_inst/UART_Receiver_inst/count_1)
-     LUT4:I0->O            1   0.203   0.580  UART_inst/UART_Receiver_inst/_n0051_inv_SW0 (N169)
+     LUT4:I0->O            1   0.203   0.580  UART_inst/UART_Receiver_inst/_n0051_inv_SW0 (N150)
      LUT6:I5->O            9   0.205   0.829  UART_inst/UART_Receiver_inst/_n0051_inv (UART_inst/UART_Receiver_inst/_n0051_inv)
      FDCE:CE                   0.322          UART_inst/UART_Receiver_inst/sample_en
     ----------------------------------------
@@ -1366,7 +1358,7 @@ Delay:               1.165ns (Levels of Logic = 0)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'sysclk'
   Total number of paths / destination ports: 32 / 32
 -------------------------------------------------------------------------
-Offset:              5.593ns (Levels of Logic = 2)
+Offset:              5.591ns (Levels of Logic = 2)
   Source:            reset (PAD)
   Destination:       count_0 (FF)
   Destination Clock: sysclk rising
@@ -1376,17 +1368,17 @@ Offset:              5.593ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            22   1.222   1.133  reset_IBUF (reset_IBUF)
-     INV:I->O           2646   0.206   2.602  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
+     INV:I->O           2640   0.206   2.600  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
      FDC:CLR                   0.430          count_0
     ----------------------------------------
-    Total                      5.593ns (1.858ns logic, 3.735ns route)
+    Total                      5.591ns (1.858ns logic, 3.733ns route)
                                        (33.2% logic, 66.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 2605 / 2605
+  Total number of paths / destination ports: 2599 / 2599
 -------------------------------------------------------------------------
-Offset:              5.593ns (Levels of Logic = 2)
+Offset:              5.591ns (Levels of Logic = 2)
   Source:            reset (PAD)
   Destination:       Pipeline_Core_INST/DataMem_INST/RAM_DATA_0_511 (FF)
   Destination Clock: clk rising
@@ -1396,10 +1388,10 @@ Offset:              5.593ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            22   1.222   1.133  reset_IBUF (reset_IBUF)
-     INV:I->O           2646   0.206   2.602  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
+     INV:I->O           2640   0.206   2.600  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
      FDCE:CLR                  0.430          Pipeline_Core_INST/DataMem_INST/peripheral_inst/TH_0
     ----------------------------------------
-    Total                      5.593ns (1.858ns logic, 3.735ns route)
+    Total                      5.591ns (1.858ns logic, 3.733ns route)
                                        (33.2% logic, 66.8% route)
 
 =========================================================================
@@ -1427,7 +1419,7 @@ Offset:              3.285ns (Levels of Logic = 3)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'UART_inst/UBRG_inst/clkout_reg'
   Total number of paths / destination ports: 23 / 23
 -------------------------------------------------------------------------
-Offset:              5.593ns (Levels of Logic = 2)
+Offset:              5.591ns (Levels of Logic = 2)
   Source:            reset (PAD)
   Destination:       UART_inst/UART_Receiver_inst/count_7 (FF)
   Destination Clock: UART_inst/UBRG_inst/clkout_reg rising
@@ -1437,17 +1429,17 @@ Offset:              5.593ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            22   1.222   1.133  reset_IBUF (reset_IBUF)
-     INV:I->O           2646   0.206   2.602  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
+     INV:I->O           2640   0.206   2.600  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
      FDCE:CLR                  0.430          UART_inst/UART_Receiver_inst/count_0
     ----------------------------------------
-    Total                      5.593ns (1.858ns logic, 3.735ns route)
+    Total                      5.591ns (1.858ns logic, 3.733ns route)
                                        (33.2% logic, 66.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'UART_inst/di/clkout_reg'
   Total number of paths / destination ports: 23 / 23
 -------------------------------------------------------------------------
-Offset:              5.593ns (Levels of Logic = 2)
+Offset:              5.591ns (Levels of Logic = 2)
   Source:            reset (PAD)
   Destination:       UART_inst/UART_Sender_inst/UART_TX_REG (FF)
   Destination Clock: UART_inst/di/clkout_reg rising
@@ -1457,17 +1449,17 @@ Offset:              5.593ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            22   1.222   1.133  reset_IBUF (reset_IBUF)
-     INV:I->O           2646   0.206   2.602  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
+     INV:I->O           2640   0.206   2.600  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
      FDPE:PRE                  0.430          UART_inst/UART_Sender_inst/TX_STATUS_REG
     ----------------------------------------
-    Total                      5.593ns (1.858ns logic, 3.735ns route)
+    Total                      5.591ns (1.858ns logic, 3.733ns route)
                                        (33.2% logic, 66.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'UART_inst/UART_Receiver_inst/di/clkout_reg'
   Total number of paths / destination ports: 9 / 9
 -------------------------------------------------------------------------
-Offset:              5.593ns (Levels of Logic = 2)
+Offset:              5.591ns (Levels of Logic = 2)
   Source:            reset (PAD)
   Destination:       UART_inst/UART_Receiver_inst/RX_DATA_TEMP_7 (FF)
   Destination Clock: UART_inst/UART_Receiver_inst/di/clkout_reg rising
@@ -1477,10 +1469,10 @@ Offset:              5.593ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            22   1.222   1.133  reset_IBUF (reset_IBUF)
-     INV:I->O           2646   0.206   2.602  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
+     INV:I->O           2640   0.206   2.600  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
      FDC:CLR                   0.430          UART_inst/UART_Receiver_inst/RX_DATA_TEMP_0
     ----------------------------------------
-    Total                      5.593ns (1.858ns logic, 3.735ns route)
+    Total                      5.591ns (1.858ns logic, 3.733ns route)
                                        (33.2% logic, 66.8% route)
 
 =========================================================================
@@ -1627,7 +1619,7 @@ Offset:              3.835ns (Levels of Logic = 2)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'UART_inst/UART_Sender_inst/TX_EN1'
   Total number of paths / destination ports: 1 / 1
 -------------------------------------------------------------------------
-Offset:              5.593ns (Levels of Logic = 2)
+Offset:              5.591ns (Levels of Logic = 2)
   Source:            reset (PAD)
   Destination:       UART_inst/UART_Sender_inst/count_0_LDC (LATCH)
   Destination Clock: UART_inst/UART_Sender_inst/TX_EN1 falling
@@ -1637,10 +1629,10 @@ Offset:              5.593ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            22   1.222   1.133  reset_IBUF (reset_IBUF)
-     INV:I->O           2646   0.206   2.602  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
+     INV:I->O           2640   0.206   2.600  reset_inv1_INV_0 (Pipeline_Core_INST/DataMem_INST/peripheral_inst/reset_inv)
      LDC:CLR                   0.430          UART_inst/UART_Sender_inst/count_0_LDC
     ----------------------------------------
-    Total                      5.593ns (1.858ns logic, 3.735ns route)
+    Total                      5.591ns (1.858ns logic, 3.733ns route)
                                        (33.2% logic, 66.8% route)
 
 =========================================================================
@@ -1706,28 +1698,28 @@ Offset:              3.634ns (Levels of Logic = 1)
 Cross Clock Domains Report:
 --------------------------
 
-Clock to Setup on destination clock Pipeline_Core_INST/Ctrl_Inst/Interrupt_FORMAT[5]_AND_302_o
+Clock to Setup on destination clock Pipeline_Core_INST/Ctrl_Inst/Interrupt_Instruction[31]_AND_281_o
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    5.047|         |         |         |
+clk            |    5.409|         |         |         |
 ---------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_343_o
+Clock to Setup on destination clock Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_322_o
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |         |         |    3.786|         |
+clk            |         |         |    4.826|         |
 ---------------+---------+---------+---------+---------+
 
-Clock to Setup on destination clock Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_345_o
+Clock to Setup on destination clock Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_324_o
 ---------------+---------+---------+---------+---------+
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |         |         |    3.888|         |
+clk            |         |         |    4.826|         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock Pipeline_Core_INST/DataMem_INST/peripheral_inst/TCON_2
@@ -1735,7 +1727,7 @@ Clock to Setup on destination clock Pipeline_Core_INST/DataMem_INST/peripheral_i
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    3.125|         |         |         |
+clk            |    5.143|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock Pipeline_Core_INST/EX_MEM_REG_INST/oMemRd
@@ -1744,7 +1736,7 @@ Clock to Setup on destination clock Pipeline_Core_INST/EX_MEM_REG_INST/oMemRd
 Source Clock           |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 -----------------------+---------+---------+---------+---------+
 UART_inst/di/clkout_reg|         |         |    2.091|         |
-clk                    |         |         |    7.296|         |
+clk                    |         |         |    7.310|         |
 sysclk                 |         |         |    3.312|         |
 -----------------------+---------+---------+---------+---------+
 
@@ -1848,17 +1840,17 @@ clk                                                 |    3.040|         |       
 ----------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock clk
-----------------------------------------------------------+---------+---------+---------+---------+
-                                                          | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
-Source Clock                                              |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
-----------------------------------------------------------+---------+---------+---------+---------+
-Pipeline_Core_INST/Ctrl_Inst/Interrupt_FORMAT[5]_AND_302_o|    1.747|         |         |         |
-Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_343_o|         |    2.846|         |         |
-Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_345_o|         |    1.747|         |         |
-Pipeline_Core_INST/DataMem_INST/peripheral_inst/TCON_2    |    1.747|         |         |         |
-Pipeline_Core_INST/EX_MEM_REG_INST/oMemRd                 |         |    2.398|         |         |
-clk                                                       |   12.401|    4.760|    4.947|         |
-----------------------------------------------------------+---------+---------+---------+---------+
+----------------------------------------------------------------+---------+---------+---------+---------+
+                                                                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock                                                    |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+----------------------------------------------------------------+---------+---------+---------+---------+
+Pipeline_Core_INST/Ctrl_Inst/Interrupt_Instruction[31]_AND_281_o|    1.747|         |         |         |
+Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_322_o      |         |    3.059|         |         |
+Pipeline_Core_INST/Ctrl_Inst/Interrupt_Interrupt_AND_324_o      |         |    1.747|         |         |
+Pipeline_Core_INST/DataMem_INST/peripheral_inst/TCON_2          |    1.747|         |         |         |
+Pipeline_Core_INST/EX_MEM_REG_INST/oMemRd                       |         |    2.398|         |         |
+clk                                                             |   13.161|    4.883|    5.471|         |
+----------------------------------------------------------------+---------+---------+---------+---------+
 
 Clock to Setup on destination clock sysclk
 ------------------------------------------+---------+---------+---------+---------+
@@ -1867,22 +1859,22 @@ Source Clock                              |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fa
 ------------------------------------------+---------+---------+---------+---------+
 UART_inst/UART_Receiver_inst/di/clkout_reg|    1.165|         |         |         |
 UART_inst/UBRG_inst/clkout_reg            |    3.753|         |         |         |
-clk                                       |    5.525|         |         |         |
-sysclk                                    |    4.322|         |         |         |
+clk                                       |    5.766|         |         |         |
+sysclk                                    |    4.315|         |         |         |
 ------------------------------------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 43.00 secs
-Total CPU time to Xst completion: 42.08 secs
+Total REAL time to Xst completion: 52.00 secs
+Total CPU time to Xst completion: 50.49 secs
  
 --> 
 
 
-Total memory usage is 445648 kilobytes
+Total memory usage is 426740 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  176 (   0 filtered)
-Number of infos    :   26 (   0 filtered)
+Number of warnings :  177 (   0 filtered)
+Number of infos    :   32 (   0 filtered)
 

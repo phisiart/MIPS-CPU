@@ -54,11 +54,12 @@ module test_Pipeline_fpga;
 		switch = 0;
 
 		// Wait 100 ns for global reset to finish
-		#100000;
+		#100;
       	reset = 0;
 		// Add stimulus here
-		#200000 reset = 1;
-
+		#2000000 reset = 1;
+		
+		#3500000
 		UART_RX = 0;
 		#104166 UART_RX = 1;
 		#104166 UART_RX = 0;
@@ -70,6 +71,7 @@ module test_Pipeline_fpga;
 		#104166 UART_RX = 0;
 		#104166 UART_RX = 1;
 		
+		
 		#104166 UART_RX = 0;
 		#104166 UART_RX = 0;
 		#104166 UART_RX = 1;
@@ -80,6 +82,33 @@ module test_Pipeline_fpga;
 		#104166 UART_RX = 0;
 		#104166 UART_RX = 0;
 		#104166 UART_RX = 1;
+		
+		#1000000;
+		
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 1;
+		#104166 UART_RX = 1;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 1;
+	
+		
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 1;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 0;
+		#104166 UART_RX = 1;
+		
+		
 		
 	end
 	

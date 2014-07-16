@@ -28,7 +28,7 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 416852 kilobytes
+Total memory usage is 418332 kilobytes
 
 Writing NGD file "Pipeline_fpga.ngd" ...
 Total REAL time to NGDBUILD completion:  5 sec

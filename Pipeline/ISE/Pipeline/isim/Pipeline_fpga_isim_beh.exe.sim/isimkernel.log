@@ -1,0 +1,28 @@
+Command line:
+   Pipeline_fpga_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  57476
+
+Wed Jul 16 10:56:16 2014
+
+
+ Elaboration Time: 0.06 sec
+
+ Current Memory Usage: 206.127 Meg
+
+ Total Signals          : 468
+ Total Nets             : 2482
+ Total Signal Drivers   : 182
+ Total Blocks           : 47
+ Total Primitive Blocks : 37
+ Total Processes        : 211
+ Total Traceable Variables  : 239
+ Total Scalar Nets and Variables : 6252
+
+ Total Simulation Time: 0.11 sec
+
+ Current Memory Usage: 281.629 Meg
+
+Wed Jul 16 10:56:19 2014
+

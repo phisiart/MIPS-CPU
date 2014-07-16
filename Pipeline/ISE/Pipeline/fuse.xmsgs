@@ -5,16 +5,19 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 109: Port <arg fmt="%s" index="1">Zero</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 152: Port <arg fmt="%s" index="1">Zero</arg> is not connected to this instance
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 276: Port <arg fmt="%s" index="1">IF_ID_Rd</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 321: Port <arg fmt="%s" index="1">IF_ID_Rd</arg> is not connected to this instance
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 312: Port <arg fmt="%s" index="1">Zero</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 357: Port <arg fmt="%s" index="1">Zero</arg> is not connected to this instance
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 357: Port <arg fmt="%s" index="1">read_acc</arg> is not connected to this instance
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 403: Port <arg fmt="%s" index="1">read_acc</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 445: Port <arg fmt="%s" index="1">Zero</arg> is not connected to this instance
 </msg>
 
 </messages>

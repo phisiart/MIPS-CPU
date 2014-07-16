@@ -35,3 +35,6 @@ NET 'switch[4]' 			LOC = 'N8';
 NET 'switch[5]' 			LOC = 'U8';
 NET 'switch[6]' 			LOC = 'V8';
 NET 'switch[7]' 			LOC = 'T5';
+#Created by Constraints Editor (xc6slx16-csg324-3) - 2014/07/16
+NET "clk" TNM_NET = clk;
+TIMESPEC TS_clk = PERIOD "clk" 10 ns HIGH 50%;

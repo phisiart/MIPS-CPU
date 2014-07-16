@@ -24,7 +24,7 @@
 static const char *ng0 = "/home/sean/Dropbox/CPU/CPU/Pipeline/Pipeline_fpga.v";
 static unsigned int ng1[] = {0U, 0U};
 static int ng2[] = {0, 0};
-static unsigned int ng3[] = {255U, 0U};
+static unsigned int ng3[] = {15U, 0U};
 static unsigned int ng4[] = {1U, 0U};
 
 

@@ -36,13 +36,14 @@ Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../P
 Analyzing Verilog file "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga.v" into library work
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 109: Port Zero is not connected to this instance
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 276: Port IF_ID_Rd is not connected to this instance
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 312: Port Zero is not connected to this instance
-WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 357: Port read_acc is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 152: Port Zero is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 321: Port IF_ID_Rd is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 357: Port Zero is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 403: Port read_acc is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/../../Pipeline_Core.v" Line 445: Port Zero is not connected to this instance
 Completed static elaboration
-Fuse Memory Usage: 95320 KB
-Fuse CPU Usage: 1150 ms
+Fuse Memory Usage: 95312 KB
+Fuse CPU Usage: 1190 ms
 Compiling module negedge_detc
 Compiling module UART_Baud_Rate_Generator
 Compiling module divider_16
@@ -77,9 +78,9 @@ Compiling module Pipeline_fpga
 Compiling module test_Pipeline_fpga
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 16 sub-compilation(s) to finish...
+Waiting for 17 sub-compilation(s) to finish...
 Compiled 33 Verilog Units
 Built simulation executable /home/sean/Dropbox/CPU/CPU/Pipeline/ISE/Pipeline/test_Pipeline_fpga_isim_beh.exe
-Fuse Memory Usage: 655976 KB
-Fuse CPU Usage: 1320 ms
-GCC CPU Usage: 3270 ms
+Fuse Memory Usage: 655888 KB
+Fuse CPU Usage: 1370 ms
+GCC CPU Usage: 3310 ms

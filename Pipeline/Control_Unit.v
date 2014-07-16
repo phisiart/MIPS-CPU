@@ -124,9 +124,10 @@ module Control_Unit (
     parameter MemRd_DIS     = 1'b0;
 
     // MemToReg
-    parameter MemToReg_ALU  = 2'b00;
-    parameter MemToReg_MEM  = 2'b01;
-    parameter MemToReg_PC   = 2'b10;
+    parameter MemToReg_ALU   = 2'b00;
+    parameter MemToReg_MEM   = 2'b01;
+    parameter MemToReg_PC    = 2'b10;
+    parameter MemToReg_CurPC = 2'b11;
 
     // EXTOp
     parameter EXTOp_SIGNED   = 1'b1;
@@ -138,13 +139,13 @@ module Control_Unit (
 
 always @(*) begin
     // has an external interrupt
-    if (Interrupt == 1'b1 && FORMAT[5] == 1'b0) begin
+    if (Interrupt == 1'b1 && FORMAT[5] == 1'b0 && Instruction != 32'h0) begin
         PCSrc       = PCSrc_XADR;
         RegDst      = RegDst_Xp;
         RegWr       = RegWr_EN;
         MemWr       = MemWr_DIS;
         MemRd       = MemRd_DIS;
-        MemToReg    = MemToReg_PC;
+        MemToReg    = MemToReg_CurPC;
     end
     else if (Interrupt == 1'b1) begin
         PCSrc       = PCSrc_ADD4;
